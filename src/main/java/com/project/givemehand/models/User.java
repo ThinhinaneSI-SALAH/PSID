@@ -16,6 +16,7 @@ public class User {
     private int medailles;
 
     public User(){
-
     }
+
+
 }
