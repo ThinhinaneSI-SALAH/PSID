@@ -12,6 +12,6 @@ public class Givemehandcontroller
     @RequestMapping(value = "/Hand", method = RequestMethod.GET)
     public String listeProduits()
     {
-        return "Give ME hand";
+        return "Hello We are Give ME hand";
     }
 }
