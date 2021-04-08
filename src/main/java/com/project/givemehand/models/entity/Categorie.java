@@ -1,4 +1,4 @@
-package com.project.givemehand.models;
+package com.project.givemehand.models.entity;
 
 public enum Categorie {
     BRICOLAGE("Bricolage"), JARDINAGE("Jardinage"), GARDERIE("Garderie"), SPORT("Sport"),

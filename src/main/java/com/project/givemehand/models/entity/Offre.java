@@ -1,4 +1,4 @@
-package com.project.givemehand.models;
+package com.project.givemehand.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,17 +16,19 @@ public class Offre {
     private String titre;
     private String description;
     private Date dateOffre;
+    private Date dateFinOffre;
     private String villeOffre;
     @OneToOne
     private Note note;
     private double moyenneNotes = 0.0;
-    private int nbMedailles;
+    private int nbMedailles ;
     private Categorie cat;
     @ManyToOne
     private User user;
     @JsonIgnore
     @OneToMany(mappedBy = "offre", fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
+
     private Set<Demande> demandes= new HashSet<>();
 
 
@@ -34,7 +36,7 @@ public class Offre {
 
     }
 
-    public Offre( String titre, String description, Date dateOffre, String villeOffre, int nbMedailles, Categorie cat, User user) {
+    public Offre( String titre, String description, Date dateOffre,Date dateFin, String villeOffre, int nbMedailles, Categorie cat, User user) {
         this.titre = titre;
         this.description = description;
         this.dateOffre = dateOffre;
@@ -43,6 +45,15 @@ public class Offre {
         this.cat = cat;
         this.user = user;
         this.note = new Note(this);
+        this.dateFinOffre = dateFin ;
+    }
+
+    public Date getDateFinOffre() {
+        return dateFinOffre;
+    }
+
+    public void setDateFinOffre(Date dateFinOffre) {
+        this.dateFinOffre = dateFinOffre;
     }
 
     public String getTitre() {
@@ -150,5 +161,19 @@ public class Offre {
 
         this.moyenneNotes = somme/nbNotes;
         return this.moyenneNotes;
+    }
+
+    public void acceptDemande(Demande d) {
+        if (d.getStatut().equals(Statut.ATTENTE)) {
+            d.setStatut(Statut.ACCEPTE);
+
+        }
+    }
+
+    public void refuserDemande(Demande d) {
+        if (d.getStatut().equals(Statut.ATTENTE)) {
+            d.setStatut(Statut.REFUSE);
+
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.project.givemehand.models;
+package com.project.givemehand.models.entity;
 
 import javax.persistence.*;
 
