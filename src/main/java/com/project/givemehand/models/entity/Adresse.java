@@ -1,9 +1,11 @@
 package com.project.givemehand.models.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+@Entity
+@Table (name ="Adresse")
 public class Adresse
 {
     @Id
@@ -14,11 +16,17 @@ public class Adresse
     private  String city;
     private  String country;
 
-    public Adresse(String street, String zip, String city, String country) {
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "adresse",
+            cascade = CascadeType.PERSIST)
+    private Set<User> users =new HashSet<>();
+
+    public Adresse(String street, String zip, String city, String country,Set<User> users) {
         this.street = street;
         this.zip = zip;
         this.city = city;
         this.country = country;
+        this.users=users;
     }
 
     public String getStreet() {
@@ -59,5 +67,14 @@ public class Adresse
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

@@ -22,7 +22,8 @@ public class Offre {
     private Note note;
     private double moyenneNotes = 0.0;
     private int nbMedailles ;
-    private Categorie cat;
+    @Enumerated(EnumType.STRING)
+    private Categorie categorie;
     @ManyToOne
     private User user;
     @JsonIgnore
@@ -42,7 +43,7 @@ public class Offre {
         this.dateOffre = dateOffre;
         this.villeOffre = villeOffre;
         this.nbMedailles = nbMedailles;
-        this.cat = cat;
+        this.categorie = cat;
         this.user = user;
         this.note = new Note(this);
         this.dateFinOffre = dateFin ;
@@ -105,11 +106,11 @@ public class Offre {
     }
 
     public Categorie getCat() {
-        return cat;
+        return categorie;
     }
 
     public void setCat(Categorie cat) {
-        this.cat = cat;
+        this.categorie = cat;
     }
 
     public User getUser() {

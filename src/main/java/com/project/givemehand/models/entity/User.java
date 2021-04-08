@@ -18,8 +18,9 @@ public class User {
     private int medailles;
 
 
-    @OneToMany(fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "adresse_id", nullable = false)
     private Adresse adresse;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,

@@ -6,10 +6,12 @@ import com.project.givemehand.models.entity.Filtre;
 import com.project.givemehand.models.entity.Offre;
 import com.project.givemehand.repository.OffreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+@Service
 public class OffreService implements IOffre {
     @Autowired
     private OffreRepository offreRepository;
@@ -33,7 +35,7 @@ public class OffreService implements IOffre {
                     String motClesFiltre = f.getMotCles();
                     if(catOffre.equals(catOffreFilter) && ( dateFinOffre.after(dateFiltre) || dateFinOffre.equals(dateFiltre))
                         && villeOffre.equals(villeRecherche) && medaillesOffre<=medaillesFiltre
-                                 &&( description.contains(motClesFiltre) || titre.contains(description) ))
+                                 &&( description.contains(motClesFiltre) || titre.contains(motClesFiltre) ))
                     {
                             offresRetenues.add(off);
 
