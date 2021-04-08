@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,14 +19,20 @@ public class OffreServiceController
     @Autowired
     private OffreService service;
 
-    @GetMapping("/getofferfilter/categorie={categorie}/ville={ville}/date={date}/nbmedaille={nbmedaille}" +
-            "motcle={motcle}/")
+    @RequestMapping(path ="/getofferfilter/{categorie}/{ville}/{nbMedailles}/{motcle}/{date}", method = RequestMethod.GET)
 
-    public List<Offre> getoffrefilter(@PathVariable(value = "categorie") Categorie categorie, @PathVariable(value = "ville") String  ville,
-                                      @PathVariable(value = "date") Date date , @PathVariable(value = "nbmedaille") int  nbmddaille,@PathVariable(value = "motcle") String motcle)
+    public List<Offre> getoffres(@PathVariable String categorie, @PathVariable String ville, @PathVariable String nbMedailles, @PathVariable String motcle, @PathVariable String date)
     {
-        Filtre f = new Filtre(categorie,ville,date,nbmddaille,motcle);
+        System.out.println("Catégorie"+categorie);
+        Categorie cat = Categorie.valueOf(categorie);
+        String jour = date.substring(0,2);
+        String mois = date.substring(2,4);
+        String annee = date.substring(4,8);
+        String d = jour.concat("/"+mois+"/"+annee);
+        System.out.println(d);
+        Filtre f = new Filtre(cat,ville, new Date(d),Integer.parseInt(nbMedailles),motcle);
         return service.filtrerOffre(f);
     }
+
 
 }
