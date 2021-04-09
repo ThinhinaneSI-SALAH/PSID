@@ -16,9 +16,7 @@ export class AccueilComponent implements OnInit {
   constructor(private offreService: OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.offres = ActivatedRoute..pipe(map(d => d.offres)
-
-    console.log (if(this.ActivatedRoute.);
+   /* this.offres = ActivatedRoute..pipe(map(d => d.offres)
     if(this.route.snapshot.paramMap.get('offres')!=null)
     {
       
@@ -27,8 +25,9 @@ export class AccueilComponent implements OnInit {
     else
     {
       this.reloadData();
-    }
+    }*/
    
+    this.reloadData();
     
   }
   

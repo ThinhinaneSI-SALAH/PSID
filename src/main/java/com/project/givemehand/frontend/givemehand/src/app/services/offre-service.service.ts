@@ -11,16 +11,23 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class OffreServiceService
+export class OffreServiceService{
   public url =environment.api_url;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+
+  }
+
 
   getOffreList(): Observable<any> {
     return this.http.get(this.url+'/getAllOffer');
   }
   getofferfilter(categorie:String, ville:String, nbmedailles:number, motcle:String, date:String):Observable<any> {
   return this.http.get(this.url+"/getofferfilter/"+categorie+"/"+ville+"/"+nbmedailles+"/"+motcle+"/"+date);
+  }
+
+  getCategories(): Observable<any> {
+    return this.http.get(this.url+'/getAllCat');
   }
 
 }

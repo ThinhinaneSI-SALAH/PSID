@@ -17,9 +17,9 @@ export class FiltresComponent implements OnInit {
   empty =false;
   offres: Observable<Offre[]>;
   constructor(private offreService: OffreServiceService,private router: Router,private http: HttpClient) { }
-
+  categories : Observable< String[]>;
   ngOnInit(): void {
-  
+      this.categories = this.offreService.getCategories();
   }
   
   FilterOffre ():void
