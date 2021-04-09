@@ -1,5 +1,9 @@
 package com.project.givemehand.models.entity;
 
+/**
+ *
+ * Permet d'enumerer les statuts de la demande
+ */
 public enum Statut {
 
         ATTENTE("En Attente"), ACCEPTE("ACCEPTE"), REFUSE("REFUSE");

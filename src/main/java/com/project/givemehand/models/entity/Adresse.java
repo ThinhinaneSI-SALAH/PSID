@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Set;
 @Entity
 @Table (name ="Adresse")
+
+/**
+ *
+ * La classe addresse contient l'addresse des utilisateurs
+ */
+
+
 public class Adresse
 {
     @Id
@@ -21,6 +28,14 @@ public class Adresse
             cascade = CascadeType.PERSIST)
     private Set<User> users =new HashSet<>();
 
+    /**
+     *
+     * @param street
+     * @param zip
+     * @param city
+     * @param country
+     * @param users
+     */
     public Adresse(String street, String zip, String city, String country,Set<User> users) {
         this.street = street;
         this.zip = zip;

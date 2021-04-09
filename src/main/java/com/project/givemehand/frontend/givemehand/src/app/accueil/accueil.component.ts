@@ -16,16 +16,18 @@ export class AccueilComponent implements OnInit {
   constructor(private offreService: OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-   /* this.offres = ActivatedRoute..pipe(map(d => d.offres)
-    if(this.route.snapshot.paramMap.get('offres')!=null)
+  // this.offres = ActivatedRoute..pipe(map(d => d.offres)
+    if(this.route.snapshot.paramMap.get('id')!=null)
     {
-      
-      this.offres=(this.route.snapshot.paramMap.get);
+      console.log("on est ds la page filtre");
+
+      //this.offres=(this.route.snapshot.paramMap.get);
     }
     else
-    {
+    {      console.log("on est ds la page accueil");
+
       this.reloadData();
-    }*/
+    }
    
     this.reloadData();
     
@@ -73,7 +75,7 @@ export class AccueilComponent implements OnInit {
       console.log('Fini !');
     });
     
-    this.router.navigate(['accueil', this.offres]);
+    this.router.navigate(['accueil', 'id']);
   }
 
 }

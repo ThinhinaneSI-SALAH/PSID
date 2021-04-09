@@ -2,6 +2,9 @@ package com.project.givemehand.models.entity;
 
 import javax.persistence.*;
 
+/**
+ * Cette classe represente les notes donnee a une offre
+ */
 @Entity
 @Table ( name ="Note")
 public class Note {
@@ -17,6 +20,24 @@ public class Note {
     private Offre offre;
 
     public Note(Offre offre) {
+        this.offre = offre;
+    }
+
+    /**
+     *
+     * @param note1
+     * @param note2
+     * @param note3
+     * @param note4
+     * @param note5
+     * @param offre
+     */
+    public Note(int note1, int note2, int note3, int note4, int note5, Offre offre) {
+        this.note1 = note1;
+        this.note2 = note2;
+        this.note3 = note3;
+        this.note4 = note4;
+        this.note5 = note5;
         this.offre = offre;
     }
 

@@ -5,6 +5,9 @@ import com.project.givemehand.models.entity.Offre;
 
 import java.util.List;
 
+/**
+ * L'interface de l'offre
+ */
 public interface IOffre {
 
     public List<Offre> filtrerOffre(Filtre f);

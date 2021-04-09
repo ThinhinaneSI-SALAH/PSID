@@ -6,6 +6,9 @@ import java.util.Set;
 
 @Entity
 @Table(	name = "users")
+/**
+ * Cette classe represente la liste des utilisateurs ( particuliers )
+ */
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

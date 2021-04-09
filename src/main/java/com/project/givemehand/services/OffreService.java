@@ -14,11 +14,19 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
+/**
+ * Cette classe contient les services de l'offre
+ */
 public class OffreService implements IOffre {
 
     @Autowired
     private OffreRepository offreRepository;
 
+    /**
+     * Permet de filtrer les offres avec les parametres recus
+     * @param f
+     * @return une liste d'offre
+     */
     public List<Offre>  filtrerOffre(Filtre f){
 
         List<Offre>  offres = offreRepository.findAll();
@@ -53,6 +61,11 @@ public class OffreService implements IOffre {
 
         return offresRetenues;
     }
+
+    /**
+     * Renvoie la liste des offres sans filtre
+     * @return
+     */
     public List<Offre> getAlloffres(){
         return offreRepository.findAll();
     }

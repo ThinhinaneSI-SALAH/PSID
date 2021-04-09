@@ -9,6 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table ( name ="Offre")
+/**
+ * Cette classe permet d'avoir les offres, une offre est reliee a un titre, description, ville, date de publication
+ * et date de fin de l'offre
+ */
 public class Offre {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -36,6 +40,17 @@ public class Offre {
 
     }
 
+    /**
+     *
+     * @param titre
+     * @param description
+     * @param dateOffre
+     * @param dateFin
+     * @param villeOffre
+     * @param nbMedailles
+     * @param cat
+     * @param user
+     */
     public Offre( String titre, String description, Date dateOffre,Date dateFin, String villeOffre, int nbMedailles, Categorie cat, User user) {
         this.titre = titre;
         this.description = description;
@@ -155,6 +170,14 @@ public class Offre {
         }
     }
 
+    /**
+     * Permet de calculer la moyenne reliee a une offre
+     * Elle contient 05 attributs de notes : Note 1 represente 1 etoiles, Note 2 represente 2 etoiles......
+     * Lorsque un utilisateur donne 1 etoiles, l'attribut note 1 est incrementee de 1 , 2 etoiles elle est incrementee de 2
+     * Pour avoir la moyenne on calcule d'abord la somme : 1 * valeur obtenue dans 1 + 2 * valeur obtenue dans 2......
+     * On divise cette somme par le nombre de notes donnes
+     * @return la moyenne
+     */
     public double calculMoyenne(){
         int somme = this.note.getNote1() + this.note.getNote2()*2 + this.note.getNote3()*3 +this.note.getNote4()*4 + this.note.getNote5()*5;
         int nbNotes = this.note.getNote1()+this.note.getNote2()+this.note.getNote3()+this.note.getNote4()+this.note.getNote5();
@@ -163,6 +186,10 @@ public class Offre {
         return this.moyenneNotes;
     }
 
+    /**
+     * Accepte une demande
+     * @param d
+     */
     public void acceptDemande(Demande d) {
         if (d.getStatut().equals(Statut.ATTENTE)) {
             d.setStatut(Statut.ACCEPTE);
@@ -170,6 +197,10 @@ public class Offre {
         }
     }
 
+    /**
+     * Refuser une demande
+     * @param d
+     */
     public void refuserDemande(Demande d) {
         if (d.getStatut().equals(Statut.ATTENTE)) {
             d.setStatut(Statut.REFUSE);

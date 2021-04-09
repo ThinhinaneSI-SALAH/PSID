@@ -5,6 +5,9 @@ import java.util.Date;
 
 @Entity
 @Table( name ="Demande")
+/**
+ * La classe demande represente les demandes des utilisateurs
+ */
 public class Demande {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -22,6 +25,13 @@ public class Demande {
     public Demande(){
 
     }
+
+    /**
+     *
+     * @param dateDemande de l'offre
+     * @param offre
+     * @param user qui propose l'offre
+     */
     public Demande( Date dateDemande, Offre offre,User user) {
         this.dateDemande = dateDemande;
         this.statut = Statut.ATTENTE;

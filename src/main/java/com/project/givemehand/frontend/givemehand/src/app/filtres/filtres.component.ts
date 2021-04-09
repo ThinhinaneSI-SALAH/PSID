@@ -50,7 +50,7 @@ export class FiltresComponent implements OnInit {
       console.log('Fini !');
     });
     
-    this.router.navigate(['accueil', this.offres]);
+    this.router.navigate(['accueil', 'id']);
   }
 
 }

@@ -10,6 +10,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 @Service
+/**
+ * Contient les services du User
+ */
 public class UserService {
     @Autowired
     private UserRepository userRepository;
