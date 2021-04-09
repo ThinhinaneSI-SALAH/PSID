@@ -34,5 +34,10 @@ public class OffreServiceController
         return service.filtrerOffre(f);
     }
 
+    @RequestMapping(path ="/getAllOffer", method = RequestMethod.GET)
+    public List<Offre> getAlloffres()
+    {
+        return service.getAlloffres();
+    }
 
 }

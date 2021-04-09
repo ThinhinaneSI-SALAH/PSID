@@ -53,4 +53,7 @@ public class OffreService implements IOffre {
 
         return offresRetenues;
     }
+    public List<Offre> getAlloffres(){
+        return offreRepository.findAll();
+    }
 }
