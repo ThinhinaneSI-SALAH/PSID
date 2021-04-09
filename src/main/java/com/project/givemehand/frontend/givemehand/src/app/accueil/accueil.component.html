@@ -1,0 +1,33 @@
+<h3> Les offres disponibles </h3>
+
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+        <th scope="col">Catégorie</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Date de fin</th>
+        <th scope="col">Médailles(coût)</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let offre of offres | async">
+      <tr>
+        <td>{{offre.titre}}</td>
+        <td>{{offre.description}}</td>
+        <td>{{offre.cat}}</td>
+        <td>{{offre.villeOffre}}</td>
+        <td>{{offre.dateFinOffre}}</td>
+        <td>{{offre.nbMedailles}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class="align-content-lg-around" *ngIf="empty">
+  <p>No result </p>
+</div>
