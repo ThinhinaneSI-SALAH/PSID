@@ -10,7 +10,6 @@ import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
-import { FiltresComponent } from './filtres/filtres.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -23,7 +22,6 @@ import {HttpClientModule} from '@angular/common/http';
     MonProfilComponent,
     LoginComponent,
     InscriptionComponent,
-    FiltresComponent,
     NavComponent
   ],
   imports: [
