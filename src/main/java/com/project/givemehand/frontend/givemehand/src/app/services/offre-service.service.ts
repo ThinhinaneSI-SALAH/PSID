@@ -19,4 +19,8 @@ export class OffreServiceService {
   getOffreList(): Observable<any> {
     return this.http.get(this.url+'/getAllOffer');
   }
+  getofferfilter(categorie:String, ville:String, nbmedailles:number, motcle:String, date:String):Observable<any> {
+  return this.http.get(this.url+"/getofferfilter/"+categorie+"/"+ville+"/"+nbmedailles+"/"+motcle+"/"+date);
+  }
+    
 }

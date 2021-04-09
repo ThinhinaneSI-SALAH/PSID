@@ -9,8 +9,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accueil', component: AccueilComponent },
   { path: 'mesOffres', component: MesOffresComponent },
-  { path: 'mesDemandes', component: MesDemandesComponent },
+  { path: 'mesDemandes', component: MesDemandesComponent},
   { path: 'monProfil', component: MonProfilComponent },
+  { path: 'accueil/:offres', component: MonProfilComponent }
 
 ];
 
