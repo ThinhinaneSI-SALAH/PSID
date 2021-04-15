@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Le repository de l'offre, elle herite de JPA
  */
-public interface OffreRepository extends JpaRepository<Offre,Long> {
+public interface OffreRepository extends JpaRepository<Offre,Long>
+{
 
 }

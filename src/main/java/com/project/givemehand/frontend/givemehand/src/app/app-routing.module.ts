@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
+import { CreateOffreComponent } from './create-offre/create-offre.component';
 import { MesDemandesComponent } from './mes-demandes/mes-demandes.component';
 import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
+import { OffreDetailComponent } from './offre-detail/offre-detail.component';
+import { OffreListComponent } from './offre-list/offre-list.component';
+import { UpdateOffreComponent } from './update-offre/update-offre.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -11,7 +15,12 @@ const routes: Routes = [
   { path: 'mesOffres', component: MesOffresComponent },
   { path: 'mesDemandes', component: MesDemandesComponent},
   { path: 'monProfil', component: MonProfilComponent },
-  { path: 'accueil/:id', component: AccueilComponent }
+  { path: 'accueil/:id', component: AccueilComponent },
+  { path: 'details/:id', component: OffreDetailComponent},
+  { path: 'add', component:CreateOffreComponent},
+  { path: 'update/:id', component: UpdateOffreComponent },
+  { path: 'offrelist', component: OffreListComponent },
+
 
 ];
 

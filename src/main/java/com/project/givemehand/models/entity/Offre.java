@@ -1,5 +1,6 @@
 package com.project.givemehand.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -17,9 +18,20 @@ public class Offre {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private String titre;
     private String description;
+    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateOffre;
+    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateFinOffre;
     private String villeOffre;
     @OneToOne
