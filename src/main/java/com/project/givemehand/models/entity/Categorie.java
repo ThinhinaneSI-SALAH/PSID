@@ -16,7 +16,8 @@ public enum Categorie {
      *
      * @param lab represente la categorie de service propose
      */
-    private Categorie(String lab){
+    private Categorie(String lab)
+    {
         this.label = lab;
     }
 

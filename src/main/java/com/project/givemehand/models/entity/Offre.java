@@ -1,5 +1,6 @@
 package com.project.givemehand.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -7,19 +8,30 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table ( name ="Offre")
 /**
  * Cette classe permet d'avoir les offres, une offre est reliee a un titre, description, ville, date de publication
  * et date de fin de l'offre
  */
+@Entity
+@Table ( name ="Offre")
 public class Offre {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private String titre;
     private String description;
+    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateOffre;
+    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateFinOffre;
     private String villeOffre;
     @OneToOne
@@ -42,14 +54,14 @@ public class Offre {
 
     /**
      *
-     * @param titre
-     * @param description
-     * @param dateOffre
-     * @param dateFin
-     * @param villeOffre
-     * @param nbMedailles
-     * @param cat
-     * @param user
+     * @param titre titre de l'offre
+     * @param description description de l'offre
+     * @param dateOffre date de publication de l'offre
+     * @param dateFin date de fin de l'offre
+     * @param villeOffre ville ou l'offre est proposee
+     * @param nbMedailles nombre de medailles a fournir pour cette offre
+     * @param cat Categorie de l'offre
+     * @param user Utilisateur qui as cree cette offre
      */
     public Offre( String titre, String description, Date dateOffre,Date dateFin, String villeOffre, int nbMedailles, Categorie cat, User user) {
         this.titre = titre;
@@ -188,7 +200,7 @@ public class Offre {
 
     /**
      * Accepte une demande
-     * @param d
+     * @param d represente la demande
      */
     public void acceptDemande(Demande d) {
         if (d.getStatut().equals(Statut.ATTENTE)) {
@@ -199,7 +211,7 @@ public class Offre {
 
     /**
      * Refuser une demande
-     * @param d
+     * @param d represente la demande
      */
     public void refuserDemande(Demande d) {
         if (d.getStatut().equals(Statut.ATTENTE)) {

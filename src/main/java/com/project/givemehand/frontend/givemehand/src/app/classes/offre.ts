@@ -11,7 +11,6 @@ export class Offre {
   nbMedailles: number;
   note: number;
 
-
   constructor(description: string,id: number,titre: string, categorie: string,villeOffre: string, dateFinOffre: Date, nbMedailles: number,datePipe:DatePipe ) {
     this.id = id;
     this.description= description;
@@ -23,7 +22,4 @@ export class Offre {
     this.nbMedailles = nbMedailles;
     this.note = 0;
   }
-
-
-
 }

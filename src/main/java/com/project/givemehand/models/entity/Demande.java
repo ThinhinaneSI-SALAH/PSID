@@ -3,11 +3,11 @@ package com.project.givemehand.models.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table( name ="Demande")
 /**
  * La classe demande represente les demandes des utilisateurs
  */
+@Entity
+@Table( name ="Demande")
 public class Demande {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Demande {
     /**
      *
      * @param dateDemande de l'offre
-     * @param offre
+     * @param offre offre rattache a cette demande
      * @param user qui propose l'offre
      */
     public Demande( Date dateDemande, Offre offre,User user) {

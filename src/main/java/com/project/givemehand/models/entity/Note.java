@@ -25,12 +25,12 @@ public class Note {
 
     /**
      *
-     * @param note1
-     * @param note2
-     * @param note3
-     * @param note4
-     * @param note5
-     * @param offre
+     * @param note1 nombre de notes donnes a 1 etoiles
+     * @param note2 nombre de notes donnes a 2 etoiles
+     * @param note3 nombre de notes donnes a 3 etoiles
+     * @param note4 nombre de notes donnes a 4 etoiles
+     * @param note5 nombre de notes donnes a 5 etoiles
+     * @param offre l'offre attache a ces notes
      */
     public Note(int note1, int note2, int note3, int note4, int note5, Offre offre) {
         this.note1 = note1;

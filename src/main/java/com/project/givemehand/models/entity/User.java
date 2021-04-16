@@ -1,15 +1,23 @@
 package com.project.givemehand.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(	name = "users")
 /**
  * Cette classe represente la liste des utilisateurs ( particuliers )
  */
+@Entity
+
+@Table(	name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "email")
+        })
 public class User {
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -20,15 +28,19 @@ public class User {
     private String phoneNumber;
     private int medailles;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "adresse_id", nullable = false)
+   // @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
-
     private Set<Demande> demandes= new HashSet<>();
 
 
@@ -39,7 +51,21 @@ public class User {
     public User(){
     }
 
-    public User(Long id, String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Adresse adresse, Set<Demande> demandes, Set<Offre> offres) {
+    public User( String email, String password) {
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(String firstName, String lastName, String password, String email, String phoneNumber, int medailles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.medailles = medailles;
+    }
+
+    public User(Long id, String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Set<Demande> demandes, Adresse adresse ,Set<Offre> offres) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -123,4 +149,37 @@ public class User {
     public void setOffres(Set<Offre> offres) {
         this.offres = offres;
     }
-}
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", medailles=" + medailles +
+                ", roles=" + roles +
+                ", adresse=" + adresse +
+                ", demandes=" + demandes +
+                ", offres=" + offres +
+                '}';
+    }
+
+        public Long getId () {
+            return id;
+        }
+
+        public void setId (Long id){
+            this.id = id;
+        }
+    }
