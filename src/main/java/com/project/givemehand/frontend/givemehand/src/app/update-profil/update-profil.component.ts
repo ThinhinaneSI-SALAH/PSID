@@ -11,8 +11,7 @@ import { UserService } from '../services/user.service';
 export class UpdateProfilComponent implements OnInit {
   user :  any; 
   semail : string;
- submitted: any;
-Boolean = false;s
+ submitted = false;
 errorMessage = '';
 
   constructor(private userService: UserService) { }
@@ -36,6 +35,8 @@ errorMessage = '';
     );
   }
   onSubmit(){
+    console.log("user after init")
+
     this.submitted = true;
     this.userService.updateUser(this.user.email,this.user).subscribe(
       data=> console.log(data),

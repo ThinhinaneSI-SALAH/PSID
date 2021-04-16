@@ -1,17 +1,17 @@
-<h1>Update Criteria</h1>
-<div   [hidden]="submitted" style="width: 300px;" class="updateCriteria">
+ <div class="container">
+  
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="nom">Nom</label>
-      <input type="text" class="form-control" id="nom" required [(ngModel)]="user.nom" name="nom">
+      <input type="text" class="form-control" id="nom" required [(ngModel)]="user.firstName" name="nom">
     </div>
     <div class="form-group">
         <label for="prenom">Prenom</label>
-        <input type="text" class="form-control" id="prenom" required [(ngModel)]="user.prenom" name="prenom">
+        <input type="text" class="form-control" id="prenom" required [(ngModel)]="user.lastName" name="prenom">
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="prenom">
+        <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
       </div>
       <div class="form-group">
         <label for="password">motDePasse</label>
@@ -23,36 +23,36 @@
     <div class="form-group">
         <label for="tel">Numero de telephone </label>
         <input type="text" class="form-control" id="tel" required
-        [(ngModel)]="user.tel" name="tel" >
+        [(ngModel)]="user.phoneNumber" name="tel" >
 
     </div>
 
         <div class="form-group">
-            <label for="rue">Rue  </label>
-            <input type="text" class="form-control" id="rue" required
-            [(ngModel)]="user.rue" name="rue" #rue="ngModel">
+            <label for="street ">Rue  </label>
+            <input type="text" class="form-control" id="street" required
+            [(ngModel)]="user.adresse.street" name="street" #street="ngModel">
        
         </div>
     
             <div class="form-group">
-                <label for="cp">Code Postale </label>
-                <input type="number" class="form-control" id="cp" required
-                [(ngModel)]="user.cp" name="cp" >
+                <label for="zip">Code Postale </label>
+                <input type="number" class="form-control" id="zip" required
+                [(ngModel)]="user.adresse.zip" name="zip" >
           
             </div>
                 
                 <div class="form-group">
-                    <label for="ville"> Ville</label>
-                    <input type="text" class="form-control" id="ville" required
-                    [(ngModel)]="user.ville" name="ville" >
+                    <label for="city"> Ville</label>
+                    <input type="text" class="form-control" id="city" required
+                    [(ngModel)]="user.adresse.city" name="city" >
             
                 </div>
             
 
                     <div class="form-group">
-                        <label for="pays">Pays</label>
-                        <input type="text" class="form-control" id="pays" required
-                        [(ngModel)]="user.pays" name="pays" >
+                        <label for="country">Pays</label>
+                        <input type="text" class="form-control" id="country" required
+                        [(ngModel)]="user.adresse.country" name="country" >
                    
                     </div>
 
@@ -63,7 +63,9 @@
 </div>
 
 
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
+<div style="margin-top : 100px" class="alert alert-success" *ngIf="submitted">
+  You submitted successfully!
 </div>
+
+
 

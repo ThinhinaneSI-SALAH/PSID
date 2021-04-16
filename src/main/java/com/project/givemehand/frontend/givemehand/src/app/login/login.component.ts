@@ -36,8 +36,13 @@ export class LoginComponent implements OnInit {
 
         //this.roles = this.tokenStorage.getUser().roles;
        // this.reloadPage();
+       //this.reloadPage();
+       this.router.navigate(['accueil'])
+       .then(() => {
+         window.location.reload();
+       });   
+       //    this.router.navigate(['accueil']);
 
-       this.router.navigate(['monProfil']);
 
       },
       err => {
