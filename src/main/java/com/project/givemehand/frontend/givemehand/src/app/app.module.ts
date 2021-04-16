@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +13,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +25,17 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     InscriptionComponent,
     NavComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDmR2n_yrz5nIA_hPK8h6ctKuX4uVyDb68',
+      libraries: ['places']
+    })
   ],
   providers: [
     HttpClientModule
