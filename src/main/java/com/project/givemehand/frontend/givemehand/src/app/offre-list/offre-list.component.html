@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <br>
+        <br>
+        <br>
+        <br>
+      <h2>Offres List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Date de fin</th>
+            <th scope="col">Médailles(coût)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offre of offres | async">
+            <td>{{offre.titre}}</td>
+            <td>{{offre.description}}</td>
+            <td>{{offre.cat}}</td>
+            <td>{{offre.villeOffre}}</td>
+            <td>{{offre.dateFinOffre}}</td>
+            <td>{{offre.nbMedailles}}</td>
+            <td><button (click)="deleteoffer(offre.id)" class="btn btn-danger">Delete</button>
+                <button routerLink="/update/{{offre.id}}" routerLinkActive="active" class="btn btn-info" style="margin-left: 10px">Update</button>
+                <button (click)="offreDetails(offre.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
