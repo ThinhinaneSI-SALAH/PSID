@@ -20,5 +20,7 @@ export class UserService {
   public getUserByEmail(email: string){
     return this.http.get(`${this.baseUrl}/auth/findUserByemail/${email}`);
   }
-
+  public getUserById(id: number){
+    return this.http.get(`${this.baseUrl}/auth/finduserById/${id}`);
+  }
 }

@@ -82,8 +82,6 @@ public class UserServiceController {
 
     }
 
-
-
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<?> userRegister(@RequestBody UserRequest userRequest ) {
@@ -129,8 +127,6 @@ public class UserServiceController {
         return service.getServiceRequestByUserId(id_user);
     }
 
-
-
     @PutMapping("/updateUser/{email}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserRequest user)
     {
@@ -142,11 +138,12 @@ public class UserServiceController {
 
         return service.findUserByEmail(email);
     }
-    /* public User findById(Long userID)
-    {
 
-        return service.findById(userID);
-    } */
+    @RequestMapping(value = "/finduserById/{user_id}", method = RequestMethod.GET)
+     public User findById(@PathVariable Long user_id)
+    {
+        return service.findById(user_id);
+    }
   /*
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable ("userId") Long userId) {
