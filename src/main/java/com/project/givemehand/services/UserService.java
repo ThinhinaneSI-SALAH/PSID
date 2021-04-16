@@ -100,12 +100,10 @@ public class UserService {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         } */
         }
-    public User findUserById(Long id){
+        public User findUserById(Long id){
 
-        return userRepository.findById(id).get();
+            return userRepository.findById(id).get();
 
-      //  return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-
-    }
+        }
 
 }

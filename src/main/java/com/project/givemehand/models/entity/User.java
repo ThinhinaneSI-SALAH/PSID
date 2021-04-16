@@ -138,6 +138,12 @@ public class User {
     public Set<Demande> getDemandes() {
         return demandes;
     }
+    public Long getId () {
+        return id;
+    }
+    public void setId (Long id){
+        this.id = id;
+    }
 
     public void setDemandes(Set<Demande> demandes) {
         this.demandes = demandes;
@@ -175,12 +181,4 @@ public class User {
                 ", offres=" + offres +
                 '}';
     }
-
-        public Long getId () {
-            return id;
-        }
-
-        public void setId (Long id){
-            this.id = id;
-        }
-    }
+}

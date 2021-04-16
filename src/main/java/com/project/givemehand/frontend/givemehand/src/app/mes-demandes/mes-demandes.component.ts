@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NumberLiteralType } from 'typescript';
 import {Demande} from '../classes/demande';
+import { User } from '../classes/user';
 import {DemandeService} from '../services/demande-service'
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-mes-demandes',
@@ -17,19 +19,18 @@ export class MesDemandesComponent implements OnInit {
   demandes: Observable<Demande[]>;
   statut : Observable< String[]>;
   medaille:string;
-  id: string;
+  user: any;
 
-  constructor(private demandeService: DemandeService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
+  constructor(private demandeService: DemandeService,private userService: UserService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     if(this.route.snapshot.paramMap.get('demande')!=null)
     {
       this.filterDemande();
     }
-    else
-    {    
+    else{ 
       this.reloadData();
-    }    
+    }  
   }
 
   reloadData() {
