@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +20,8 @@ import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,8 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     MesOffresComponent,
     MonProfilComponent,
     LoginComponent,
+    InscriptionComponent,
+    NavComponent,
     NavComponent,
     RegisterComponent,
     UserComponent,
@@ -36,13 +41,18 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     OffreListComponent,
     OffreDetailComponent,
     UpdateOffreComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDmR2n_yrz5nIA_hPK8h6ctKuX4uVyDb68',
+      libraries: ['places']
+    })
 
   ],
   providers: [

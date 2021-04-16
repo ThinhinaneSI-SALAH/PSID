@@ -6,11 +6,10 @@ export class Offre {
   titre: string;
   description: string;
   cat: string;
-  villeOffre: string;
+  public villeOffre: string;
   dateFinOffre: String;
   nbMedailles: number;
- 
-
+  note: number;
 
   constructor(description: string,id: number,titre: string, categorie: string,villeOffre: string, dateFinOffre: Date, nbMedailles: number,datePipe:DatePipe ) {
     this.id = id;
@@ -21,9 +20,6 @@ export class Offre {
     //this.dateFinOffre = new Date(dateFinOffre.getTime() - (dateFinOffre.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
     this.dateFinOffre = datePipe.transform(dateFinOffre, 'yyyy-MM-dd');
     this.nbMedailles = nbMedailles;
+    this.note = 0;
   }
-
-
-
-
 }
