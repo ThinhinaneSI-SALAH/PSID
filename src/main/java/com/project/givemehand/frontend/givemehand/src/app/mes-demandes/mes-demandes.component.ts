@@ -34,10 +34,7 @@ export class MesDemandesComponent implements OnInit {
   }
 
   reloadData() {
-    let id=0;
-    let email = sessionStorage.getItem("currentUser")
-    this.user = this.userService.getUserByEmail(email);
-    this.demandes = this.demandeService.getMyRequestService(id);
+    this.demandes = this.demandeService.getMyRequestService(1);
 
     this.demandes.subscribe((value) => {
       console.log(value);
