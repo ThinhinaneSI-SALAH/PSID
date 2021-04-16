@@ -24,7 +24,7 @@ export class OffreDetailComponent implements OnInit {
     }, error => console.log(error));
 }
 list(){
-  this.router.navigate(['/accueil']);
+  this.router.navigate(['/offrelist']);
 }
   }
 

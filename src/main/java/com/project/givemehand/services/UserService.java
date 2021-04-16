@@ -20,5 +20,10 @@ public class UserService {
     @Autowired
     private EntityManager entityManager;
 
+    public User findById(Long userID)
+    {
+        return userRepository.findById(userID).get();
+    }
+
 
 }

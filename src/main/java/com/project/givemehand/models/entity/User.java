@@ -10,6 +10,8 @@ import java.util.Set;
  * Cette classe represente la liste des utilisateurs ( particuliers )
  */
 public class User {
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -122,5 +124,12 @@ public class User {
 
     public void setOffres(Set<Offre> offres) {
         this.offres = offres;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
