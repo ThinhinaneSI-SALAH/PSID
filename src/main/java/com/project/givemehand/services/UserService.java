@@ -93,10 +93,7 @@ public User findUserById(Long id){
   //  return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
 }
-    public User findById(Long userID)
-    {
-        return userRepository.findById(userID).get();
-    }
+
 
 
 
