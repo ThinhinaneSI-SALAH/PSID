@@ -28,25 +28,26 @@ public class User {
     private String phoneNumber;
     private int medailles;
 
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
    // @JoinColumn(name = "adresse_id")
     private Adresse adresse;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     private Set<Demande> demandes= new HashSet<>();
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
-
     private Set<Offre> offres= new HashSet<>();
     public User(){
     }

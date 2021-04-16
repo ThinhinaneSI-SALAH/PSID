@@ -11,8 +11,11 @@ import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
+
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
+import { CreateDemandeComponent } from './create-demande/create-demande.component';
+import { DemandeDetailComponent } from './demande-detail/demande-detail.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProfilComponent } from './update-profil/update-profil.component';
 import { CreateOffreComponent } from './create-offre/create-offre.component';
@@ -30,6 +33,8 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     MesOffresComponent,
     MonProfilComponent,
     LoginComponent,
+    CreateDemandeComponent,
+    DemandeDetailComponent,
     NavComponent,
     NavComponent,
     RegisterComponent,

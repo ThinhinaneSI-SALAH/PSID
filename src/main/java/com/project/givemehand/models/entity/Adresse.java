@@ -17,23 +17,28 @@ public class Adresse
 {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long adresse_id;
     private String street;
     private String zip;
     private  String city;
     private  String country;
 
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "adresse",
+    /*
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "adresse",
             cascade = CascadeType.PERSIST)
     private Set<User> users =new HashSet<>();
+    */
+
+    public Adresse(){
+
+    }
 
     /**
      *
-     * @param street rue
-     * @param zip code postale
-     * @param city Ville
-     * @param country Pays
+     * @param street
+     * @param zip
+     * @param city
+     * @param country
      */
     public Adresse(String street, String zip, String city, String country) {
         this.street = street;
@@ -43,6 +48,7 @@ public class Adresse
     }
 
     public Adresse() {
+
     }
 
     public String getStreet() {
@@ -62,11 +68,11 @@ public class Adresse
     }
 
     public Long getId() {
-        return id;
+        return adresse_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.adresse_id = id;
     }
 
     public void setStreet(String street) {
@@ -86,13 +92,14 @@ public class Adresse
     }
 
 
-    public Set<User> getUsers() {
+    /*public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
+
+    }*/
 
     @Override
     public String toString() {
@@ -105,4 +112,5 @@ public class Adresse
                 ", users=" + users +
                 '}';
     }
+
 }

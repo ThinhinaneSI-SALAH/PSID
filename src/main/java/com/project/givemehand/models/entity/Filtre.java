@@ -13,6 +13,7 @@ public class Filtre  {
     Date dateFiltre;
     int medailles;
     String motCles;
+    Statut statut;
 
     /**
      *
@@ -28,6 +29,13 @@ public class Filtre  {
         this.dateFiltre = date;
         this.medailles = medailles;
         this.motCles = motCles;
+    }
+
+    public Filtre(Statut statut, int medaille, Date date) {
+        this.statut =statut;
+        this.medailles =medaille;
+        this.dateFiltre =date;
+
     }
 
     public Categorie getCategorie() {
@@ -68,6 +76,13 @@ public class Filtre  {
 
     public void setMotCles(String motCles) {
         this.motCles = motCles;
+    }
+    public Statut getStatut() {
+        return statut;
+    }
+
+    public void setStatut(Statut statut) {
+        this.statut = statut;
     }
 
 
