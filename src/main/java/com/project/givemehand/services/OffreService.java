@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service
 /**
  * Cette classe contient les services de l'offre
  */
+@Service
 public class OffreService implements IOffre {
 
     @Autowired
@@ -23,8 +23,8 @@ public class OffreService implements IOffre {
 
     /**
      * Permet de filtrer les offres avec les parametres recus
-     *
-     * @param f
+     * @param f represente les parametres du filtre
+
      * @return une liste d'offre
      */
     public List<Offre> filtrerOffre(Filtre f) {
@@ -63,8 +63,8 @@ public class OffreService implements IOffre {
 
     /**
      * Renvoie la liste des offres sans filtre
-     *
-     * @return
+     * @return la liste d'offres existants dans la base
+
      */
     public List<Offre> getAlloffres() {
         return offreRepository.findAll();

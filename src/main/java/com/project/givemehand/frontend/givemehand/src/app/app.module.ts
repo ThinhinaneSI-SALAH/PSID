@@ -10,9 +10,12 @@ import { MesDemandesComponent } from './mes-demandes/mes-demandes.component';
 import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { LoginComponent } from './login/login.component';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { FormsModule } from '@angular/forms';
+import { UpdateProfilComponent } from './update-profil/update-profil.component';
 import { CreateOffreComponent } from './create-offre/create-offre.component';
 import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
@@ -26,6 +29,10 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     MesOffresComponent,
     MonProfilComponent,
     LoginComponent,
+    NavComponent,
+    RegisterComponent,
+    UserComponent,
+    UpdateProfilComponent
     InscriptionComponent,
     NavComponent,
     CreateOffreComponent,
@@ -39,7 +46,7 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     HttpClientModule,
     NgbModule,
     FormsModule
-   
+
   ],
   providers: [
     HttpClientModule

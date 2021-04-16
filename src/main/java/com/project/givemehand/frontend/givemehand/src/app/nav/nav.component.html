@@ -7,6 +7,7 @@
         <li class="nav-item">
           <a class="nav-link h5" routerLinkActive="active" routerLink="/accueil" >Accueil</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link h5" routerLinkActive="active"  routerLink="/mesDemandes" *ngIf="isLoggedIn">Mes demandes</a>
           </li>
@@ -20,16 +21,16 @@
       <!-- Right nav items  -->
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        <a  class="nav-link" routerLink="inscription">Sign Up</a>
       </li>
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a class="nav-link" routerLink="connexion">Login</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/monProfil">Bonjour {{username}}</a>
+        <a class="nav-link" routerLink="/updateprofil">Bonjour {{email}}</a>
       </li>
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">LogOut</a>

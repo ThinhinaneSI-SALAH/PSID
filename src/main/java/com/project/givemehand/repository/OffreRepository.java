@@ -5,6 +5,7 @@ import com.project.givemehand.models.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
 
 @Repository
@@ -14,4 +15,5 @@ import java.util.List;
 public interface OffreRepository extends JpaRepository<Offre,Long>
 {
     List<Offre> findByUser(User user);
+
 }

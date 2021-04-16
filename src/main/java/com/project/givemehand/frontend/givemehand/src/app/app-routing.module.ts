@@ -5,16 +5,25 @@ import { CreateOffreComponent } from './create-offre/create-offre.component';
 import { MesDemandesComponent } from './mes-demandes/mes-demandes.component';
 import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { UpdateProfilComponent } from './update-profil/update-profil.component';
+
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { OffreListComponent } from './offre-list/offre-list.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+ // { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accueil', component: AccueilComponent },
   { path: 'mesOffres', component: MesOffresComponent },
   { path: 'mesDemandes', component: MesDemandesComponent},
   { path: 'monProfil', component: MonProfilComponent },
+
+  { path: 'inscription', component: RegisterComponent },
+  { path: 'connexion', component: LoginComponent },
+  { path: 'updateprofil', component:  UpdateProfilComponent },
+
   { path: 'accueil/:id', component: AccueilComponent },
   { path: 'details/:id', component: OffreDetailComponent},
   { path: 'add', component:CreateOffreComponent},
