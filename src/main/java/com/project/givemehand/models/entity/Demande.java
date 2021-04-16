@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table( name ="Demande")
 /**
  * La classe demande represente les demandes des utilisateurs
  */
+@Entity
+@Table( name ="Demande")
 public class Demande {
 
 
@@ -35,7 +35,7 @@ public class Demande {
     /**
      *
      * @param dateDemande de l'offre
-     * @param offre
+     * @param offre offre rattache a cette demande
      * @param user qui propose l'offre
      */
     public Demande( Date dateDemande,Statut sta ,Offre offre,User user) {

@@ -1,0 +1,30 @@
+<h2>Offre Details</h2> 
+
+<hr/>
+<div *ngIf="offres">
+  <div>
+    <label><b>Titre: </b></label> {{offres.titre}}
+  </div>
+  <div>
+    <label><b>Description: </b></label> {{offres.description}}
+  </div>
+  <div>
+    <label><b>categorie: </b></label> {{offres.cat}}
+  </div>  
+  <div>
+    <label><b>Ville: </b></label> {{offres.villeOffre}}
+  </div>  
+  <div>
+    <label><b>date Offre </b></label> {{offres.dateOffre}}
+  </div>  
+  <div>
+    <label><b>dateFinOffre </b></label> {{offres.dateFinOffre}}
+  </div> 
+  <div>
+    <label><b>nbMedailles </b></label> {{offres.nbMedailles}}
+  </div> 
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to offer List</button><br>

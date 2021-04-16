@@ -22,7 +22,6 @@ détailler les différentes possibilités en dessous
 
 1ere Release : 
 - Integration d'une fonction pour rechercher des offres avec differentes filtres ( Mot cle, Date, Ville, Medailles )
-- Integration d'une fonction pour calculer la moyennne d'une offre 
 - Integration du Back-End au Front End 
 - Front End pour afficher l'ensemble des offres
 - Front End pour tester la fonctionnalite de filtre 

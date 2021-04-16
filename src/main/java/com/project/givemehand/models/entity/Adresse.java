@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-@Entity
-@Table (name ="Adresse")
 
 /**
  *
@@ -13,6 +11,8 @@ import java.util.Set;
  */
 
 
+@Entity
+@Table (name ="Adresse")
 public class Adresse
 {
     @Id
@@ -45,7 +45,10 @@ public class Adresse
         this.zip = zip;
         this.city = city;
         this.country = country;
-        //this.users=users;
+    }
+
+    public Adresse() {
+
     }
 
     public String getStreet() {
@@ -95,5 +98,19 @@ public class Adresse
 
     public void setUsers(Set<User> users) {
         this.users = users;
+
     }*/
+
+    @Override
+    public String toString() {
+        return "Adresse{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", zip='" + zip + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", users=" + users +
+                '}';
+    }
+
 }
