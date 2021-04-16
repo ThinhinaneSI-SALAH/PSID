@@ -42,22 +42,9 @@ public class UserServiceController {
     @Autowired
     RoleRepository roleRepository;
 
-   /* @Autowired
-    AuthenticationManager authenticationManager; */
-
-
-/*
-   @Autowired
-    PasswordEncoder encoder;
-    private AuthenticationManager authenticationManager; */
-
-
     @RequestMapping(value = "/signin", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
-        //User user = new User (loginRequest.getEmail(), loginRequest.getPassword());
-    //    service.verifAuthentificate(user);
-      //  return ResponseEntity.ok(new MessageResponse("User connected !"));
 
         if (userRepository.existsByEmail(loginRequest.getEmail())==false) {
             return ResponseEntity
@@ -127,12 +114,19 @@ public class UserServiceController {
     }
 
 
-    /*
-    @PostMapping(value = "/updateUser")
-    public User updateUser(User user) {
-        return service.updateUser(user);
+
+    @PutMapping("/updateUser/{email}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserRequest user)
+    {
+        return service.updateUser(id,user);
     }
 
+    @RequestMapping(value = "/findUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> findByEmail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.findUserByEmail(email);
+    }
+  /*
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable ("userId") Long userId) {
         service.deleteById(userId);

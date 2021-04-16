@@ -63,7 +63,7 @@ public class User {
         this.medailles = medailles;
     }
 
-    public User(Long id, String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Set<Demande> demandes, Set<Offre> offres) {
+    public User(Long id, String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Set<Demande> demandes, Adresse adresse ,Set<Offre> offres) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -71,7 +71,7 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.medailles = medailles;
-     //   this.adresse = adresse;
+        this.adresse = adresse;
         this.demandes = demandes;
         this.offres = offres;
     }
@@ -154,5 +154,22 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", medailles=" + medailles +
+                ", roles=" + roles +
+                ", adresse=" + adresse +
+                ", demandes=" + demandes +
+                ", offres=" + offres +
+                '}';
     }
 }

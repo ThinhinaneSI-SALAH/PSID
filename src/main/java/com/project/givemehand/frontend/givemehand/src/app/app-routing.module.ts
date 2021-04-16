@@ -6,6 +6,7 @@ import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UpdateProfilComponent } from './update-profil/update-profil.component';
 
 //import { OffreFiltres} from './accueil/accueil.component';;
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'monProfil', component: MonProfilComponent },
   { path: 'inscription', component: RegisterComponent },
   { path: 'connexion', component: LoginComponent },
+  { path: 'updateprofil', component:  UpdateProfilComponent },
 
  // { path: 'accueil/:id', component: OffreFiltres }
 

@@ -9,12 +9,12 @@ import { MesDemandesComponent } from './mes-demandes/mes-demandes.component';
 import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { LoginComponent } from './login/login.component';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
+import { UpdateProfilComponent } from './update-profil/update-profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,10 +23,10 @@ import { FormsModule } from '@angular/forms';
     MesOffresComponent,
     MonProfilComponent,
     LoginComponent,
-    InscriptionComponent,
     NavComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    UpdateProfilComponent
   ],
   imports: [
     BrowserModule,
