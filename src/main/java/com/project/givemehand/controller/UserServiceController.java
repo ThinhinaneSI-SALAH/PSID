@@ -17,14 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.util.*;
 
-import com.project.givemehand.models.entity.User;
-import com.project.givemehand.services.OffreService;
-import com.project.givemehand.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -136,11 +132,11 @@ public class UserServiceController {
 
         return service.findUserByEmail(email);
     }
-     public User findById(Long userID)
+    /* public User findById(Long userID)
     {
 
         return service.findById(userID);
-    }
+    } */
   /*
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable ("userId") Long userId) {
