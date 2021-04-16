@@ -11,13 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-@RestController
-@CrossOrigin
-@RequestMapping(value = "/api")
 /**
  *  Elle represente le comtroller de la classe OffreService
  */
+@RestController
+@CrossOrigin
+@RequestMapping(value = "/api")
 public class OffreServiceController
 {
     @Autowired

@@ -12,7 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
-
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +24,16 @@ import {HttpClientModule} from '@angular/common/http';
     MonProfilComponent,
     LoginComponent,
     InscriptionComponent,
-    NavComponent
+    NavComponent,
+    RegisterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
     HttpClientModule

@@ -16,9 +16,9 @@ public class Filtre  {
 
     /**
      *
-     * @param categorie
-     * @param ville
-     * @param date
+     * @param categorie d'offre qu'on veut filtrer
+     * @param ville ou on souhaite rechercher l'offre
+     * @param date pour l'offre
      * @param medailles : cout de l'offre
      * @param motCles : pour la recherche
      */

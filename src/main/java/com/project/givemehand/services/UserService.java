@@ -6,19 +6,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-@Service
+
 /**
  * Contient les services du User
  */
+@Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private EntityManager entityManager;
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+
+    }
+
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+
+    }
+
+
+    public List<User> findAllUser() {
+        return userRepository.findAll();
+    }
+
+    public User findById(Long userID) {
+        return userRepository.findById(userID).get();
+    }
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
 
 
 }
