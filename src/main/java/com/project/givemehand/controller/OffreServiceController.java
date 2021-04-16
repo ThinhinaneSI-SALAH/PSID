@@ -5,12 +5,14 @@ import com.project.givemehand.models.entity.Offre;
 import com.project.givemehand.services.OffreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -44,6 +46,13 @@ public class OffreServiceController
         return service.getAlloffres();
     }
 
+
+    @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Offre findById(@PathVariable Long id) {
+
+        return service.getOfferById(id);
+    }
+
     /*
     API renvoyant la liste des catégorie des offres
      */
@@ -52,6 +61,27 @@ public class OffreServiceController
         Categorie[] categories = Categorie.values();
         return categories;
      }
+
+
+    //creer une offre
+    @RequestMapping(value = "/CreateOffer", method = RequestMethod.POST)  //ok
+    public void SaveOffre(@RequestBody Offre offres)
+    {
+        service.save(offres);
+    }
+   //Update_offer
+    @PutMapping("/UpdateOffer")  //encours
+    public ResponseEntity<Offre> update(@RequestBody Offre offre)
+    {
+        return ResponseEntity.ok(service.update(offre));
+    }
+
+    //Supprimer une offer par id //ok
+    @DeleteMapping("/DeleteOffer/{offreid}")
+    public void deleteBook(@PathVariable("offreid") long id)
+    {
+        service.deleteoffer(id);
+    }
 
 
 }
