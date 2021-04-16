@@ -35,7 +35,7 @@ deleteoffer(id: number) {
       this.reloadData();
 }
 offreDetails(id: number){
-  this.router.navigate(['/accueil', id]);
+  this.router.navigate(['details', id]);
 }
 
 }

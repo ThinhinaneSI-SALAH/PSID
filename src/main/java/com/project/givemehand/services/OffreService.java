@@ -1,10 +1,9 @@
 package com.project.givemehand.services;
 
 import com.project.givemehand.interfaces.IOffre;
-import com.project.givemehand.models.entity.Categorie;
-import com.project.givemehand.models.entity.Filtre;
-import com.project.givemehand.models.entity.Offre;
+import com.project.givemehand.models.entity.*;
 import com.project.givemehand.repository.OffreRepository;
+import com.project.givemehand.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,7 @@ public class OffreService implements IOffre {
 
     @Autowired
     private OffreRepository offreRepository;
+    private UserRepository userRepository;
 
     /**
      * Permet de filtrer les offres avec les parametres recus
@@ -70,12 +70,25 @@ public class OffreService implements IOffre {
         return offreRepository.findAll();
     }
 
+    public List<Offre> getAlloffresbyuser(User user) {
+        Optional<User> user1=userRepository.findById(user.getId());
+        return offreRepository.findAll();
+    }
+
     public Offre getOfferById(long id)
     {
         return this.offreRepository.findById(id).get();
     }
 
     public void save(Offre offres) {
+        //offres.setUser(user);
+        this.offreRepository.save(offres);
+    }
+
+    public void saveALL(Offre offres, User user)
+    {
+        //offres.setUser(user)
+        offres.setUser(user);
         this.offreRepository.save(offres);
     }
 
@@ -86,23 +99,14 @@ public class OffreService implements IOffre {
     public Offre update(Offre offres) {
         //Optional<Offre> offreg = offreRepository.findById(id);
         return offreRepository.save(offres);
-        /*if (offreg.isPresent()) {
-            Offre offrestest = offreg.get();
-           // offrestest.setCat(offres.getCat());
-            offrestest.setDateFinOffre(offres.getDateFinOffre());
-            offrestest.setDateOffre(offres.getDateOffre());
-            offrestest.setNbMedailles(offres.getNbMedailles());
-            offrestest.setTitre(offres.getTitre());
-            offrestest.setDescription(offres.getDescription());
-            offrestest.setMoyenneNotes((int) offres.getMoyenneNotes());
-            offrestest.setVilleOffre(offres.getVilleOffre());
-            offrestest.setUser(offres.getUser());
-            return new ResponseEntity<>( this.offreRepository.save(offrestest), HttpStatus.OK);
-        } else {
-            System.out.println("Error Offre is not found");
-            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }*/
 
+
+    }
+
+    public List<Offre> getOfferByUser(Long id)
+    {
+        User user =userRepository.findById(id).get();
+         return offreRepository.findByUser(user);
     }
 }
 
