@@ -1,0 +1,69 @@
+<h1>Update Criteria</h1>
+<div   [hidden]="submitted" style="width: 300px;" class="updateCriteria">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" class="form-control" id="nom" required [(ngModel)]="user.nom" name="nom">
+    </div>
+    <div class="form-group">
+        <label for="prenom">Prenom</label>
+        <input type="text" class="form-control" id="prenom" required [(ngModel)]="user.prenom" name="prenom">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="prenom">
+      </div>
+      <div class="form-group">
+        <label for="password">motDePasse</label>
+        <input type="password" class="form-control" id="password" required
+        [(ngModel)]="user.password" name="password" >
+      <!-- <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Mdp is required </div>--> 
+    </div>
+
+    <div class="form-group">
+        <label for="tel">Numero de telephone </label>
+        <input type="text" class="form-control" id="tel" required
+        [(ngModel)]="user.tel" name="tel" >
+
+    </div>
+
+        <div class="form-group">
+            <label for="rue">Rue  </label>
+            <input type="text" class="form-control" id="rue" required
+            [(ngModel)]="user.rue" name="rue" #rue="ngModel">
+       
+        </div>
+    
+            <div class="form-group">
+                <label for="cp">Code Postale </label>
+                <input type="number" class="form-control" id="cp" required
+                [(ngModel)]="user.cp" name="cp" >
+          
+            </div>
+                
+                <div class="form-group">
+                    <label for="ville"> Ville</label>
+                    <input type="text" class="form-control" id="ville" required
+                    [(ngModel)]="user.ville" name="ville" >
+            
+                </div>
+            
+
+                    <div class="form-group">
+                        <label for="pays">Pays</label>
+                        <input type="text" class="form-control" id="pays" required
+                        [(ngModel)]="user.pays" name="pays" >
+                   
+                    </div>
+
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+</div>
+
