@@ -9,6 +9,7 @@ export class Offre {
   villeOffre: string;
   dateFinOffre: String;
   nbMedailles: number;
+ 
 
 
   constructor(description: string,id: number,titre: string, categorie: string,villeOffre: string, dateFinOffre: Date, nbMedailles: number,datePipe:DatePipe ) {
@@ -21,6 +22,8 @@ export class Offre {
     this.dateFinOffre = datePipe.transform(dateFinOffre, 'yyyy-MM-dd');
     this.nbMedailles = nbMedailles;
   }
+
+
 
 
 }

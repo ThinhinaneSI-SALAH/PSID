@@ -16,6 +16,8 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email")
         })
 public class User {
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -171,5 +173,13 @@ public class User {
                 ", demandes=" + demandes +
                 ", offres=" + offres +
                 '}';
+      
+      public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+
     }
 }

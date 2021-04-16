@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,11 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProfilComponent } from './update-profil/update-profil.component';
+import { CreateOffreComponent } from './create-offre/create-offre.component';
+import { OffreListComponent } from './offre-list/offre-list.component';
+import { OffreDetailComponent } from './offre-detail/offre-detail.component';
+import { UpdateOffreComponent } from './update-offre/update-offre.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +33,12 @@ import { UpdateProfilComponent } from './update-profil/update-profil.component';
     RegisterComponent,
     UserComponent,
     UpdateProfilComponent
+    InscriptionComponent,
+    NavComponent,
+    CreateOffreComponent,
+    OffreListComponent,
+    OffreDetailComponent,
+    UpdateOffreComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +46,7 @@ import { UpdateProfilComponent } from './update-profil/update-profil.component';
     HttpClientModule,
     NgbModule,
     FormsModule
+
   ],
   providers: [
     HttpClientModule
