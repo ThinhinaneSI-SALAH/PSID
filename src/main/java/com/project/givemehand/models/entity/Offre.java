@@ -26,7 +26,6 @@ public class Offre {
     public void setId(Long id) {
         this.id = id;
     }
-
     private String titre;
     private String description;
     @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
@@ -41,11 +40,7 @@ public class Offre {
     private String categorie;
     @ManyToOne
     private User user;
-    @JsonIgnore
-    @OneToMany(mappedBy = "offre", fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
 
-    private Set<Demande> demandes= new HashSet<>();
 
 
     public Offre(){
@@ -146,7 +141,7 @@ public class Offre {
     public void setUser(User user) {
         this.user = user;
     }
-
+/*
     public Set<Demande> getDemandes() {
         return demandes;
     }
@@ -161,7 +156,7 @@ public class Offre {
 
     public void deleteDemande(Demande demande){
         this.demandes.remove(demande);
-    }
+    }*/
 
     public void setNote(int note) {
         switch (note) {

@@ -1,0 +1,100 @@
+<p>register works!</p>
+
+
+<div class="container">
+  <form  #registerForm="ngForm" *ngIf="!isSuccessful"
+  name="form"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  #f="ngForm"
+  novalidates >
+
+
+
+    <div class="form-group">
+            <label for="email">E-mail</label>
+          <input type="text" class="form-control" id="email" required
+            [(ngModel)]="user.email" name="email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+             Email is required
+            </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="pwd">motDePasse</label>
+        <input type="password" class="form-control" id="pwd" required
+        [(ngModel)]="user.password" name="pwd" #pwd="ngModel">
+        <div [hidden]="pwd.valid || pwd.pristine" class="alert alert-danger"> Mdp is required </div>
+    </div>
+
+    <div class="form-group">
+        <label for="nom">Nom </label>
+        <input type="text" class="form-control" id="nom" required
+        [(ngModel)]="user.nom" name="nom" #nom="ngModel">
+        <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger"> Nom is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="prenom">Prenom </label>
+        <input type="text" class="form-control" id="prenom" required
+        [(ngModel)]="user.prenom" name="prenom" #prenom="ngModel">
+        <div [hidden]="prenom.valid || prenom.pristine"
+     class="alert alert-danger">
+Prenom is required
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="tel">Numero de telephone </label>
+        <input type="text" class="form-control" id="tel" required
+        [(ngModel)]="user.tel" name="tel" #tel="ngModel">
+
+    </div>
+
+        <div class="form-group">
+            <label for="rue">Rue  </label>
+            <input type="text" class="form-control" id="rue" required
+            [(ngModel)]="user.rue" name="rue" #rue="ngModel">
+       
+        </div>
+    
+            <div class="form-group">
+                <label for="cp">Code Postale </label>
+                <input type="number" class="form-control" id="cp" required
+                [(ngModel)]="user.cp" name="cp" #cp="ngModel">
+          
+            </div>
+                
+                <div class="form-group">
+                    <label for="ville"> Ville</label>
+                    <input type="text" class="form-control" id="ville" required
+                    [(ngModel)]="user.ville" name="ville" #ville="ngModel">
+            
+                </div>
+            
+
+                    <div class="form-group">
+                        <label for="pays">Pays</label>
+                        <input type="text" class="form-control" id="pays" required
+                        [(ngModel)]="user.pays" name="pays" #pays="ngModel">
+                   
+                    </div>
+                
+
+   <button  type="submit" class="btn btn-success">Submit</button>
+    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Signup failed!<br />{{ errorMessage }}
+        </div>
+</form>
+
+<div class="alert alert-success" *ngIf="isSuccessful">
+  Your registration is successful!
+</div>
+<span class="login-link">Already have an account?</span>
+<a class="nav-link" routerLink="connexion">Login</a>
+
+  </div>
+

@@ -17,29 +17,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.util.*;
 
-import com.project.givemehand.models.entity.User;
-import com.project.givemehand.services.OffreService;
-import com.project.givemehand.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Elle represente le controleur de la classe User Service
- */
+import com.project.givemehand.models.entity.Demande;
+import com.project.givemehand.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-
+import java.util.Set;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/auth")
+
+/**
+ * Elle represente le controleur de la classe User Service
+ */
 public class UserServiceController {
 
     @Autowired
@@ -81,8 +82,6 @@ public class UserServiceController {
 
     }
 
-
-
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<?> userRegister(@RequestBody UserRequest userRequest ) {
@@ -122,8 +121,11 @@ public class UserServiceController {
 
 
     }
-
-
+    @RequestMapping(path ="/mesdemandes/{id_user}", method = RequestMethod.GET)
+    public Set<Demande> getServiceRequestByUserId(@PathVariable Long id_user)
+    {
+        return service.getServiceRequestByUserId(id_user);
+    }
 
     @PutMapping("/updateUser/{email}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserRequest user)
@@ -136,10 +138,11 @@ public class UserServiceController {
 
         return service.findUserByEmail(email);
     }
-     public User findById(Long userID)
-    {
 
-        return service.findById(userID);
+    @RequestMapping(value = "/finduserById/{user_id}", method = RequestMethod.GET)
+     public User findById(@PathVariable Long user_id)
+    {
+        return service.findById(user_id);
     }
   /*
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -199,8 +202,6 @@ public class UserServiceController {
 
     }
 */
-
-
 }
 
 

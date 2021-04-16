@@ -1,5 +1,7 @@
 package com.project.givemehand.services;
 
+
+import com.project.givemehand.models.entity.Demande;
 import com.project.givemehand.models.entity.Adresse;
 import com.project.givemehand.models.entity.User;
 import com.project.givemehand.payload.MessageResponse;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+
+import java.util.Set;
 import java.util.Optional;
 
 
@@ -25,6 +29,13 @@ public class UserService {
 
     @Autowired
     private EntityManager entityManager;
+
+
+    public Set<Demande> getServiceRequestByUserId(Long id_user) {
+        Set<Demande> demandes =  this.userRepository.findById(id_user).get().getDemandes();
+        return demandes;
+    }
+
 
     public User saveUser(User user) {
         return userRepository.save(user);
@@ -86,15 +97,12 @@ public class UserService {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
     }
-public User findUserById(Long id){
 
-    return userRepository.findById(id).get();
+        
+        public User findUserById(Long id){
 
-  //  return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+            return userRepository.findById(id).get();
 
-}
-
-
-
+        }
 
 }
