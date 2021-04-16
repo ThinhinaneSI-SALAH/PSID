@@ -17,7 +17,7 @@
 .container-fluid {
     grid-column: 2 ;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 350px);
     position:absolute;
     top:0;
     left:20px;
@@ -50,6 +50,7 @@
 .divMedailles{
     grid-column: 3;
     grid-row: 2;
+    text-align: right;
 }
 .description{
     grid-column: 1/ span 2;
@@ -64,6 +65,7 @@
 .note{
     grid-column: 3;
     grid-row: 4;
+    text-align: right;
 }
 
 .ref{

@@ -30,7 +30,6 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     MesOffresComponent,
     MonProfilComponent,
     LoginComponent,
-    InscriptionComponent,
     NavComponent,
     NavComponent,
     RegisterComponent,
