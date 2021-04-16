@@ -96,13 +96,13 @@ public class UserService {
             System.out.println("Erreur lors de la mise à jours du critère !");
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
+        }
+    public User findUserById(Long id){
+
+        return userRepository.findById(id).get();
+
+      //  return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
     }
-public User findUserById(Long id){
-
-    return userRepository.findById(id).get();
-
-  //  return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-
-}
 
 }

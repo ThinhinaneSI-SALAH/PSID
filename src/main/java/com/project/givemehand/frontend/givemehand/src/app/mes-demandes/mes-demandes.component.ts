@@ -17,6 +17,7 @@ export class MesDemandesComponent implements OnInit {
   demandes: Observable<Demande[]>;
   statut : Observable< String[]>;
   medaille:string;
+  id: string;
 
   constructor(private demandeService: DemandeService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
@@ -32,7 +33,7 @@ export class MesDemandesComponent implements OnInit {
   }
 
   reloadData() {
-    this.demandes = this.demandeService.getMyRequestService(2);
+    this.demandes = this.demandeService.getMyRequestService(1);
 
     this.demandes.subscribe((value) => {
       console.log(value);

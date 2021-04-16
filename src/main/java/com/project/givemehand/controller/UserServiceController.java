@@ -34,20 +34,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@CrossOrigin
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/auth")
 
 /**
  * Elle represente le controleur de la classe User Service
  */
-
-
-
-
-@CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
-@RequestMapping(value = "/api/auth")
 public class UserServiceController {
 
     @Autowired

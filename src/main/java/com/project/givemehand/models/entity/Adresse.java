@@ -47,10 +47,6 @@ public class Adresse
         this.country = country;
     }
 
-    public Adresse() {
-
-    }
-
     public String getStreet() {
         return street;
     }
@@ -104,12 +100,11 @@ public class Adresse
     @Override
     public String toString() {
         return "Adresse{" +
-                "id=" + id +
+                "id=" + adresse_id +
                 ", street='" + street + '\'' +
                 ", zip='" + zip + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
-                ", users=" + users +
                 '}';
     }
 
