@@ -1,5 +1,7 @@
 package com.project.givemehand.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,21 +22,18 @@ public class User {
     private String phoneNumber;
     private int medailles;
 
-
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     @JoinColumn(name = "adresse_id", nullable = false)
     private Adresse adresse;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
-
     private Set<Demande> demandes= new HashSet<>();
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
-
     private Set<Offre> offres= new HashSet<>();
     public User(){
     }

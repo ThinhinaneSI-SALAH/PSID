@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateDemandeComponent } from './create-demande/create-demande.component';
+import { DemandeDetailComponent } from './demande-detail/demande-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
     MonProfilComponent,
     LoginComponent,
     InscriptionComponent,
-    NavComponent
+    NavComponent,
+    CreateDemandeComponent,
+    DemandeDetailComponent
   ],
   imports: [
     BrowserModule,

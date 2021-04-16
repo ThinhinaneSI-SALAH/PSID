@@ -16,7 +16,7 @@ import java.util.Set;
 public class Offre {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long offre_id;
     private String titre;
     private String description;
     private Date dateOffre;
@@ -29,11 +29,7 @@ public class Offre {
     private String categorie;
     @ManyToOne
     private User user;
-    @JsonIgnore
-    @OneToMany(mappedBy = "offre", fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
 
-    private Set<Demande> demandes= new HashSet<>();
 
 
     public Offre(){
@@ -134,7 +130,7 @@ public class Offre {
     public void setUser(User user) {
         this.user = user;
     }
-
+/*
     public Set<Demande> getDemandes() {
         return demandes;
     }
@@ -149,7 +145,7 @@ public class Offre {
 
     public void deleteDemande(Demande demande){
         this.demandes.remove(demande);
-    }
+    }*/
 
     public void setNote(int note) {
         switch (note) {
