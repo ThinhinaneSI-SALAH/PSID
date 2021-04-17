@@ -111,9 +111,17 @@ public class OffreServiceController
     {
         return service.getOfferByUserId(id_user);
     }
+
     @RequestMapping(path ="/IdByEmail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public Long getIdByEmail(@PathVariable String email)
     {
         return service.getIdByEmail(email);
+    }
+
+    //obtenir offre par email
+    @RequestMapping(path ="/test/{user_email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Set<Offre> getOffEmail(@PathVariable("user_email") String email)
+    {
+        return service.getOffreByEmail(email);
     }
 }

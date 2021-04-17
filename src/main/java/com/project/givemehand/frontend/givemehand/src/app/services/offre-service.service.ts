@@ -29,6 +29,11 @@ export class OffreServiceService{
     return this.http.get(this.url+"/mesoffres/"+id_user);
 }
 
+//obtenir toutes les offres en fonction de l'email utilisateur
+getOfferByEmail(email: string):Observable<any>{
+  return this.http.get(this.url+"/test/"+email);
+}
+
 getIdByEmail(email: String): Observable<any> {
   return this.http.get(this.url+"/IdByEmail/"+email);
 }

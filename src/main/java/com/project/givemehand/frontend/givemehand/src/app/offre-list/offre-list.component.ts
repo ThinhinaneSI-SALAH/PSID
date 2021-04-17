@@ -32,8 +32,9 @@ export class OffreListComponent implements OnInit {
   reloadData()
 {
   
-  console.log("votre id est:" + this.id_user)
-  this.offres=this.offreService.getOfferByUser(2)
+  console.log("votre email est:" + this.email)
+  this.offres=this.offreService.getOfferByEmail(this.email)
+  ///this.offres=this.offreService.getOfferByUser(2)
   //this.offres = this.offreService.getOffreList();
 }
 deleteoffer(id: number)

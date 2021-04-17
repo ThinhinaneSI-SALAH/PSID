@@ -107,8 +107,6 @@ public class OffreService implements IOffre {
 
     }
 
-
-
     public Set<Offre> getOfferByUserId(Long id_user)
     {
         User user = this.userRepository.findById(id_user).get();
@@ -121,6 +119,13 @@ public class OffreService implements IOffre {
         User user =userRepository.findByEmail(email).get();
         Long id =user.getId();
         return id;
+    }
+
+    public Set<Offre> getOffreByEmail(String email)
+    {
+        User user =this.userRepository.findByEmail(email).get();
+        Set<Offre> offre=user.getOffres();
+        return offre;
     }
 }
 
