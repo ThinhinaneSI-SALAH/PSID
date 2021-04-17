@@ -22,6 +22,7 @@ import { CreateOffreComponent } from './create-offre/create-offre.component';
 import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
+import { ModerateComponent } from './moderate/moderate.component';
 
 
 
@@ -44,7 +45,8 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
     CreateOffreComponent,
     OffreListComponent,
     OffreDetailComponent,
-    UpdateOffreComponent
+    UpdateOffreComponent,
+    ModerateComponent
 
   ],
   imports: [

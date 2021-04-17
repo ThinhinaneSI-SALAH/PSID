@@ -3,6 +3,7 @@ package com.project.givemehand.services;
 
 import com.project.givemehand.models.entity.Demande;
 import com.project.givemehand.models.entity.Adresse;
+import com.project.givemehand.models.entity.Offre;
 import com.project.givemehand.models.entity.User;
 import com.project.givemehand.payload.MessageResponse;
 import com.project.givemehand.payload.request.UserRequest;
@@ -42,10 +43,16 @@ public class UserService {
 
     }
 
-    public User updateUser(User user) {
+    /*public User updateUser(User user) {
         return userRepository.save(user);
     }
+*/
+    public User updateUser(User user) {
+        user.setAdresse(user.getAdresse());
+        return userRepository.save(user);
 
+
+    }
     public void deleteById(Long id) {
         userRepository.deleteById(id);
 
@@ -64,7 +71,6 @@ public class UserService {
 
        User user  = userRepository.findByEmail(email).get();
         return ResponseEntity.ok().body(user);
-       // return userRepository.findByEmail(email).get();
     }
 
     public User findByEmail(String email) {
@@ -72,7 +78,7 @@ public class UserService {
     }
 
 
-    public ResponseEntity<User> updateUser(Long id, UserRequest newUser)
+    /*public ResponseEntity<User> updateUser(Long id, UserRequest newUser)
     {
        User _user = userRepository.findById(id).get();
 
@@ -96,7 +102,7 @@ public class UserService {
             System.out.println("Erreur lors de la mise à jours du critère !");
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
-    }
+    } */
 
         
         public User findUserById(Long id){
@@ -105,4 +111,11 @@ public class UserService {
 
         }
 
+    public void deleteuser(long id) {
+        this.userRepository.deleteById(id);
+    }
+
+    public List<User> getAllUser() {
+        return userRepository.findAll();
+    }
 }

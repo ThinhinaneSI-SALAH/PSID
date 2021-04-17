@@ -1,9 +1,6 @@
 package com.project.givemehand.controller;
-import com.project.givemehand.models.entity.Adresse;
-import com.project.givemehand.models.entity.Role;
-import com.project.givemehand.models.entity.ERole;
+import com.project.givemehand.models.entity.*;
 
-import com.project.givemehand.models.entity.User;
 import com.project.givemehand.payload.MessageResponse;
 import com.project.givemehand.payload.request.LoginRequest;
 import com.project.givemehand.payload.request.UserRequest;
@@ -26,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.givemehand.models.entity.Demande;
 import com.project.givemehand.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -127,10 +123,10 @@ public class UserServiceController {
         return service.getServiceRequestByUserId(id_user);
     }
 
-    @PutMapping("/updateUser/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserRequest user)
+    @PutMapping("/updateUser")
+    public User updateUser(@RequestBody User user)
     {
-        return service.updateUser(id,user);
+        return service.updateUser(user);
     }
 
     @RequestMapping(value = "/findUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
@@ -144,6 +140,20 @@ public class UserServiceController {
     {
         return service.findById(user_id);
     }
+
+    @RequestMapping(path ="/getAllUser", method = RequestMethod.GET)
+    public List<User> getAllUser()
+    {
+
+        return service.getAllUser();
+    }
+
+    @DeleteMapping("/deleteUser/{userid}")
+    public void deleteBUser(@PathVariable("userid") long id)
+    {
+        service.deleteuser(id);
+    }
+
   /*
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable ("userId") Long userId) {

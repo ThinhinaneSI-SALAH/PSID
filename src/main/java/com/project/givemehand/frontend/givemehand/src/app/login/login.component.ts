@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         sessionStorage.setItem('currentUser', this.user.email);
 
-        //this.roles = this.tokenStorage.getUser().roles;
-       // this.reloadPage();
-
-       this.router.navigate(['monProfil']);
+        this.router.navigate(['accueil'])
+        .then(() => {
+          window.location.reload();
+        });
 
       },
       err => {

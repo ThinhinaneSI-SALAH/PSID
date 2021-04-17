@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public  updateUser(email: string, user: User) : Observable<User>{
-    return this.http.put<User>(`${this.baseUrl}/auth/updateUser/${email}`,user);
+  public  updateUser( user: User) : Observable<User>{
+    return this.http.put<User>(`${this.baseUrl}/auth/updateUser`,user);
   }
 
   public getUserByEmail(email: string){
@@ -22,5 +22,12 @@ export class UserService {
   }
   public getUserById(id: number){
     return this.http.get(`${this.baseUrl}/auth/finduserById/${id}`);
+  }
+
+  getUserList(): Observable<any> {
+    return this.http.get(this.baseUrl+'/auth/getAllUser');
+  }
+    deleteUser(id:number):Observable<any> {
+    return this.http.delete(this.baseUrl+"/auth/deleteUser/"+id,{ responseType: 'text'});
   }
 }

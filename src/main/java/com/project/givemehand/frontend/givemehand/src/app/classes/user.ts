@@ -3,13 +3,13 @@ export class User {
         id:number
         email : string;
         password : string;
-        nom : string;
-        prenom : string;
-        tel : string;
-        rue : string;
-        ville : string;
-        cp : string;
-        pays : string;
+        firstName : string;
+        lastName : string;
+        phoneNumber : string;
+        street: string;
+        city : string;
+        zip : string;
+        country: string;
     
         /*constructor(username: string , email : String, motDePassse : String,
             github: String)

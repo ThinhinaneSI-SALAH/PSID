@@ -87,14 +87,14 @@ Prenom is required
    <button  type="submit" class="btn btn-success">Submit</button>
     <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
             Signup failed!<br />{{ errorMessage }}
-        </div>
+        </div><br>
+
+<span class="login-link">Already have an account?</span>
+<a routerLink="../connexion">Login</a>
 </form>
 
-<div class="alert alert-success" *ngIf="isSuccessful">
+<div style="margin-top : 100px" class="alert alert-success" *ngIf="isSuccessful">
   Your registration is successful!
 </div>
-<span class="login-link">Already have an account?</span>
-<a class="nav-link" routerLink="connexion">Login</a>
-
   </div>
 
