@@ -34,40 +34,124 @@ public class OffreService implements IOffre {
 
         List<Offre> offres = offreRepository.findAll();
         List<Offre> offresRetenues = new ArrayList<Offre>();
+            Categorie catOffreFilter = f.getCategorie();
+            Date dateFiltre = f.getDateFiltre();
+            Date date = new Date("01/01/1000");
+            String villeRecherche = f.getVille();
+            int medaillesFiltre = f.getMedailles();
+            System.out.println("If CAT" + !catOffreFilter.equals("TOUTES")+" Catégorie: "+catOffreFilter);
+            String motClesFiltre = f.getMotCles();
 
+            if (!catOffreFilter.equals(Categorie.TOUTES)) {
+                offresRetenues = this.filterParCat(f);
+            }
+            else{
+                offresRetenues = offres;
+            }
+            if (!villeRecherche.equals("")) {
+                offresRetenues = this.filtrerParVille(f, offresRetenues);
+            }
+            System.out.println(("La date :"+dateFiltre));
+            if (!dateFiltre.equals(date)) {
+                offresRetenues = this.filtrerParDate(f, offresRetenues);
+            }
+
+            if (!motClesFiltre.equals("")) {
+                offresRetenues = this.filtrerParMot(f, offresRetenues);
+            }
+            if (medaillesFiltre != (-1)) {
+                offresRetenues = this.filterParMedailles(f, offresRetenues);
+            }
+
+        return offresRetenues;
+    }
+
+    /**
+     * Renvoie la liste des offres filrées par catégorie
+     * @param f filte
+     * @return la liste d'offres de catégorie cat du filtre
+     */
+    public List<Offre> filterParCat(Filtre f){
+        List<Offre> offres = offreRepository.findAll();
+        List<Offre> offresRetenues = new ArrayList<Offre>();
         for (Offre off : offres) {
             String catOffre = off.getCat();
             Categorie catOffreFilter = f.getCategorie();
-            Date dateFinOffre = off.getDateFinOffre();
-            Date dateFiltre = f.getDateFiltre();
-            String villeOffre = off.getVilleOffre();
-            String villeRecherche = f.getVille();
-            int medaillesOffre = off.getNbMedailles();
-            int medaillesFiltre = f.getMedailles();
-            String description = off.getDescription();
-            String titre = off.getTitre();
-            String motClesFiltre = f.getMotCles();
 
-            //System.out.println(dateFinOffre);
-            System.out.println(dateFinOffre.before(dateFiltre));
-
-            if (catOffre.toUpperCase().equals(catOffreFilter.toString().toUpperCase())
-                    && villeOffre.toUpperCase().equals(villeRecherche.toUpperCase())
-                    && (medaillesOffre <= medaillesFiltre)
-                    && ((description.toUpperCase().contains(motClesFiltre.toUpperCase())) || (titre.toUpperCase().contains(motClesFiltre.toUpperCase())))
-                    && (dateFinOffre.before(dateFiltre) || dateFinOffre.equals(dateFiltre))) {
+            if (catOffre.toUpperCase().equals(catOffreFilter.toString().toUpperCase())){
                 offresRetenues.add(off);
-
             }
         }
+        return offresRetenues;
+    }
 
+    /**
+     * Renvoie la liste des offres filrées par ville
+     * @param f filte
+     * @param offres liste des offre à filtrer
+     * @return la liste d'offres du filtre
+     */
+    public List<Offre> filtrerParVille(Filtre f, List<Offre> offres){
+        List<Offre> offresRetenues = new ArrayList<Offre>();
+        for (Offre off : offres) {
+            if(off.getVilleOffre().toUpperCase().equals(f.getVille().toUpperCase())){
+                offresRetenues.add(off);
+            }
+        }
+        return  offresRetenues;
+    }
+
+    /**
+     * Renvoie la liste des offres filrées par nombre de médailles
+     * @param f filte
+     * @param offres liste des offre à filtrer
+     * @return la liste d'offres du filtre
+     */
+    public List<Offre> filterParMedailles(Filtre f,List<Offre> offres){
+        List<Offre> offresRetenues = new ArrayList<Offre>();
+        for (Offre off : offres) {
+            if (off.getNbMedailles() <= f.getMedailles()) {
+                offresRetenues.add(off);
+            }
+        }
+        return offresRetenues;
+    }
+
+    /**
+     * Renvoie la liste des offres filrées par date
+     * @param f filte
+     * @param offres liste des offre à filtrer
+     * @return la liste d'offres du filtre
+     */
+    public List<Offre> filtrerParDate(Filtre f,List<Offre> offres){
+        List<Offre> offresRetenues = new ArrayList<Offre>();
+        for (Offre off : offres) {
+            if (off.getDateFinOffre().equals(f.getDateFiltre()) || off.getDateFinOffre().before(f.getDateFiltre()) ) {
+                offresRetenues.add(off);
+            }
+        }
+        return offresRetenues;
+
+    }
+    /**
+     * Renvoie la liste des offres filrées par mot cle
+     * @param f filte
+     * @param offres liste des offre à filtrer
+     * @return la liste d'offres du filtre
+     */
+    public List<Offre> filtrerParMot(Filtre f,List<Offre> offres){
+        List<Offre> offresRetenues = new ArrayList<Offre>();
+        for (Offre off : offres) {
+            if ((off.getDescription().toUpperCase().contains(f.getMotCles().toUpperCase())) || (off.getTitre().toUpperCase().contains(f.getMotCles().toUpperCase())) ) {
+                offresRetenues.add(off);
+            }
+        }
         return offresRetenues;
     }
 
     /**
      * Renvoie la liste des offres sans filtre
      * @return la liste d'offres existants dans la base
-
      */
     public List<Offre> getAlloffres() {
         return offreRepository.findAll();

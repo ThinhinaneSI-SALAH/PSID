@@ -3,6 +3,7 @@ import com.project.givemehand.models.entity.*;
 import com.project.givemehand.services.OffreService;
 import com.project.givemehand.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,20 +26,6 @@ public class OffreServiceController
     private OffreService service;
     @Autowired
     private UserService userService;
-    @RequestMapping(path ="/getofferfilter/{categorie}/{ville}/{nbMedailles}/{motcle}/{date}", method = RequestMethod.GET)
-
-    public List<Offre> getoffres(@PathVariable String categorie, @PathVariable String ville, @PathVariable String nbMedailles, @PathVariable String motcle, @PathVariable String date)
-    {
-        System.out.println("Catégorie"+categorie);
-        Categorie cat = Categorie.valueOf(categorie);
-        String jour = date.substring(0,2);
-        String mois = date.substring(2,4);
-        String annee = date.substring(4,8);
-        String d = jour.concat("/"+mois+"/"+annee);
-        System.out.println(d);
-        Filtre f = new Filtre(cat,ville, new Date(d),Integer.parseInt(nbMedailles),motcle);
-        return service.filtrerOffre(f);
-    }
 
     @RequestMapping(path ="/getAllOffer", method = RequestMethod.GET)
     public List<Offre> getAlloffres()
@@ -59,8 +46,9 @@ public class OffreServiceController
         return service.getOfferById(id);
     }
 
-    /*
-    API renvoyant la liste des catégorie des offres
+    /**
+     * API renvoyant la liste des catégorie des offres
+     * @return categories []
      */
     @RequestMapping(path ="/getAllCat", method = RequestMethod.GET)
     public Categorie[] getAllCat(){
@@ -68,6 +56,31 @@ public class OffreServiceController
         return categories;
      }
 
+     /**
+       * API filtrant les offres
+      * @param categorie
+      * @param ville
+      * @param nbMedailles
+      * @param motcle
+      * @param date
+      * @return offres :liste des offres filtrées
+      */
+    @GetMapping(value = "/filterOffers")
+    public List<Offre> FilterOffre(@RequestParam("categorie") String categorie, @RequestParam("ville") String ville, @RequestParam("nbMedailles") String nbMedailles, @RequestParam("motcle") String motcle, @RequestParam("date") String date)
+    {
+        System.out.println("Catégorie"+categorie);
+        Categorie cat = Categorie.valueOf(categorie);
+        Filtre f;
+
+        String jour = date.substring(0,2);
+        String mois = date.substring(2,4);
+        String annee = date.substring(4,8);
+        String d = jour.concat("/"+mois+"/"+annee);
+        System.out.println(d);
+
+        f = new Filtre(cat,ville, new Date(d),Integer.parseInt(nbMedailles),motcle);
+        return service.filtrerOffre(f);
+    }
 
     //creer une offre
     @RequestMapping(value = "/CreateOffer/{id}", method = RequestMethod.POST)  //ok
