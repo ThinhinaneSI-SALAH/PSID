@@ -1,32 +1,31 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <div class="accueil">
   <div  class="filter">
-    <form>
+    <form (ngSubmit)="filtrer()">
       <div class="form-group">
         <label for="motcle">MOT CLE</label>
-        <input type="text" name="motcle" class="form-control" id="motcle">
+        <input type="text" class="form-control" id="motcle" [(ngModel)]="filtre.motCle" name="motCle">
       </div>
       <div class="form-group">
         <label for="cat">Categories</label>
-        <select class="form-control" name="categorie" id="cat">
-          
-            <option *ngFor="let cat of categories | async">{{cat}}</option>
+        <select class="form-control"  id="cat" [(ngModel)]="filtre.categorie" name="categorie">
+            <option *ngFor="let cat of categories | async" [ngValue]="cat">{{cat}}</option>
         </select>
       </div>
       <div class="form-group">
           <label for="ville">Ville</label>
-          <input type="text" name="ville" class="form-control" id="ville" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" #search>
+          <input type="text"  class="form-control" id="ville" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" #search [(ngModel)]="filtre.ville" name="ville">
         </div>
         <div class="form-group">
           <label for="nbMedailles">Nombre de Medailles</label>
-          <input type="text"name="nbmedailles" class="form-control" id="nbMedailles" >
+          <input type="text"   class="form-control" id="nbMedailles" [(ngModel)]="filtre.nbMedailles" name="nbMedailles">
         </div>
 
       <div class="form-group">
         <label for="dateFinOffre">Date Fin Offre</label>
-        <input type="date" name="datefin" class="form-control" id="dateFinOffre" min="01/04/2021">
+        <input type="date" class="form-control" id="dateFinOffre" min="01/04/2021" [(ngModel)]="filtre.dateFiltre" name="dateFiltre">
       </div>
-          <button (click)="FilterOffre()" type="button">Filtrer</button>
+          <button type="submit">Filtrer</button>
     </form>
   </div>
 <div class="container-fluid">
