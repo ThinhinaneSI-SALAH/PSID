@@ -38,7 +38,7 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
-   // @JoinColumn(name = "adresse_id")
+    //@JoinColumn(name = "adresse_id")
     private Adresse adresse;
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,

@@ -23,11 +23,11 @@ public class Adresse
     private  String city;
     private  String country;
 
-
+   /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "adresse",
             cascade = CascadeType.PERSIST)
     private Set<User> users =new HashSet<>();
-
+    */
 
     public Adresse(){
 
@@ -88,7 +88,7 @@ public class Adresse
     }
 
 
-    public Set<User> getUsers() {
+   /* public Set<User> getUsers() {
         return users;
     }
 
@@ -96,7 +96,7 @@ public class Adresse
         this.users = users;
 
     }
-
+    */
     @Override
     public String toString() {
         return "Adresse{" +

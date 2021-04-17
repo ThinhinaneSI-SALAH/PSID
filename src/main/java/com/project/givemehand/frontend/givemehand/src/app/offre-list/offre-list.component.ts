@@ -34,8 +34,6 @@ export class OffreListComponent implements OnInit {
   
   console.log("votre email est:" + this.email)
   this.offres=this.offreService.getOfferByEmail(this.email)
-  ///this.offres=this.offreService.getOfferByUser(2)
-  //this.offres = this.offreService.getOffreList();
 }
 deleteoffer(id: number)
 {
