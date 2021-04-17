@@ -58,7 +58,6 @@ public class UserService {
 
     }
 
-
     public List<User> findAllUser() {
         return userRepository.findAll();
     }
@@ -66,43 +65,24 @@ public class UserService {
     public User findById(Long userID) {
         return userRepository.findById(userID).get();
     }
+    public Long findIdUserByMail(String mail) {
+        User u= userRepository.findByEmail(mail).get();
+        return u.getId();
+    }
 
     public ResponseEntity<User> findUserByEmail(String email) {
-
        User user  = userRepository.findByEmail(email).get();
         return ResponseEntity.ok().body(user);
+    }
+
+    public Set<Demande> findServiceRequestByEmail(String email) {
+        Set<Demande> demandes =  this.userRepository.findByEmail(email).get().getDemandes();
+        return demandes;
     }
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).get();
     }
-
-
-    /*public ResponseEntity<User> updateUser(Long id, UserRequest newUser)
-    {
-       User _user = userRepository.findById(id).get();
-
-        if (userRepository.existsByEmail(_user.getEmail())) {
-            //User _user= userData.get();
-
-            _user.setFirstName(newUser.getFirstName());
-            _user.setLastName(newUser.getLastName());
-            _user.setPassword(newUser.getPassword());
-            _user.setPhoneNumber(newUser.getPhoneNumber());
-            _user.setFirstName(newUser.getFirstName());
-            Adresse add = new Adresse(newUser.getStreet(),newUser.getZip(),newUser.getCity(), newUser.getCountry());
-
-            _user.setAdresse(add);
-
-
-
-            System.out.println("La mise à jours du user a bien été prise en compte!");
-            return new ResponseEntity<User>(userRepository.save(_user), HttpStatus.OK);
-        } else {
-            System.out.println("Erreur lors de la mise à jours du critère !");
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-        }
-    } */
 
         
         public User findUserById(Long id){
@@ -118,4 +98,8 @@ public class UserService {
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
+
+
+
+
 }

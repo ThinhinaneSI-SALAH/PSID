@@ -102,8 +102,6 @@ public class UserServiceController {
 
         );
               //  encoder.encode( userRequest.getPassword()));
-
-
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.ROLE_PARTICULIER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -114,13 +112,12 @@ public class UserServiceController {
         user.setAdresse(add);
         service.saveUser(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-
-
     }
-    @RequestMapping(path ="/mesdemandes/{id_user}", method = RequestMethod.GET)
-    public Set<Demande> getServiceRequestByUserId(@PathVariable Long id_user)
+
+    @RequestMapping(path ="/mesdemandes/{email}", method = RequestMethod.GET)
+    public Set<Demande> findServiceRequestByEmail(@PathVariable String  email)
     {
-        return service.getServiceRequestByUserId(id_user);
+        return service.findServiceRequestByEmail(email);
     }
 
     @PutMapping("/updateUser")
@@ -141,6 +138,7 @@ public class UserServiceController {
         return service.findById(user_id);
     }
 
+
     @RequestMapping(path ="/getAllUser", method = RequestMethod.GET)
     public List<User> getAllUser()
     {
@@ -152,66 +150,17 @@ public class UserServiceController {
     public void deleteBUser(@PathVariable("userid") long id)
     {
         service.deleteuser(id);
+
+   
+    }
+   @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.findIdUserByMail(email);
+      
     }
 
-  /*
-    @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteById(@PathVariable ("userId") Long userId) {
-        service.deleteById(userId);
-
-    }
-    @RequestMapping(value = "/findAllStudent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List <User> >  findAllStudent()
-    {
-        List<User> allUsers = userRepository.findAll();
-        ArrayList<User> studentsResponse = new ArrayList<User>();
-        for(User user : allUsers){
-            for(Role role : user.getRoles()){
-                if(role.getName().toString() == ("ROLE_ETUDIANT")){
-                    // usersResponse[allUsers.get()] = new List<User>();
-                    studentsResponse.add(user) ;
-                }
-            }
-
-        }
-        return new  ResponseEntity <List <User> >(studentsResponse, HttpStatus.OK);
-    }
-    @RequestMapping(value = "/findAllProf", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<List <User> > findAllProf()
-    {
-        List<User> allProfs = userRepository.findAll();
-        ArrayList<User> profsResponse = new ArrayList<User>();
-        for(User user : allProfs){
-            for(Role role : user.getRoles()){
-                if(role.getName().toString() == ("ROLE_ENSEIGNANT")){
-                    profsResponse.add(user) ;
-                }
-            }
-
-        }
-        return new  ResponseEntity <List <User> >(profsResponse, HttpStatus.OK);
-
-    }
-    @RequestMapping(value = "/findAllClasses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findAllClasses()
-    {
-        Integer nb_classes = 0;
-        return ResponseEntity.ok(new MessageResponse("Test"));
-    }
-
-    @RequestMapping(value = "/findById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public User findById(Long userID) {
-
-        return service.findById(userID);
-    }
-    @RequestMapping(value = "/findByUsername", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public Optional<User> findByUsername(String username) {
-        return service.findByUsername(username);
-
-    }
-*/
+  
 }
 
 

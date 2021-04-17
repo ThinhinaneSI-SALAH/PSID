@@ -17,7 +17,6 @@ export class NavComponent implements OnInit {
 if(this.email!=null){
       if(this.email==='admin@GMAH.com'){
            this.isLoggedInADM =true
-
       }
  
        else {  
@@ -26,24 +25,16 @@ if(this.email!=null){
 
        }
 
-      }
-
-  else {
-    this.isLoggedIn =false
-
-  }
 
      console.log(this.email);
      console.log("User simple" + this.isLoggedIn)
      console.log("ADMIN" + this.isLoggedInADM)
 
-
-     // } */
       
   }
   logout() {
     window.sessionStorage.removeItem('currentUser');
-
+    window.sessionStorage.removeItem('idUser');
     window.sessionStorage.clear();
     window.location.reload();
   }

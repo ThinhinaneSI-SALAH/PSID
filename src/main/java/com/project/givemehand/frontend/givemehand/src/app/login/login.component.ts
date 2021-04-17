@@ -38,15 +38,18 @@ export class LoginComponent implements OnInit {
         .then(() => {
           window.location.reload();
         });
+        
+     
 
-      },
+
+    /*  },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );
   }
-
+*/
   reloadPage() {
     window.location.reload();
   }

@@ -17,9 +17,8 @@ export class MesDemandesComponent implements OnInit {
 
   empty =false;
   demandes: Observable<Demande[]>;
-  statut : Observable< String[]>;
+  statut : Observable< String[]>
   medaille:string;
-  user: any;
 
   constructor(private demandeService: DemandeService,private userService: UserService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
@@ -34,7 +33,9 @@ export class MesDemandesComponent implements OnInit {
   }
 
   reloadData() {
-    this.demandes = this.demandeService.getMyRequestService(1);
+
+    let email = sessionStorage.getItem("currentUser")
+    this.demandes = this.demandeService.getMyRequestService(email);
 
     this.demandes.subscribe((value) => {
       console.log(value);
@@ -43,8 +44,6 @@ export class MesDemandesComponent implements OnInit {
       }
     }, (error) => {
       console.log(error);
-    }, () => {
-      console.log('Fini !');
     });
   }
 

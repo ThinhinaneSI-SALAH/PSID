@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccueilComponent } from './accueil/accueil.component';
 import { MesDemandesComponent } from './mes-demandes/mes-demandes.component';
-import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
@@ -31,7 +30,6 @@ import { ModerateComponent } from './moderate/moderate.component';
     AppComponent,
     AccueilComponent,
     MesDemandesComponent,
-    MesOffresComponent,
     MonProfilComponent,
     LoginComponent,
     CreateDemandeComponent,

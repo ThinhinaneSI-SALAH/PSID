@@ -15,6 +15,7 @@ export class UpdateProfilComponent implements OnInit {
 Boolean = false;s
 errorMessage = '';
 
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
