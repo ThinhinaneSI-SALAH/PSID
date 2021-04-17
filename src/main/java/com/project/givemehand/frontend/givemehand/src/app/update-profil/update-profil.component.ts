@@ -11,9 +11,9 @@ import { UserService } from '../services/user.service';
 export class UpdateProfilComponent implements OnInit {
   user :  any; 
   semail : string;
- submitted: any;
-Boolean = false;s
-errorMessage = '';
+  submitted: any;
+  Boolean = false;
+  errorMessage = '';
 
   constructor(private userService: UserService) { }
 

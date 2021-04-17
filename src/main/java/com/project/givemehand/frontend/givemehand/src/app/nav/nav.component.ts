@@ -13,8 +13,8 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
      this.email = sessionStorage.getItem("currentUser")
+     sessionStorage.getItem("idUser");
      console.log(this.email);
-
      if (this.email !=null ){
       this.isLoggedIn =true
 
@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
   }
   logout() {
     window.sessionStorage.removeItem('currentUser');
-
+    window.sessionStorage.removeItem('idUser');
     window.sessionStorage.clear();
     window.location.reload();
   }

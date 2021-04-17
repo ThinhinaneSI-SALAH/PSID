@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         sessionStorage.setItem('currentUser', this.user.email);
-
+        sessionStorage.setItem('idUser', this.user.id.toString());
         //this.roles = this.tokenStorage.getUser().roles;
        // this.reloadPage();
 

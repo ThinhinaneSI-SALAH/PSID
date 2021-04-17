@@ -51,7 +51,6 @@ public class UserService {
 
     }
 
-
     public List<User> findAllUser() {
         return userRepository.findAll();
     }
@@ -59,18 +58,24 @@ public class UserService {
     public User findById(Long userID) {
         return userRepository.findById(userID).get();
     }
+    public Long findIdUserByMail(String mail) {
+        User u= userRepository.findByEmail(mail).get();
+        return u.getId();
+    }
 
     public ResponseEntity<User> findUserByEmail(String email) {
-
        User user  = userRepository.findByEmail(email).get();
         return ResponseEntity.ok().body(user);
-       // return userRepository.findByEmail(email).get();
+    }
+
+    public Set<Demande> findServiceRequestByEmail(String email) {
+        Set<Demande> demandes =  this.userRepository.findByEmail(email).get().getDemandes();
+        return demandes;
     }
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).get();
     }
-
 
     public ResponseEntity<User> updateUser(Long id, UserRequest newUser)
     {

@@ -19,8 +19,8 @@ export class DemandeService {
 
     }
 
-    getMyRequestService(id_user: number): Observable<any> {
-        return this.http.get(this.url+"/auth/mesdemandes/"+id_user);
+    getMyRequestService(email: string): Observable<any> {
+        return this.http.get(this.url+"/auth/mesdemandes/"+email);
     }
     getRequestService(sta:String,nbmedailles:number, date:String):Observable<any> {
         return this.http.get(this.url+"/getRequestfilter/"+sta+"/"+nbmedailles+"/"+date);
