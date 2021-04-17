@@ -7,7 +7,7 @@ import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UpdateProfilComponent } from './update-profil/update-profil.component';
-
+import { ModerateComponent } from './moderate/moderate.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { OffreListComponent } from './offre-list/offre-list.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'add', component:CreateOffreComponent},
   { path: 'update/:id', component: UpdateOffreComponent },
   { path: 'offrelist', component: OffreListComponent },
+  { path: 'moderate', component: ModerateComponent },
 
 
 ];

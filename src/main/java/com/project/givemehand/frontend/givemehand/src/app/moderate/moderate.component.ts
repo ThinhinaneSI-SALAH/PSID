@@ -1,0 +1,60 @@
+import { Component, OnInit } from '@angular/core';
+import {OffreServiceService} from '../services/offre-service.service';
+import { UserService } from '../services/user.service';
+
+import {Router,ActivatedRoute} from '@angular/router';
+import { HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Createoffer} from '../classes/createoffer';
+import { User } from '../classes/user';
+
+@Component({
+  selector: 'app-moderate',
+  templateUrl: './moderate.component.html',
+  styleUrls: ['./moderate.component.scss']
+})
+export class ModerateComponent implements OnInit {
+  offres:Observable<Createoffer[]>
+  users:Observable<User[]>;
+
+  empty =false;
+  categories : Observable< String[]>;
+  constructor(private offreService: OffreServiceService,private userService: UserService,private router: Router) { }
+
+  ngOnInit(): void {
+    this.reloadData();
+    this.reloadDataUser();
+
+  }
+
+  reloadData()
+  {
+  this.offres = this.offreService.getOffreList();
+}
+reloadDataUser()
+{
+this.users = this.userService.getUserList();
+console.log("User list" + this.users);
+}
+deleteoffer(id: number) {
+  console.log("id"+id);
+  this.offreService.deleteoffer(id).subscribe(
+      data => {
+        console.log(data);
+        this.reloadData();
+      },
+      error => console.log(error));
+      this.reloadData();
+}
+deleteuser(id: number) {
+  console.log("id"+id);
+  this.userService.deleteUser(id).subscribe(
+      data => {
+        console.log(data);
+        this.reloadDataUser();
+      },
+      error => console.log(error));
+      this.reloadDataUser();
+}
+
+}

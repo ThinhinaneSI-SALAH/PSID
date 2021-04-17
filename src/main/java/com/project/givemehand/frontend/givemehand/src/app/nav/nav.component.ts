@@ -7,25 +7,30 @@ import { User } from '../classes/user';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  isLoggedIn : Boolean;
+   isLoggedIn =false;
    email : string;
+   isLoggedInADM =false;
   constructor() { }
 
   ngOnInit(): void {
      this.email = sessionStorage.getItem("currentUser")
-     sessionStorage.getItem("idUser");
+if(this.email!=null){
+      if(this.email==='admin@GMAH.com'){
+           this.isLoggedInADM =true
+      }
+ 
+       else {  
+   
+          this.isLoggedIn =true
+
+       }
+
+
      console.log(this.email);
-     if (this.email !=null ){
-      this.isLoggedIn =true
+     console.log("User simple" + this.isLoggedIn)
+     console.log("ADMIN" + this.isLoggedInADM)
 
-     }
-     else {
-      this.isLoggedIn = false
-
-     }
-
-
-
+      
   }
   logout() {
     window.sessionStorage.removeItem('currentUser');

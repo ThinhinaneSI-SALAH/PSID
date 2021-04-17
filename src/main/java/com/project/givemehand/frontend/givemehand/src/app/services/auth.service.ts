@@ -35,13 +35,13 @@ export class AuthService {
     return this.http.post<User>(this.url+ '/auth/signup', {
       email: user.email,
       password: user.password,
-      lastName: user. nom,
-      firstName: user.prenom,
-      phoneNumber: user.tel,
-      street: user.rue,
-      city: user.ville,
-      zip: user.cp,
-      country: user.pays
+      lastName: user.lastName,
+      firstName: user.firstName,
+      phoneNumber: user.phoneNumber,
+      street: user.street,
+      city: user.city,
+      zip: user.zip,
+      country: user.country
     }, httpOptions);
   }
 }

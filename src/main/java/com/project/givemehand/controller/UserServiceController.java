@@ -1,9 +1,6 @@
 package com.project.givemehand.controller;
-import com.project.givemehand.models.entity.Adresse;
-import com.project.givemehand.models.entity.Role;
-import com.project.givemehand.models.entity.ERole;
+import com.project.givemehand.models.entity.*;
 
-import com.project.givemehand.models.entity.User;
 import com.project.givemehand.payload.MessageResponse;
 import com.project.givemehand.payload.request.LoginRequest;
 import com.project.givemehand.payload.request.UserRequest;
@@ -26,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.givemehand.models.entity.Demande;
 import com.project.givemehand.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -124,10 +120,10 @@ public class UserServiceController {
         return service.findServiceRequestByEmail(email);
     }
 
-    @PutMapping("/updateUser/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserRequest user)
+    @PutMapping("/updateUser")
+    public User updateUser(@RequestBody User user)
     {
-        return service.updateUser(id,user);
+        return service.updateUser(user);
     }
 
     @RequestMapping(value = "/findUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
@@ -141,70 +137,30 @@ public class UserServiceController {
     {
         return service.findById(user_id);
     }
-    @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+
+
+    @RequestMapping(path ="/getAllUser", method = RequestMethod.GET)
+    public List<User> getAllUser()
+    {
+
+        return service.getAllUser();
+    }
+
+    @DeleteMapping("/deleteUser/{userid}")
+    public void deleteBUser(@PathVariable("userid") long id)
+    {
+        service.deleteuser(id);
+
+   
+    }
+   @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
 
         return service.findIdUserByMail(email);
+      
     }
 
-  /*
-    @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteById(@PathVariable ("userId") Long userId) {
-        service.deleteById(userId);
-
-    }
-    @RequestMapping(value = "/findAllStudent", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List <User> >  findAllStudent()
-    {
-        List<User> allUsers = userRepository.findAll();
-        ArrayList<User> studentsResponse = new ArrayList<User>();
-        for(User user : allUsers){
-            for(Role role : user.getRoles()){
-                if(role.getName().toString() == ("ROLE_ETUDIANT")){
-                    // usersResponse[allUsers.get()] = new List<User>();
-                    studentsResponse.add(user) ;
-                }
-            }
-
-        }
-        return new  ResponseEntity <List <User> >(studentsResponse, HttpStatus.OK);
-    }
-    @RequestMapping(value = "/findAllProf", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<List <User> > findAllProf()
-    {
-        List<User> allProfs = userRepository.findAll();
-        ArrayList<User> profsResponse = new ArrayList<User>();
-        for(User user : allProfs){
-            for(Role role : user.getRoles()){
-                if(role.getName().toString() == ("ROLE_ENSEIGNANT")){
-                    profsResponse.add(user) ;
-                }
-            }
-
-        }
-        return new  ResponseEntity <List <User> >(profsResponse, HttpStatus.OK);
-
-    }
-    @RequestMapping(value = "/findAllClasses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findAllClasses()
-    {
-        Integer nb_classes = 0;
-        return ResponseEntity.ok(new MessageResponse("Test"));
-    }
-
-    @RequestMapping(value = "/findById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public User findById(Long userID) {
-
-        return service.findById(userID);
-    }
-    @RequestMapping(value = "/findByUsername", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-
-    public Optional<User> findByUsername(String username) {
-        return service.findByUsername(username);
-
-    }
-*/
+  
 }
 
 

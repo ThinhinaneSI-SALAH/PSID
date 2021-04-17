@@ -33,20 +33,23 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         sessionStorage.setItem('currentUser', this.user.email);
-        sessionStorage.setItem('idUser', this.user.id.toString());
-        //this.roles = this.tokenStorage.getUser().roles;
-       // this.reloadPage();
 
-       this.router.navigate(['monProfil']);
+        this.router.navigate(['accueil'])
+        .then(() => {
+          window.location.reload();
+        });
+        
+     
 
-      },
+
+    /*  },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );
   }
-
+*/
   reloadPage() {
     window.location.reload();
   }
