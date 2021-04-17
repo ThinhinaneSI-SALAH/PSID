@@ -19,7 +19,10 @@ public class OffreService implements IOffre {
 
     @Autowired
     private OffreRepository offreRepository;
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     /**
      * Permet de filtrer les offres avec les parametres recus
@@ -164,14 +167,15 @@ public class OffreService implements IOffre {
         return this.offreRepository.findById(id).get();
     }
 
-    public void save(Offre offres) {
-        //offres.setUser(user);
+    public void save(Offre offres,Long id)
+    {
+        User user =userRepository.findById(id).get();
+        offres.setUser(user);
         this.offreRepository.save(offres);
     }
 
     public void saveALL(Offre offres, User user)
-    {
-        //offres.setUser(user)
+    {   //offres.setUser(user)
         offres.setUser(user);
         this.offreRepository.save(offres);
     }
@@ -187,10 +191,25 @@ public class OffreService implements IOffre {
 
     }
 
-    public List<Offre> getOfferByUser(Long id)
+    public Set<Offre> getOfferByUserId(Long id_user)
     {
-        User user =userRepository.findById(id).get();
-         return offreRepository.findByUser(user);
+        User user = this.userRepository.findById(id_user).get();
+        Set<Offre> offres =  user.getOffres();
+        return offres;
+    }
+
+    public Long getIdByEmail(String email)
+    {
+        User user =userRepository.findByEmail(email).get();
+        Long id =user.getId();
+        return id;
+    }
+
+    public Set<Offre> getOffreByEmail(String email)
+    {
+        User user =this.userRepository.findByEmail(email).get();
+        Set<Offre> offre=user.getOffres();
+        return offre;
     }
 }
 

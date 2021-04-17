@@ -26,16 +26,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Elle represente le controleur de la classe User Service
- */
+import com.project.givemehand.models.entity.Demande;
+import com.project.givemehand.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-
+import java.util.Set;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/auth")
+
+/**
+ * Elle represente le controleur de la classe User Service
+ */
 public class UserServiceController {
 
     @Autowired
@@ -77,8 +82,6 @@ public class UserServiceController {
 
     }
 
-
-
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<?> userRegister(@RequestBody UserRequest userRequest ) {
@@ -103,8 +106,6 @@ public class UserServiceController {
 
         );
               //  encoder.encode( userRequest.getPassword()));
-
-
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.ROLE_PARTICULIER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -115,11 +116,13 @@ public class UserServiceController {
         user.setAdresse(add);
         service.saveUser(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-
-
     }
 
-
+    @RequestMapping(path ="/mesdemandes/{email}", method = RequestMethod.GET)
+    public Set<Demande> findServiceRequestByEmail(@PathVariable String  email)
+    {
+        return service.findServiceRequestByEmail(email);
+    }
 
     @PutMapping("/updateUser/{email}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserRequest user)
@@ -132,11 +135,18 @@ public class UserServiceController {
 
         return service.findUserByEmail(email);
     }
-    /* public User findById(Long userID)
-    {
 
-        return service.findById(userID);
-    } */
+    @RequestMapping(value = "/finduserById/{user_id}", method = RequestMethod.GET)
+     public User findById(@PathVariable Long user_id)
+    {
+        return service.findById(user_id);
+    }
+    @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.findIdUserByMail(email);
+    }
+
   /*
     @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable ("userId") Long userId) {
@@ -195,8 +205,6 @@ public class UserServiceController {
 
     }
 */
-
-
 }
 
 

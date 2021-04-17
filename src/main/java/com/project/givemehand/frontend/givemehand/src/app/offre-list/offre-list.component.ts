@@ -14,17 +14,31 @@ export class OffreListComponent implements OnInit {
  empty =false;
  offres:Observable<Createoffer[]>
  categories : Observable< String[]>;
-  constructor(private offreService: OffreServiceService,private router: Router) 
+ id:number;
+ id_user:number;
+ email:string;
+  constructor(private offreService: OffreServiceService,private router: Router, private route: ActivatedRoute)
   { }
 
-  ngOnInit(): void {
-    this.reloadData();
-  }
-  reloadData()
+  ngOnInit()
   {
-  this.offres = this.offreService.getOffreList();
+    this.email= sessionStorage.getItem('currentUser');
+    this.offreService.getIdByEmail(this.email).subscribe(
+    data=>{console.log(this.id_user=data)})
+    
+  this.reloadData();
+  }
+
+  reloadData()
+{
+  
+  console.log("votre email est:" + this.email)
+  this.offres=this.offreService.getOfferByEmail(this.email)
+  ///this.offres=this.offreService.getOfferByUser(2)
+  //this.offres = this.offreService.getOffreList();
 }
-deleteoffer(id: number) {
+deleteoffer(id: number)
+{
   console.log("id"+id);
   this.offreService.deleteoffer(id).subscribe(
       data => {
