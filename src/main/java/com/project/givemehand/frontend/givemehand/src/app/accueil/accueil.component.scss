@@ -1,4 +1,7 @@
 .accueil {
+    width: 1300px;
+    margin-right: 50px;
+    margin-left: 15px;
     position:absolute;
     top:0;
     left:20px;
@@ -13,9 +16,17 @@
 }
 .filter{
     grid-column: 1;
+    background-color: antiquewhite;
+    width: 208px;
+    padding-top: 30px;
+    text-align: center;
+    padding-left: 17px;
+}
+form {
+    width: 176px;
 }
 .container-fluid {
-
+    margin-left: 33px;
     padding-top: 160px;
     grid-column: 2 ;
     display: grid;
@@ -73,11 +84,13 @@
 .ref{
     grid-column: 3;
     grid-row: 5;
-    
+    width: max-content;
 }
+    
 
 .map{
     grid-column: 3 ;
+    margin-left: -10%;
 }
 
 agm-map {
@@ -88,4 +101,4 @@ agm-map {
 i {
     color: crimson;
     display: inline;
-    }
+}
