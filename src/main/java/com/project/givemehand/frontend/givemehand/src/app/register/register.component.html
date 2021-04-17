@@ -8,6 +8,8 @@
   #f="ngForm"
   novalidates >
 
+
+
     <div class="form-group">
             <label for="email">E-mail</label>
           <input type="text" class="form-control" id="email" required
@@ -28,7 +30,7 @@
     <div class="form-group">
         <label for="nom">Nom </label>
         <input type="text" class="form-control" id="nom" required
-        [(ngModel)]="user.lastName" name="nom" #nom="ngModel">
+        [(ngModel)]="user.nom" name="nom" #nom="ngModel">
         <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger"> Nom is required
         </div>
     </div>
@@ -36,7 +38,7 @@
     <div class="form-group">
         <label for="prenom">Prenom </label>
         <input type="text" class="form-control" id="prenom" required
-        [(ngModel)]="user.firstName" name="prenom" #prenom="ngModel">
+        [(ngModel)]="user.prenom" name="prenom" #prenom="ngModel">
         <div [hidden]="prenom.valid || prenom.pristine"
      class="alert alert-danger">
 Prenom is required
@@ -48,28 +50,28 @@ Prenom is required
     <div class="form-group">
         <label for="tel">Numero de telephone </label>
         <input type="text" class="form-control" id="tel" required
-        [(ngModel)]="user.phoneNumber" name="tel" #tel="ngModel">
+        [(ngModel)]="user.tel" name="tel" #tel="ngModel">
 
     </div>
 
         <div class="form-group">
             <label for="rue">Rue  </label>
             <input type="text" class="form-control" id="rue" required
-            [(ngModel)]="user.street" name="rue" #rue="ngModel">
+            [(ngModel)]="user.rue" name="rue" #rue="ngModel">
        
         </div>
     
             <div class="form-group">
                 <label for="cp">Code Postale </label>
                 <input type="number" class="form-control" id="cp" required
-                [(ngModel)]="user.zip" name="cp" #cp="ngModel">
+                [(ngModel)]="user.cp" name="cp" #cp="ngModel">
           
             </div>
                 
                 <div class="form-group">
                     <label for="ville"> Ville</label>
                     <input type="text" class="form-control" id="ville" required
-                    [(ngModel)]="user.city" name="ville" #ville="ngModel">
+                    [(ngModel)]="user.ville" name="ville" #ville="ngModel">
             
                 </div>
             
@@ -77,7 +79,7 @@ Prenom is required
                     <div class="form-group">
                         <label for="pays">Pays</label>
                         <input type="text" class="form-control" id="pays" required
-                        [(ngModel)]="user.country" name="pays" #pays="ngModel">
+                        [(ngModel)]="user.pays" name="pays" #pays="ngModel">
                    
                     </div>
                 
@@ -85,15 +87,14 @@ Prenom is required
    <button  type="submit" class="btn btn-success">Submit</button>
     <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
             Signup failed!<br />{{ errorMessage }}
-    </div><br>
-        <span class="login-link">Already have an account?</span>
+        </div><br>
+
+<span class="login-link">Already have an account?</span>
 <a routerLink="../connexion">Login</a>
 </form>
 
 <div style="margin-top : 100px" class="alert alert-success" *ngIf="isSuccessful">
   Your registration is successful!
 </div>
-
-
   </div>
 

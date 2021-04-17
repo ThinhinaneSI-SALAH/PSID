@@ -28,7 +28,8 @@ public class RequestService {
         return  requestRepository.getOne(id);
     }
 
-    public ResponseEntity<Demande> addRequestService(Demande demande) {
+    public ResponseEntity<Demande> addRequestService(Demande demande)
+    {
         Demande createdDemande = this.requestRepository.save(demande);
 
         return new ResponseEntity<Demande>(this.requestRepository.saveAndFlush(createdDemande), HttpStatus.OK);

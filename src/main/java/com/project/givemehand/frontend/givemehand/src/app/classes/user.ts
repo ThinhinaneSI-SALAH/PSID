@@ -1,18 +1,16 @@
-import { Adresse } from "./adresse";
-
 export class User {
 
-        id:number
+        id:number;
         email : string;
         password : string;
-        lastName : string;
         firstName : string;
-	    phoneNumber : string;
-      //  adresse : Adresse;
-      street : string;
-      city : string;
-      zip : string;
-      country : string;
+        lastName : string;
+        phoneNumber : string;
+        street: string;
+        city : string;
+        zip : string;
+        country: string;
+    
         /*constructor(username: string , email : String, motDePassse : String,
             github: String)
         {

@@ -1,5 +1,4 @@
 
-
 <div class="container">
   <form   *ngIf="!isLoggedIn"
   name="form"
@@ -41,9 +40,8 @@
          </div>
     </div>
     <div class="form-group">
-      <button class="btn btn-primary btn-block">
-        Login
-      </button>
+      <button  type="submit" class="btn btn-success">Login</button>
+
     </div>
     <div class="form-group">
       <div
@@ -54,11 +52,8 @@
         Login failed {{ errorMessage }}
       </div>
     </div>
-
-
-
 <span class="login-link">New User?</span>
-<a routerLink="../inscription">Signup</a>
+<a  routerLink="../inscription">Signup</a>
   </form>
 
   </div>

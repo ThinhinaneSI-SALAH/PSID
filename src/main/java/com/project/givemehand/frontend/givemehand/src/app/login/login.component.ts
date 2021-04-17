@@ -34,24 +34,22 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         sessionStorage.setItem('currentUser', this.user.email);
 
-        //this.roles = this.tokenStorage.getUser().roles;
-       // this.reloadPage();
-       //this.reloadPage();
-       this.router.navigate(['accueil'])
-       .then(() => {
-         window.location.reload();
-       });   
-       //    this.router.navigate(['accueil']);
+        this.router.navigate(['accueil'])
+        .then(() => {
+          window.location.reload();
+        });
+        
+     
 
 
-      },
+    /*  },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );
   }
-
+*/
   reloadPage() {
     window.location.reload();
   }

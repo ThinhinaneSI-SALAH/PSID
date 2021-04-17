@@ -1,9 +1,6 @@
 package com.project.givemehand.controller;
-import com.project.givemehand.models.entity.Adresse;
-import com.project.givemehand.models.entity.Role;
-import com.project.givemehand.models.entity.ERole;
+import com.project.givemehand.models.entity.*;
 
-import com.project.givemehand.models.entity.User;
 import com.project.givemehand.payload.MessageResponse;
 import com.project.givemehand.payload.request.LoginRequest;
 import com.project.givemehand.payload.request.UserRequest;
@@ -26,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.givemehand.models.entity.Demande;
 import com.project.givemehand.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -82,8 +78,6 @@ public class UserServiceController {
 
     }
 
-
-
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<?> userRegister(@RequestBody UserRequest userRequest ) {
@@ -108,8 +102,6 @@ public class UserServiceController {
 
         );
               //  encoder.encode( userRequest.getPassword()));
-
-
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.ROLE_PARTICULIER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -120,21 +112,18 @@ public class UserServiceController {
         user.setAdresse(add);
         service.saveUser(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-
-
-    }
-    @RequestMapping(path ="/mesdemandes/{id_user}", method = RequestMethod.GET)
-    public Set<Demande> getServiceRequestByUserId(@PathVariable Long id_user)
-    {
-        return service.getServiceRequestByUserId(id_user);
     }
 
-
-
-    @PutMapping("/updateUser/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody UserRequest user)
+    @RequestMapping(path ="/mesdemandes/{email}", method = RequestMethod.GET)
+    public Set<Demande> findServiceRequestByEmail(@PathVariable String  email)
     {
-        return service.updateUser(email,user);
+        return service.findServiceRequestByEmail(email);
+    }
+
+    @PutMapping("/updateUser")
+    public User updateUser(@RequestBody User user)
+    {
+        return service.updateUser(user);
     }
 
     @RequestMapping(value = "/findUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
@@ -143,6 +132,35 @@ public class UserServiceController {
         return service.findUserByEmail(email);
     }
 
+    @RequestMapping(value = "/finduserById/{user_id}", method = RequestMethod.GET)
+     public User findById(@PathVariable Long user_id)
+    {
+        return service.findById(user_id);
+    }
+
+
+    @RequestMapping(path ="/getAllUser", method = RequestMethod.GET)
+    public List<User> getAllUser()
+    {
+
+        return service.getAllUser();
+    }
+
+    @DeleteMapping("/deleteUser/{userid}")
+    public void deleteBUser(@PathVariable("userid") long id)
+    {
+        service.deleteuser(id);
+
+   
+    }
+   @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.findIdUserByMail(email);
+      
+    }
+
+  
 }
 
 

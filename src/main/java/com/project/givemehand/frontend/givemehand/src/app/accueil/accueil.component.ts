@@ -5,6 +5,7 @@ import {OffreServiceService} from '../services/offre-service.service';
 import {Router,ActivatedRoute} from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { Filtre } from '../classes/filtre';
 
 
 @Component({
@@ -19,8 +20,9 @@ export class AccueilComponent implements OnInit {
   lat: number = 48.856614;
   lng: number = 2.3522219;
   zoom:number = 50;
-  address: string;
+  address: string = "";
   private geoCoder;
+  filtre: Filtre;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -30,17 +32,17 @@ export class AccueilComponent implements OnInit {
     private ngZone: NgZone) { }
 
   ngOnInit(): void {
+    this.filtre = new Filtre();
     this.categories = this.offreService.getCategories();
-    if(this.route.snapshot.paramMap.get('offre')!=null)
+    /*if(this.route.snapshot.paramMap.get('offre')!=null)
     {
         console.log("on est ds la page filtre");
         this.FilterOffre();
     }
     else
-    {    
-      console.log("on est ds la page accueil");
+    {    */
       this.reloadData();
-    }      
+   // }      
 
     //*Google Maps
     
@@ -53,7 +55,8 @@ export class AccueilComponent implements OnInit {
         this.ngZone.run(() => {
           //get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
+          console.log(place);
+          this.address = place.formatted_address;
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
@@ -83,37 +86,6 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  FilterOffre (): void
-  {
-    var date:String;
-    var nbmedailles:number;
-    var categorie:String;
-    var ville:String;
-    var motcle :String;
-    
-    date = document.getElementsByName("datefin")[0]["value"];
-    console.log(date);
-    let dates  = date.split('-');
-    date= dates[0]+ dates[1]+dates[2];
-    nbmedailles=document.getElementsByName("nbmedailles")[0]["value"];
-    ville=document.getElementsByName("ville")[0]["value"];
-    motcle=document.getElementsByName("motcle")[0]["value"];
-    categorie=document.getElementsByName("categorie")[0]["value"];
-    console.log(ville);
-    this.offres = this.offreService.getofferfilter(categorie,ville,nbmedailles,motcle,date);
-     
-    this.offres.subscribe((value) => {
-      console.log(value);
-      if(value.length == 0) {
-        this.empty = true;
-      }
-    }, (error) => {
-      console.log(error);
-    }, () => {
-      console.log('Fini !');
-    });
-    
-  }
 
   /* 
   ** Récupérer la position actuelle 
@@ -154,21 +126,12 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  
-  geocodeAddressLat(address: string) {
-    console.log(address);
-    let latitude = 46.8766;
-    /*this.geoCoder.geocode({ address: address }, (results, status) => {
-      if (status === "OK") {
-        latitude = results[0].geometry.latitude;
-        }
-       else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });*/
-    return latitude; 
+  filtrer(){
+    if(this.address !=""){
+      this.filtre.ville = this.address;
+    }
+    this.offres = this.offreService.filtrer(this.filtre);
   }
-
 
 
 }

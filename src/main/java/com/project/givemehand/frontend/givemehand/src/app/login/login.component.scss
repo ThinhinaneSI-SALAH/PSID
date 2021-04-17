@@ -1,29 +1,13 @@
-//@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 
-
-label{
-    float: left;
-} 
-form {
-    width: 400px;
-    margin-left: 200px;
-   // align: center;
-    margin-top : 200px;
+.container {
+    width: 890px;
+    margin-top: 100px;
+    padding-top: 30px;
+    background-color: antiquewhite;
+    padding-bottom: 30px;
+    text-align: center;
 }
-h1{
-    float: left;
-    margin-bottom: 20px;
+.btn{
+    width: 150px;
+    margin: auto;
 }
-
-#submitFormMessage{
-    margin-top: 50px;;
-}
-
-.basic-container {
-    padding: 30px;
-  }
-  .version-info {
-    font-size: 8pt;
-    float: right;
-    margin: 8px;
-  }

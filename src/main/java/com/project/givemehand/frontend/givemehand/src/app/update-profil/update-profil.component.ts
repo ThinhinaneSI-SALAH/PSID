@@ -11,15 +11,16 @@ import { UserService } from '../services/user.service';
 export class UpdateProfilComponent implements OnInit {
   user :  any; 
   semail : string;
- submitted = false;
+ submitted=false;
+Boolean = false;s
 errorMessage = '';
+
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.user = new User();
     this.semail = sessionStorage.getItem("currentUser")
-    console.log("user test ")
     console.log("User connected : " +   this.semail)
 
     this.userService.getUserByEmail(this.semail)
@@ -35,10 +36,10 @@ errorMessage = '';
     );
   }
   onSubmit(){
-    console.log("user after init")
-
     this.submitted = true;
-    this.userService.updateUser(this.user.email,this.user).subscribe(
+    console.log("Data USER SUBMITED")
+    console.log("USER STREET" + this.user.adresse.street)
+    this.userService.updateUser(this.user).subscribe(
       data=> console.log(data),
       error => console.log(error)
     );

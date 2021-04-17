@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface OffreRepository extends JpaRepository<Offre,Long>
 {
-    List<Offre> findByUser(User user);
+
 
 }

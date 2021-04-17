@@ -4,7 +4,7 @@
 <br><h3>Update Offre</h3>
 
 <div [hidden]="submitted" style="width: 400px" class="center">
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()"  *ngIf="!submitted">
 
             <div class="form-group">
                 <label for="name">Titre</label>
