@@ -22,11 +22,18 @@ export class CreateOffreComponent implements OnInit {
   empty =false;
   submitted=false;
   categories : Observable< String[]>;
+  email:string;
+  id_user:number;
    constructor(private offreService: OffreServiceService,private router: Router,private http: HttpClient) 
    { } 
   
   ngOnInit(): void {
     this.categories = this.offreService.getCategories();
+    this.email= sessionStorage.getItem('currentUser')
+    this.offreService.getIdByEmail(this.email).subscribe(
+      data=>{console.log(this.id_user=data)
+      }
+    )
   }
   
   newOffre():void
@@ -39,7 +46,7 @@ export class CreateOffreComponent implements OnInit {
   save()
   { 
     console.log("creation d'offres");
-    this.offreService.saveoffer(this.offres).subscribe(data => {
+    this.offreService.saveoffer(this.offres,this.id_user).subscribe(data => {
       console.log(this.offres)
       console.log(data)
      this.offres = new Createoffer();

@@ -20,10 +20,18 @@ export class OffreServiceService{
 
   }
 
-
+  //Obtenir toutes les offres
   getOffreList(): Observable<any> {
     return this.http.get(this.url+'/getAllOffer');
   }
+ //obtenir toutes les offres en fonction d'un utilisateur
+  getOfferByUser(id_user: number):any{
+    return this.http.get(this.url+"/mesoffres/"+id_user);
+}
+
+getIdByEmail(email: String): Observable<any> {
+  return this.http.get(this.url+"/IdByEmail/"+email);
+}
   getofferfilter(categorie:String, ville:String, nbmedailles:number, motcle:String, date:String):Observable<any> {
   return this.http.get(this.url+"/getofferfilter/"+categorie+"/"+ville+"/"+nbmedailles+"/"+motcle+"/"+date);
   }
@@ -34,9 +42,10 @@ export class OffreServiceService{
   deleteoffer(id:number):Observable<any> {
     return this.http.delete(this.url+"/DeleteOffer/"+id,{ responseType: 'text'});
   }
-  saveoffer(offres:Createoffer)
+
+  saveoffer(offres:Createoffer,id:number)
   {
-     return this.http.post(this.url+'/CreateOffer', offres, { responseType: 'text'});
+     return this.http.post(this.url+"/CreateOffer/"+id, offres, { responseType: 'text'});
   }
  updateoffer(value: Createoffer):Observable<any> {
   return this.http.put(this.url+"/UpdateOffer/",value,{ responseType: 'text'});

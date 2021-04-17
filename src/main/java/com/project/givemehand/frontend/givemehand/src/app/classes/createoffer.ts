@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Createoffer {
     id: number;
     titre: string;
@@ -9,4 +11,5 @@ export class Createoffer {
     nbMedailles: number;
     motcle:string;
     active: boolean;
+    user:User;
 }
