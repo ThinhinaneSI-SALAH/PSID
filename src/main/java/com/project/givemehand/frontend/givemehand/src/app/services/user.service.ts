@@ -29,6 +29,8 @@ export class UserService {
   }
     deleteUser(id:number):Observable<any> {
     return this.http.delete(this.baseUrl+"/auth/deleteUser/"+id,{ responseType: 'text'});
+
+    }
   public findIdUserByMail(email: string){
     return this.http.get(`${this.baseUrl}/auth/findIdUserByMail/${email}`);
   }

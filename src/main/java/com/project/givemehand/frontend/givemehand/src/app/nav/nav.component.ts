@@ -18,20 +18,16 @@ if(this.email!=null){
       if(this.email==='admin@GMAH.com'){
            this.isLoggedInADM =true
       }
- 
        else {  
-   
           this.isLoggedIn =true
 
        }
-
-
      console.log(this.email);
-     console.log("User simple" + this.isLoggedIn)
-     console.log("ADMIN" + this.isLoggedInADM)
-
-      
+     console.log("User simple" + this.isLoggedIn);
+     console.log("ADMIN" + this.isLoggedInADM); 
   }
+
+}
   logout() {
     window.sessionStorage.removeItem('currentUser');
     window.sessionStorage.removeItem('idUser');
