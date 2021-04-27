@@ -26,8 +26,8 @@ export class AccueilComponent implements OnInit {
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
- 
-  
+
+
   constructor(private offreService: OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { }
 
@@ -42,10 +42,10 @@ export class AccueilComponent implements OnInit {
     else
     {    */
       this.reloadData();
-   // }      
+   // }
 
     //*Google Maps
-    
+
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -61,7 +61,7 @@ export class AccueilComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          
+
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
@@ -70,7 +70,7 @@ export class AccueilComponent implements OnInit {
       });
     });
   }
-  
+
   reloadData() {
     this.offres = this.offreService.getOffreList();
 
@@ -87,8 +87,8 @@ export class AccueilComponent implements OnInit {
   }
 
 
-  /* 
-  ** Récupérer la position actuelle 
+  /*
+  ** Récupérer la position actuelle
   */
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -107,7 +107,7 @@ export class AccueilComponent implements OnInit {
     this.getAddress(this.lat, this.lng);
   }
 
-  
+
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       console.log(results);
@@ -131,11 +131,12 @@ export class AccueilComponent implements OnInit {
       this.filtre.ville = this.address;
     }
     this.offres = this.offreService.filtrer(this.filtre);
+    this.address ="";
   }
 
 
 }
-  
+
 
 
 
