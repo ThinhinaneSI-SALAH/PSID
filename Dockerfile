@@ -13,7 +13,7 @@ FROM maven:3.6.3-jdk-8 as BUILD
 # The owner of this Dockerfile
 LABEL MAINTAINER=pasciano007@gmail.com
 # Copy compressed repository to maven ref repository available in base image
-ADD repository.tar.gz /usr/share/maven/ref/
+#ADD repository.tar.gz /usr/share/maven/ref/
 
 # Copy all project sources to app directory
 COPY . /usr/src/app
