@@ -5,5 +5,5 @@ COPY . /app
 #ARG JAR_FILE=*.jar
 #COPY target/${JAR_FILE} app.jar
 #ADD givemehand-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar", "givemehand-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar", "./app/givemehand-0.0.1-SNAPSHOT.jar"]
 
