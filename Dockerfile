@@ -9,5 +9,5 @@ RUN find -name "app.jar"
 COPY . /app
 RUN ls /app
 #ADD givemehand-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar", "/app/app.jar"]
+ENTRYPOINT ["java","-jar", "./app.jar"]
 
