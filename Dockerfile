@@ -3,9 +3,7 @@ FROM adoptopenjdk:11-jre-hotspot
 EXPOSE 8080
 COPY . /app
 ARG JAR_FILE=*.jar
-COPY /${JAR_FILE} app.jar
+COPY ${JAR_FILE} app.jar
 #ADD givemehand-0.0.1-SNAPSHOT.jar app.jar
-RUN cd usr/lib
-RUN ls -la
 ENTRYPOINT ["java","-jar", "/app/app.jar"]
 
