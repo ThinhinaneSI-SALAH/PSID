@@ -57,7 +57,6 @@ import { ModerateComponent } from './moderate/moderate.component';
       apiKey: 'AIzaSyDmR2n_yrz5nIA_hPK8h6ctKuX4uVyDb68',
       libraries: ['places']
     })
-
   ],
   providers: [
     HttpClientModule
