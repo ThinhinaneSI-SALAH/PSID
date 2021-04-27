@@ -24,7 +24,7 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/auth/finduserById/${id}`);
   }
 
-  getUserList(): Observable<any> {
+  getUserList():Observable<any> {
     return this.http.get(this.baseUrl+'/auth/getAllUser');
   }
     deleteUser(id:number):Observable<any> {

@@ -48,7 +48,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Offre> offres= new HashSet<>();
     public User(){
     }
