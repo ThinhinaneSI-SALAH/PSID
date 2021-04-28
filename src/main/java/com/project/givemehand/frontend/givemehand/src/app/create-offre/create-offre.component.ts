@@ -4,7 +4,6 @@ import {OffreServiceService} from '../services/offre-service.service';
 import {Router,ActivatedRoute} from '@angular/router';
 import { HttpClient,HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Injectable} from '@angular/core';
 
 
 const httpOptions = {
@@ -34,6 +33,7 @@ export class CreateOffreComponent implements OnInit {
       data=>{console.log(this.id_user=data)
       }
     )
+      console.log("test", this.id_user);
   }
   
   newOffre():void

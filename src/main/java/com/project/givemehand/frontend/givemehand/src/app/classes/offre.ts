@@ -21,4 +21,5 @@ export class Offre {
     this.nbMedailles = nbMedailles;
     this.note = 0;
   }
+  
 }

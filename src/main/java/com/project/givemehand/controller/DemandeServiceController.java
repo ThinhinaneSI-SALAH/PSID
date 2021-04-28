@@ -22,7 +22,9 @@ public class DemandeServiceController {
     @Autowired
     private RequestService service;
     @Autowired
+    private OffreService serviceOffre;
     private RequestRepository demandesRep;
+
 
     @Autowired
     private OffreService offreService;
@@ -32,9 +34,12 @@ public class DemandeServiceController {
         return service.getServiceRequest(id);
     }
 
-    @RequestMapping(path ="/addRequestService", method = RequestMethod.POST)
-    public ResponseEntity<Demande> addDemande(@RequestBody Demande demande)
+    @RequestMapping(path ="/addRequestService/{idoffre}", method = RequestMethod.POST)
+    public Demande addDemande(@RequestBody Demande demande,@PathVariable Long idoffre)
     {
+
+        Offre offre = serviceOffre.getOfferById(idoffre);
+        demande.setOffre(offre);
         return service.addRequestService(demande);
     }
 
@@ -48,7 +53,6 @@ public class DemandeServiceController {
 
     public List<Demande> getRequestService(@PathVariable String sta, @PathVariable String nbMedailles, @PathVariable String date)
     {
-
         Statut statut = Statut.valueOf(sta.toUpperCase());
         String jour = date.substring(0,2);
         String mois = date.substring(2,4);
@@ -111,6 +115,11 @@ public class DemandeServiceController {
         return service.updateRequestService(id,demande);
     }
 
+    @RequestMapping(value = "/getRequestServiceById/{id_demande}", method = RequestMethod.GET)
+    public Demande getRequestServiceById(@PathVariable Long id_demande)
+    {
+        return service.getRequestServiceById(id_demande);
+    }
 
 
 }
