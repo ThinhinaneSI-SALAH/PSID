@@ -5,6 +5,7 @@ import com.project.givemehand.repository.RequestRepository;
 import com.project.givemehand.services.OffreService;
 import com.project.givemehand.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -84,27 +85,16 @@ public class DemandeServiceController {
         return demandesRep.findAll();
 
     }
-    //creer une offre
-  /*  @PutMapping(value = "/setStatutDemande/{demandeId}/{statut}")  //ok
-    public void setStatutDemande(@PathVariable Long demandeId,@PathVariable String statut)
-    {
-        Demande d =  service.findDemandeById(demandeId);
-        if(statut.equals(Statut.ACCEPTE)){
-            d.setStatut(Statut.ACCEPTE);
-        }
-        if(statut.equals(Statut.REFUSE)){
-            d.setStatut(Statut.REFUSE);
-        }
-        if(statut.equals(Statut.ATTENTE)){
-            d.setStatut(Statut.ATTENTE);
-        }
-        ser.save(offres);
+    //@RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    //@RequestMapping(path="/incrementerMedailles/{idDemande}", method = RequestMethod.GET)
+    @PutMapping("/virtualMoney/{idDemande}")
+    public Demande virtualMoney(@PathVariable Long idDemande){
+        return service.virtualMoney(idDemande);
+
+    }
 
 
-
-        //User user =userService.findById(id)
-     //   service.save(offres,id);
-    } */
     @PutMapping("/updateRequestService/{id}")
     public ResponseEntity<Demande> updateRequestService(@PathVariable Long id, @RequestBody Demande demande)
     {

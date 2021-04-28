@@ -20,7 +20,8 @@ public class Demande {
     private Date dateDemande;
     private String statut;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY,
