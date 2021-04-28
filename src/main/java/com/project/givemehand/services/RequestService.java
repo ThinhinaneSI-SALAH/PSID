@@ -1,5 +1,6 @@
 package com.project.givemehand.services;
 
+import com.project.givemehand.interfaces.IDemande;
 import com.project.givemehand.models.entity.*;
 import com.project.givemehand.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.Optional;
 /**
  * Cette classe contient les services de la demande
  */
-public class RequestService {
+public class RequestService implements IDemande {
     @Autowired
     private RequestRepository requestRepository;
 
@@ -27,6 +28,11 @@ public class RequestService {
     public Demande getServiceRequest(long id) {
         return  requestRepository.getOne(id);
     }
+
+    public Demande findDemandeById(long id) {
+        return  requestRepository.findById(id).get();
+    }
+
 
     public ResponseEntity<Demande> addRequestService(Demande demande)
     {
@@ -85,4 +91,20 @@ public class RequestService {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+
+
+    public List<Demande> getDemandesByOffre(Offre off) {
+        List<Demande> allDemandes = requestRepository.findAll();
+        List<Demande> demandesRetenues = new ArrayList<>();
+        for (Demande d : allDemandes) {
+            if(d.getOffre().equals(off)){
+                demandesRetenues.add(d);
+            }
+        }
+        return demandesRetenues;
+    }
+
+
 }

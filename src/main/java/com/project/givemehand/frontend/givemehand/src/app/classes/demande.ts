@@ -1,4 +1,6 @@
 import { Offre } from "./offre";
+import { User } from "./user";
+
 export class Demande {
 
     id: number;
@@ -7,9 +9,10 @@ export class Demande {
     nbMedailles: number;
     offre :Offre;
     titreOffre: string; 
+    user : User;
 
 
-    constructor(status : string,  date:string, offre: Offre)
+    constructor(status : string, offre: Offre, date : string)
     {
         this.id=null;
         this.statut=status;
@@ -17,5 +20,5 @@ export class Demande {
         this.offre =offre;
         this.nbMedailles=offre.nbMedailles;
         this.titreOffre = offre.titre;
-    }
+    } 
 }
