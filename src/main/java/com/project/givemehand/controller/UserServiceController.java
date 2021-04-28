@@ -63,19 +63,10 @@ public class UserServiceController {
 
                 if ( userDB.getPassword().equals(loginRequest.getPassword())){
                     return ResponseEntity.ok(new MessageResponse("Connected"));
-
-
+                }else {
+                    return ResponseEntity.badRequest().body(new MessageResponse("Incorrect Password !"));
                 }
-                else {
-                    return ResponseEntity
-                            .badRequest()
-                            .body(new MessageResponse("Incorrect Password !"));
-
-
-                }
-
         }
-
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -131,18 +122,26 @@ public class UserServiceController {
 
         return service.findUserByEmail(email);
     }
+    @RequestMapping(value = "/getMedaillesByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public int getMedaillesByemail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.getMedaillesByemail(email);
+    }
+    @RequestMapping(value = "/getIdUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long getIdUserByemail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.getIdUserByemail(email);
+    }
 
     @RequestMapping(value = "/finduserById/{user_id}", method = RequestMethod.GET)
-     public User findById(@PathVariable Long user_id)
+    public User findById(@PathVariable Long user_id)
     {
         return service.findById(user_id);
     }
 
-
     @RequestMapping(path ="/getAllUser", method = RequestMethod.GET)
     public List<User> getAllUser()
     {
-
         return service.getAllUser();
     }
 
@@ -150,17 +149,13 @@ public class UserServiceController {
     public void deleteBUser(@PathVariable("userid") long id)
     {
         service.deleteuser(id);
-
-   
     }
-   @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
-
         return service.findIdUserByMail(email);
-      
     }
 
-  
 }
 
 

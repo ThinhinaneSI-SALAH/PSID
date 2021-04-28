@@ -10,6 +10,7 @@ export class User {
         city : string;
         zip : string;
         country: string;
+        medailles: number;
     
         /*constructor(username: string , email : String, motDePassse : String,
             github: String)
@@ -19,6 +20,4 @@ export class User {
             this.motDePasse=motDePassse;
             this.github=github;
         }  */
-    
-    
 }

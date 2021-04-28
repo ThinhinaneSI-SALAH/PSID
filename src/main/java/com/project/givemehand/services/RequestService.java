@@ -28,11 +28,8 @@ public class RequestService {
         return  requestRepository.getOne(id);
     }
 
-    public ResponseEntity<Demande> addRequestService(Demande demande)
-    {
-        Demande createdDemande = this.requestRepository.save(demande);
-
-        return new ResponseEntity<Demande>(this.requestRepository.saveAndFlush(createdDemande), HttpStatus.OK);
+    public Demande addRequestService(Demande demande) {
+        return this.requestRepository.save(demande);
     }
 
     public void deleteServiceRequest(Long requestId) {
@@ -84,5 +81,9 @@ public class RequestService {
             System.out.println("Error, the request service is not found!");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    public Demande getRequestServiceById(Long id_demande) {
+        return this.requestRepository.findById(id_demande).get();
     }
 }
