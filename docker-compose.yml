@@ -20,7 +20,6 @@ services:
       - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
      build:
       context: ./
-      file: Dockerfile
      depends_on:
       - db-postres
      environment:
