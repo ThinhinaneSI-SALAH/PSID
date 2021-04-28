@@ -211,6 +211,7 @@ public class OffreService implements IOffre {
         Set<Offre> offre=user.getOffres();
         return offre;
     }
+
 }
 
 
