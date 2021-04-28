@@ -1,6 +1,6 @@
 version: '3'
 services:
-   db-postres:
+  db-postres:
     image: 'postgres:13.1-alpine'
     restart: always
     container_name: db-postres
@@ -13,7 +13,7 @@ services:
     ports:
       - 5432:5432 # Forward the exposed port 5432 on the container to port 5432 on the host machine
 
-   back-givemehand:
+  back-givemehand:
      image: 'back-givemehand:latest'
      container_name: back-givemehand
      ports:
@@ -27,7 +27,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-postres:5432/
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=PSID
-   front-givemehand:
+  front-givemehand:
     image: 'front-givemehand:latest'
     build:
       context: ./src/main/java/com/project/givemehand/frontend/givemehand
