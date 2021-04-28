@@ -18,12 +18,12 @@ services:
      container_name: back-givemehand
      ports:
       - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
-    build:
+     build:
       context: ./
       file: Dockerfile
-    depends_on:
+     depends_on:
       - db-postres
-    environment:
+     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-postres:5432/
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=PSID
