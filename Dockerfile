@@ -7,7 +7,7 @@ RUN mvn -B -f pom.xml clean package -DskipTests
 
 
 FROM openjdk:11-jdk-slim
-COPY --from=build /workspace/target/*.jar givemehand.jar
+COPY --from=build /workspace/target/givemehand.jar givemehand.jar
 EXPOSE 8080
 #ARG JAR_FILE=*.jar
 #COPY target/${JAR_FILE} givemehand.jar
