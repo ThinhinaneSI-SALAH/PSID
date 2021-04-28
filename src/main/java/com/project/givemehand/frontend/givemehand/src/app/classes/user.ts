@@ -1,4 +1,5 @@
 import { DatePipe } from "@angular/common";
+import { Adresse } from "./adresse";
 
 export class User {
 
