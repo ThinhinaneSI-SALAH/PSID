@@ -1,8 +1,6 @@
 FROM adoptopenjdk:11-jre-hotspot
-ARG JAR_FILE=*.jar
-COPY ${JAR_FILE} givemehand.jar 
 EXPOSE 8080
-RUN pwd 
-RUN ls -la
+ARG JAR_FILE=target/givemehand.jar
+ADD ${JAR_FILE} givemehand.jar 
 ENTRYPOINT ["java","-jar", "givemehand.jar"]
 
