@@ -1,6 +1,7 @@
 import { Offre } from "./offre";
 import { User } from "./user";
 import { DatePipe, formatDate } from "@angular/common";
+
 export class Demande {
 
     id: number;

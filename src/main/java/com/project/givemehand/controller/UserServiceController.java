@@ -60,8 +60,11 @@ public class UserServiceController {
         }
         else {
             User userDB = service.findByEmail(loginRequest.getEmail());
+            String passWordDB =userDB.getPassword();
+            byte[] decodedBytes = Base64.getDecoder().decode(passWordDB);
+            String decodedPasswordDB = new String(decodedBytes);
 
-                if ( userDB.getPassword().equals(loginRequest.getPassword())){
+                if (decodedPasswordDB.equals(loginRequest.getPassword())){
                     return ResponseEntity.ok(new MessageResponse("Connected"));
                 }else {
                     return ResponseEntity.badRequest().body(new MessageResponse("Incorrect Password !"));
@@ -82,12 +85,16 @@ public class UserServiceController {
         int medailles = 0;
         Adresse add = new Adresse(userRequest.getStreet(),userRequest.getZip(), userRequest.getCity(), userRequest.getCountry());
 
+        String password = userRequest.getPassword();
+        String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+        System.out.println("Password" + encodedPassword);
         User user = new User(userRequest.getFirstName(),userRequest.getLastName(),
-                userRequest.getPassword(),userRequest.getEmail(),userRequest.getPhoneNumber(),medailles);
+                encodedPassword,userRequest.getEmail(),userRequest.getPhoneNumber(),medailles);
 
         System.out.println("********** User ************ " + "Firstname" + userRequest.getFirstName()
 
-        + "Lastname" + userRequest.getLastName()
+        + "Lastname" + userRequest.getLastName() + userRequest.getStreet() + userRequest.getCity() + userRequest.getZip()
+                + userRequest.getCountry()
         );
         System.out.println("********** User ************ " + "Zip" + add.toString()
 

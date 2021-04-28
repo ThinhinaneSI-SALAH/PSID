@@ -27,4 +27,38 @@
 
 <br>
 <br>
+
+<div class="panel-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Date Demande</th>
+        <th scope="col">Statut</th>
+       <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col"></th>
+
+      <!-- <--> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let demande of demandes ">
+        <td>{{demande.dateDemande}}</td>
+        <td>
+
+          <select class="form-control"  id="cat"  [(ngModel)]="demande.statut" name="statut">
+            <option *ngFor="let stat of status | async" [ngValue]="stat">{{stat}}</option>
+        </select>
+        </td>
+        <td>{{demande.user.firstName}}</td>
+        <td>{{demande.user.lastName}}</td> 
+
+          <td> <button (click)="updateDemande(demande,demande.id)"  class="btn btn-info" style="margin-left: 10px">Valider</button></td> 
+
+    
+     <!--   </td>-->
+      </tr> 
+    </tbody>
+  </table>
+</div>
 <button (click)="list()" class="btn btn-primary">Back to offer List</button><br>

@@ -5,7 +5,7 @@ import { UserService } from '../services/user.service';
 import {Router,ActivatedRoute} from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Createoffer} from '../classes/createoffer';
+import {Offre} from '../classes/Offre';
 import { User } from '../classes/user';
 
 @Component({
@@ -14,7 +14,7 @@ import { User } from '../classes/user';
   styleUrls: ['./moderate.component.scss']
 })
 export class ModerateComponent implements OnInit {
-  offres:Observable<Createoffer[]>
+  offres:Observable<Offre[]>
   users:Observable<User[]>;
 
   empty =false;
@@ -27,14 +27,37 @@ export class ModerateComponent implements OnInit {
 
   }
 
-  reloadData()
-  {
+
+reloadData() {
   this.offres = this.offreService.getOffreList();
+
+  this.offres.subscribe((value) => {
+    console.log(value);
+    if(value.length == 0) {
+      this.empty = true;
+    }
+  }, (error) => {
+    console.log(error);
+  }, () => {
+    console.log('Fini !');
+  });
 }
 reloadDataUser()
 {
-this.users = this.userService.getUserList();
-console.log("User list" + this.users);
+
+  this.users = this.userService.getUserList();
+
+  this.users.subscribe((value) => {
+    console.log(value);
+    if(value.length == 0) {
+      this.empty = true;
+    }
+  }, (error) => {
+    console.log(error);
+  }, () => {
+    console.log('Fini !');
+  });
+
 }
 deleteoffer(id: number) {
   console.log("id"+id);
@@ -42,6 +65,8 @@ deleteoffer(id: number) {
       data => {
         console.log(data);
         this.reloadData();
+        this.reloadDataUser();
+
       },
       error => console.log(error));
       this.reloadData();
@@ -52,9 +77,13 @@ deleteuser(id: number) {
       data => {
         console.log(data);
         this.reloadDataUser();
+        this.reloadData();
+
       },
       error => console.log(error));
       this.reloadDataUser();
+      this.reloadData();
+
 }
 
 }

@@ -57,7 +57,6 @@ import { UpdateDemandeComponent } from './update-demande/update-demande.componen
       apiKey: 'AIzaSyDmR2n_yrz5nIA_hPK8h6ctKuX4uVyDb68',
       libraries: ['places']
     })
-
   ],
   providers: [
     HttpClientModule

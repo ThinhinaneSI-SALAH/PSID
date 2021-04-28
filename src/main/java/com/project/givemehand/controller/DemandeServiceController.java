@@ -1,6 +1,7 @@
 package com.project.givemehand.controller;
 
 import com.project.givemehand.models.entity.*;
+import com.project.givemehand.repository.RequestRepository;
 import com.project.givemehand.services.OffreService;
 import com.project.givemehand.services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,11 @@ public class DemandeServiceController {
     private RequestService service;
     @Autowired
     private OffreService serviceOffre;
+    private RequestRepository demandesRep;
 
+
+    @Autowired
+    private OffreService offreService;
     @RequestMapping(path ="/requestServiceById/{id}", method = RequestMethod.GET)
     public Demande getServiceRequest( @PathVariable("id") Long id)
     {
@@ -56,7 +61,54 @@ public class DemandeServiceController {
         Filtre f = new Filtre(statut,Integer.parseInt(nbMedailles), new Date(d));
         return service.filterRequest(f);
     }
+    @RequestMapping(path ="/getDemandesByOffer/{idOffre}", method = RequestMethod.GET)
+    public List<Demande> getDemandesByOffer(@PathVariable("idOffre") Long idOffre){
+        System.out.println("Id Offre" + idOffre);
 
+        Offre offre = offreService.getOfferById(idOffre);
+        System.out.println("Offre" + offre.toString());
+
+        return service.getDemandesByOffre(offre);
+
+    }
+
+    /**
+     * API renvoyant la liste des catégorie des offres
+     * @return Status []
+     */
+    @RequestMapping(path ="/getAllStatus", method = RequestMethod.GET)
+    public Statut[] getAllStatus(){
+        Statut[] statuts = Statut.values();
+        return statuts ;
+    }
+    @RequestMapping(path ="/getAllDemandes", method = RequestMethod.GET)
+    public List<Demande> getDemandesByOffer(){
+
+
+        return demandesRep.findAll();
+
+    }
+    //creer une offre
+  /*  @PutMapping(value = "/setStatutDemande/{demandeId}/{statut}")  //ok
+    public void setStatutDemande(@PathVariable Long demandeId,@PathVariable String statut)
+    {
+        Demande d =  service.findDemandeById(demandeId);
+        if(statut.equals(Statut.ACCEPTE)){
+            d.setStatut(Statut.ACCEPTE);
+        }
+        if(statut.equals(Statut.REFUSE)){
+            d.setStatut(Statut.REFUSE);
+        }
+        if(statut.equals(Statut.ATTENTE)){
+            d.setStatut(Statut.ATTENTE);
+        }
+        ser.save(offres);
+
+
+
+        //User user =userService.findById(id)
+     //   service.save(offres,id);
+    } */
     @PutMapping("/updateRequestService/{id}")
     public ResponseEntity<Demande> updateRequestService(@PathVariable Long id, @RequestBody Demande demande)
     {
@@ -68,5 +120,6 @@ public class DemandeServiceController {
     {
         return service.getRequestServiceById(id_demande);
     }
+
 
 }
