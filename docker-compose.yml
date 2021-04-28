@@ -14,7 +14,7 @@ services:
       - 5432:5432 # Forward the exposed port 5432 on the container to port 5432 on the host machine
 
   back-givemehand:
-    image: 'back-givemehand:latest'
+     image: 'back-givemehand:latest'
      container_name: back-givemehand
      ports:
       - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
