@@ -3,6 +3,7 @@ package com.project.givemehand.services;
 import com.project.givemehand.interfaces.IDemande;
 import com.project.givemehand.models.entity.*;
 import com.project.givemehand.repository.RequestRepository;
+import com.project.givemehand.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,11 @@ public class RequestService implements IDemande {
     @Autowired
     private RequestRepository requestRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+
+
     public List<Demande> getAllServiceRequest() {
         return  requestRepository.findAll();
     }
@@ -35,8 +41,6 @@ public class RequestService implements IDemande {
     public Demande findDemandeById(long id) {
         return  requestRepository.findById(id).get();
     }
-
-
     public void deleteServiceRequest(Long requestId) {
         Demande deletedRequest=this.requestRepository.findById(requestId).get();
         boolean isPresent = this.requestRepository.findById(requestId).isPresent();
@@ -103,5 +107,36 @@ public class RequestService implements IDemande {
         }
         return demandesRetenues;
     }
+
+
+    public Demande virtualMoney(Long idDemande){
+        Demande d = requestRepository.findById(idDemande).get();
+
+     //   int nbMedaillesTotalesOffreur=0;
+       // int nbMedaillesTotalesDemandeur=0;
+
+        Offre offre  = d.getOffre();
+        int nbMedaillesOffre = offre.getNbMedailles();
+        // Obtenir l'utilisateur a qui appartient l'offre
+        User userOffreur = offre.getUser();
+        int nbMedailleOffreur = userOffreur.getMedailles();
+        // Nombre de medailles Totales de l'utilisateur a qui appartient l'offre
+        int nbMedaillesTotalesOffreur = nbMedaillesOffre + nbMedailleOffreur;
+        // Obtenir l'utilisateur qui fait la demande
+        User userDemandeur = d.getUser();
+        int nbMedailleDemandeur= userDemandeur.getMedailles();
+        int nbMedaillesTotalesDemandeur = nbMedailleDemandeur - nbMedaillesOffre;
+
+
+        if(d.getStatut().equals(Statut.ACCEPTE.toString())){
+            userOffreur.setMedailles(nbMedaillesTotalesOffreur);
+            userDemandeur.setMedailles(nbMedaillesTotalesDemandeur);
+            requestRepository.save(d);
+        }
+
+        return d;
+
+    }
+
 
 }

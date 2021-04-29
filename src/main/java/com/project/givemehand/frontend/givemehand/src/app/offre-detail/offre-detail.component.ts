@@ -19,7 +19,7 @@ export class OffreDetailComponent implements OnInit {
  offres:Createoffer;
  demandes : Observable<Demande[]>;
 status : Observable< String[]>;
-
+isUpdatedDemande =false;
   constructor(private offreService: OffreServiceService,private demandeService : DemandeService,private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -40,6 +40,10 @@ status : Observable< String[]>;
 list(){
   this.router.navigate(['/offrelist']);
 }
+listDemande(idOffre : number){
+  this.router.navigate(['/details/'+ idOffre ]);
+
+}
 
 updateDemande(demande: Demande, idDemande : number){
   console.log(demande);
@@ -47,8 +51,14 @@ updateDemande(demande: Demande, idDemande : number){
 
   this.demandeService.updateDemande(demande,idDemande)    
   .subscribe(data => {
+    this.isUpdatedDemande = true;
+      this.demandeService.virtualMoney(idDemande).subscribe(dataVM => {
+      console.log("Data" + dataVM);
+     // this.listDemande(this.id);
+
+     }, error => console.log(error)); 
     console.log(data);
-    this.offres = new Createoffer();
+ //   this.offres = new Createoffer();
     this.list();
   }, error => console.log(error));
 

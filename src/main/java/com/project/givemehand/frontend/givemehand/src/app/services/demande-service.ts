@@ -50,4 +50,8 @@ export class DemandeService {
       return this.http.put(this.url+"/updateRequestService/"+idDemande,demande);
      
     }
+    virtualMoney(idDemande : number): Observable<any>{
+      return this.http.put(this.url+"/virtualMoney/"+ idDemande,{ responseType: 'text'});
+
+    }
 }
