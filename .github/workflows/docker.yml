@@ -40,6 +40,9 @@ jobs:
         run: docker tag docker.io/library/back-givemehand ${{ secrets.DOCKER_HUB_USERNAME }}/back-givemehand:latest
       - name: Push the latest Docker image
         #run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/givemehand:latest
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/back-givemehand:latest
+        #run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/back-givemehand:latest
+        run: ls docker.io/
+      - name: ls docker.io/library/
+        run: ls docker.io/library/
         
      
