@@ -11,25 +11,16 @@
         <li class="nav-item">
             <a class="nav-link h5" routerLinkActive="active" *ngIf="isLoggedIn" routerLink="/mesDemandes" >Mes demandes</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link h5" routerLinkActive="active" *ngIf="isLoggedIn" routerLink="/note" >Note</a>
-          </li>
         <li class="nav-item">
           <a class="nav-link h5" routerLinkActive="active" *ngIf="isLoggedIn" routerLink="/offrelist"  > Mes offres</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/moderate" *ngIf="isLoggedInADM" >Moderation</a>
-        </li> 
+        </li>
       </ul>
-
-
-
-
-
-
            <!-- Right nav items  -->
            <ul class="navbar-nav ml-auto"  >
-            
+
             <li class="nav-item">
               <a class="nav-link"  *ngIf="isLoggedIn"  routerLink="/updateprofil">Bonjour {{email}}</a>
             </li>
@@ -42,8 +33,6 @@
             <li class="nav-item" *ngIf="!(isLoggedInADM || isLoggedIn)">
               <a class="nav-link"  routerLink="connexion">Login</a>
             </li>
-
-  
           </ul>
   </div>
 </nav>

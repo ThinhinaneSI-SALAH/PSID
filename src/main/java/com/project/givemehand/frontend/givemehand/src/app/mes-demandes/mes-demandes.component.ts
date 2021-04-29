@@ -43,7 +43,7 @@ export class MesDemandesComponent implements OnInit {
 
   reloadData() {
 
-    let email = sessionStorage.getItem("currentUser"); 
+    let email = sessionStorage.getItem("currentUser");
     this.demandes = this.demandeService.getMyRequestService(email);
     this.demandes.subscribe((value) => {
       console.log(value);
@@ -86,7 +86,7 @@ export class MesDemandesComponent implements OnInit {
   save(currentRate,demande){
     console.log("Note",currentRate);
     console.log("Offre ID:",demande);
-    
+
     //console.log(this.noteService.saveNote(currentRate,demande));
     this.noteService.saveNote(currentRate,demande).subscribe(value =>{
       this.offreService.getmoyenne(demande).subscribe(dataVM => {
@@ -96,7 +96,7 @@ export class MesDemandesComponent implements OnInit {
       this.offreService.updatemoyenne(demande,dataVM).subscribe(data => {
         console.log(data)
         }, error => console.log(error));
-        }, error => console.log(error)); 
+        }, error => console.log(error));
         // this.offres = new Createoffer();
         //this.list();
       console.log("la moyenne est :",this.moyennenote)
@@ -107,12 +107,8 @@ export class MesDemandesComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
-    
 
-    //currentRate=0;
-  }///
-
-  /** 
+  }
 
 
   deleteServiceRequest (id:number) {
@@ -123,13 +119,6 @@ export class MesDemandesComponent implements OnInit {
       },
       error => console.log(error));
       this.reloadData();
-  } 
-  /**
-
-  afficheRange() {
-    let R=document.getElementById("Range");
-    this.medaille = document.getElementById("nbMedailles").innerHTML="Valeur="+R;
-  }**/
-
+  }
 
 }
