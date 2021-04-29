@@ -4,6 +4,7 @@ package com.project.givemehand.payload.request;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Set;
 
 public class UserRequest {
@@ -28,6 +29,7 @@ public class UserRequest {
     private String zip;
     private  String city;
     private  String country;
+    private Date dateInscription;
 
     public String getEmail() {
         return email;
@@ -117,4 +119,11 @@ public class UserRequest {
         this.role = role;
     }
 
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
+    }
 }

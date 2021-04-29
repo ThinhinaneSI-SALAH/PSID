@@ -1,0 +1,104 @@
+<p>profil works!</p>
+
+<div> 
+<div>
+
+    <img class="imgProfil" alt="My image name" src="assets/images/picto.jpeg">
+    <h2> {{user.firstName}} {{user.lastName}}</h2><br>
+    <h2> {{user.medailles}} Medailles</h2>
+
+
+</div>
+<h4> Membre depuis {{user.dateInscription}}</h4>
+</div>
+
+
+    <div> 
+        <h1> Informations generales</h1>
+        <div class="panel-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Email</th>
+                  <th scope="col">Telephone</th>
+                  <th scope="col">Addresse</th>
+                  <th scope="col">Ville</th>
+                  <th scope="col">Zip</th>
+                  <th scope="col">Pays</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phoneNumber}}</td>
+
+                  <td>{{user.adresse.street}}</td>
+                  <td>{{user.adresse.city}}</td>
+                  <td>{{user.adresse.zip}}</td>
+                  <td>{{user.adresse.country}}</td>
+
+                  
+            
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+
+    <div> 
+        <h1> Informations Offres</h1>
+
+        <div class="panel-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Catégorie</th>
+                  <th scope="col">Médailles(coût)</th>
+                  <th scope="col">Moyenne offre</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let offre of offres ">
+                  <td>{{offre.titre}}</td>
+                  <td>{{offre.description}}</td>
+                  <td>{{offre.cat}}</td>
+                  <td>{{offre.nbMedailles}}</td>
+                  <td>{{offre.moyenneNotes}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div> 
+
+
+    <div> 
+        <h1> Informations demandes </h1>
+        <div class="panel-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Totales</th>
+                  <th scope="col">Acceptes</th>
+                  <th scope="col">Refuses</th>
+                  <th scope="col">En attente</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                 <td> {{ demandesAcceptes +  demandesRefuses +  demandesWaiting }}</td>
+
+                  <td > {{ demandesAcceptes}}</td>
+                  <td> {{  demandesRefuses }}</td>
+                  <td>  {{ demandesWaiting }}</td>
+
+
+              </tbody>
+            </table>
+
+    </div>
+</div>

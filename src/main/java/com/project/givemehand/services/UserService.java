@@ -1,10 +1,7 @@
 package com.project.givemehand.services;
 
 
-import com.project.givemehand.models.entity.Demande;
-import com.project.givemehand.models.entity.Adresse;
-import com.project.givemehand.models.entity.Offre;
-import com.project.givemehand.models.entity.User;
+import com.project.givemehand.models.entity.*;
 import com.project.givemehand.payload.MessageResponse;
 import com.project.givemehand.payload.request.UserRequest;
 import com.project.givemehand.repository.UserRepository;
@@ -42,7 +39,52 @@ public class UserService {
         return userRepository.save(user);
 
     }
+    public Set<Offre> getOffersByUser(Long id){
+        User user = userRepository.findById(id).get();
+        return user.getOffres();
+    }
+    public int getNbAcceptedDemande(Long id){
+        User user = userRepository.findById(id).get();
+        Set<Demande> demandes = user.getDemandes();
+        int nbreDemandesAcceptes =0;
 
+        for (Demande d : demandes) {
+            if(d.getStatut().equals(Statut.ACCEPTE.toString()) ||d.getStatut().equals(Statut.TERMINE.toString()) ){
+                nbreDemandesAcceptes++;
+            }
+        }
+        return nbreDemandesAcceptes;
+
+
+    }
+    public int getNbRefusedDemande(Long id){
+        User user = userRepository.findById(id).get();
+        Set<Demande> demandes = user.getDemandes();
+        int nbreDemandesRefuses =0;
+
+        for (Demande d : demandes) {
+            if(d.getStatut().equals(Statut.REFUSE.toString())){
+                nbreDemandesRefuses++;
+            }
+        }
+        return nbreDemandesRefuses;
+
+
+    }
+    public int getNbWaitingDemande(Long id){
+        User user = userRepository.findById(id).get();
+        Set<Demande> demandes = user.getDemandes();
+        int nbreDemandesWaiting =0;
+
+        for (Demande d : demandes) {
+            if(d.getStatut().equals(Statut.ATTENTE.toString())){
+                nbreDemandesWaiting++;
+            }
+        }
+        return nbreDemandesWaiting;
+
+
+    }
     /*public User updateUser(User user) {
         return userRepository.save(user);
     }

@@ -10,6 +10,7 @@ export class Demande {
     offre :Offre;
     titreOffre: string; 
     user : User;
+    buttonDisabled : boolean;
 
 
     constructor(status : string, offre: Offre, date : string)

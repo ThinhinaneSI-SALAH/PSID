@@ -17,12 +17,18 @@ import {Observable} from 'rxjs';
 export class OffreDetailComponent implements OnInit {
  id:number;
  offres:Createoffer;
- demandes : Observable<Demande[]>;
+ demandes : Demande[];
 status : Observable< String[]>;
 isUpdatedDemande =false;
-  constructor(private offreService: OffreServiceService,private demandeService : DemandeService,private router: Router, private route: ActivatedRoute) { }
+ancienStatutDemande : string[];
+s : string;
+selectedDay: string = '';
+
+
+constructor(private offreService: OffreServiceService,private demandeService : DemandeService,private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
     this.offres= new Createoffer();
     this.id=this.route.snapshot.params['id'];
     this.offreService.getofferid(this.id).subscribe(data => {
@@ -32,9 +38,11 @@ isUpdatedDemande =false;
 
     this.status= this.demandeService.getAllStatus();
 
-    this.demandeService.getAllDemandesByOffer(this.id).subscribe(data => {
-      console.log(data)
-      this.demandes= data;
+    this.demandeService.getAllDemandesByOffer(this.id).subscribe(dataDemandes=> {
+     console.log("Ancien data", dataDemandes)
+      this.demandes= dataDemandes;
+
+
     }, error => console.log(error));
 }
 list(){
@@ -42,6 +50,10 @@ list(){
 }
 listDemande(idOffre : number){
   this.router.navigate(['/details/'+ idOffre ]);
+
+}
+goProfilDetails(idUser : number){
+  this.router.navigate(['/profil/'+ idUser ]);
 
 }
 
@@ -59,11 +71,25 @@ updateDemande(demande: Demande, idDemande : number){
      }, error => console.log(error)); 
     console.log(data);
  //   this.offres = new Createoffer();
-    this.list();
+    //this.list();
   }, error => console.log(error));
 
 
 }
+ //event handler for the select element's change event
+ selectChangeHandler () {
+
+this.demandes.forEach(element => {
+  console.log("Demande id" + element.id + "Nouveau statut",element.statut);
+
+this.demandeService.isDemandCanUpdated(element.id,element.statut).subscribe(isUpdatable => {
+  element.buttonDisabled = isUpdatable;
+  console.log("IS UPADATED",isUpdatable);
+}, error => console.log(error));
+}); 
+
+}
+
 
 }
 

@@ -97,8 +97,10 @@ public class UserServiceController {
         String password = userRequest.getPassword();
         String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
         System.out.println("Password" + encodedPassword);
+        // Date du jour
+        Date inscriptionDate = new Date();
         User user = new User(userRequest.getFirstName(),userRequest.getLastName(),
-                encodedPassword,userRequest.getEmail(),userRequest.getPhoneNumber(),medailles);
+                encodedPassword,userRequest.getEmail(),userRequest.getPhoneNumber(),medailles,inscriptionDate);
 
         System.out.println("********** User ************ " + "Firstname" + userRequest.getFirstName()
 
@@ -152,12 +154,31 @@ public class UserServiceController {
 
         return service.getAllUser();
     }
+    @RequestMapping(path ="/getOffersByUser/{userid}", method = RequestMethod.GET)
 
-    @DeleteMapping("/deleteUser/{userid}")
+    public Set<Offre> getOffersByUser(@PathVariable("userid") long id ) {
+        return service.getOffersByUser(id);
+    }
+    @RequestMapping(path ="/getNbAcceptedDemande/{userid}", method = RequestMethod.GET)
+
+    public int getNbAcceptedDemande(@PathVariable("userid") long userid ){
+        return service.getNbAcceptedDemande(userid);
+    }
+    @RequestMapping(path ="/getNbRefusedDemande/{userid}", method = RequestMethod.GET)
+    public int getNbRefusedDemande(@PathVariable("userid") long userid ){
+
+        return service.getNbRefusedDemande(userid);
+    }
+    @RequestMapping(path ="/getNbWaitingDemande/{userid}", method = RequestMethod.GET)
+        public int getNbWaitingDemande(@PathVariable("userid") long userid ){
+        return service.getNbWaitingDemande(userid);
+
+    }
+
+            @DeleteMapping("/deleteUser/{userid}")
     public void deleteBUser(@PathVariable("userid") long id)
     {
         service.deleteuser(id);
-
    
     }
    @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)

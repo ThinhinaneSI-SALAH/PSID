@@ -112,6 +112,36 @@ public class RequestService implements IDemande {
         return demandesRetenues;
     }
 
+    public boolean isDemandCanUpdated(Long idDemande, String newStatut) {
+        Demande d = requestRepository.findById(idDemande).get();
+
+        if (d.getStatut().equals(Statut.ACCEPTE.toString())) {
+            if (newStatut.equals(Statut.TERMINE.toString())) {
+                return true;
+            } else {
+                return false;
+
+            }
+        }
+
+       else if (d.getStatut().equals(Statut.REFUSE.toString())) {
+            return false;
+
+        }
+       else if (d.getStatut().equals(Statut.ATTENTE.toString())) {
+            if (newStatut.equals(Statut.TERMINE.toString())) {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+        else {
+            return false;
+
+        }
+
+    }
 
     public Demande virtualMoney(Long idDemande){
         Demande d = requestRepository.findById(idDemande).get();
