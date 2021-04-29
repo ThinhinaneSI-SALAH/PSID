@@ -174,13 +174,13 @@ export class AccueilComponent implements OnInit {
       },);
       this.router.navigate(['mesDemandes'])
         .then(() => {
-         // window.location.reload();
+            window.location.reload();
       });
       console.log("Possible de faire la demande !");
     }else {
       this.router.navigate(['accueil'])
         .then(() => {
-        // window.location.reload();
+            window.location.reload();
       });
       console.log("Pas possible de faire la demande !");
     }
