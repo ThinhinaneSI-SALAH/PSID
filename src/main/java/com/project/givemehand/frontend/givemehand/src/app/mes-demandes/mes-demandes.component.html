@@ -41,7 +41,7 @@
             <th scope="col">Titre Offre</th>
             <th scope="col">Statut</th>
             <th scope="col">Date</th>
-            <th scope="col">Supprimer / M-A-J</th>
+            <th scope="col">Supprimer</th>
           </tr>
           </thead>
           <tbody *ngFor="let demande of demandes | async">
@@ -52,7 +52,6 @@
             <td>{{demande.dateDemande.substring(0,10)}}</td>
             <td style ="display: flex;">
               <button (click)="deleteServiceRequest(demande.id)" class="btn btn-danger">Delete</button>
-              <button routerLink="/updateDemande/{{demande.id}}" routerLinkActive="active" class="btn btn-info" style="margin-left: 10px">Update</button>
             </td>
           </tr>
           </tbody>

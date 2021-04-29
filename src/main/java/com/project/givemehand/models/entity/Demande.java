@@ -17,7 +17,6 @@ public class Demande {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateDemande;
     private String statut;
 

@@ -11,7 +11,6 @@ import { ModerateComponent } from './moderate/moderate.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { OffreListComponent } from './offre-list/offre-list.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
-import { UpdateDemandeComponent } from './update-demande/update-demande.component';
 
 const routes: Routes = [
  // { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -27,7 +26,6 @@ const routes: Routes = [
   { path: 'details/:id', component: OffreDetailComponent},
   { path: 'add', component:CreateOffreComponent},
   { path: 'update/:id', component: UpdateOffreComponent },
-  { path: 'updateDemande/:id', component: UpdateDemandeComponent },
   { path: 'offrelist', component: OffreListComponent },
   { path: 'moderate', component: ModerateComponent },  
 

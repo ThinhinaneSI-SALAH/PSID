@@ -27,9 +27,9 @@ export class DemandeService {
     getRequestService(sta:String,nbmedailles:number, date:String):Observable<any> {
         return this.http.get(this.url+"/getRequestfilter/"+sta+"/"+nbmedailles+"/"+date);
     }
-    saveRequestService(demande:Demande, idOffre:number): Observable<any>
+    saveRequestService(demande:Demande, mail :string ,idOffre:number): Observable<any>
     {
-     return this.http.post(this.url+"/addRequestService/"+ idOffre, demande,{ responseType: 'text'});
+     return this.http.post(this.url+"/addRequestService/"+mail+"/"+idOffre, demande,{ responseType: 'text'});
     }
     deleteServiceRequest(id:number):Observable<any> {
         return this.http.delete(this.url+"/deleteServiceRequest/"+id,{ responseType: 'text'});

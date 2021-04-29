@@ -21,7 +21,6 @@ import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
 import { ModerateComponent } from './moderate/moderate.component';
-import { UpdateDemandeComponent } from './update-demande/update-demande.component';
 
 
 
@@ -44,7 +43,6 @@ import { UpdateDemandeComponent } from './update-demande/update-demande.componen
     OffreDetailComponent,
     UpdateOffreComponent,
     ModerateComponent,
-    UpdateDemandeComponent
 
   ],
   imports: [

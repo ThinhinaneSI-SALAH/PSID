@@ -32,6 +32,7 @@ export class AccueilComponent implements OnInit {
   filtre: Filtre;
   medailles: number;
   user : any;
+  email: string;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -42,16 +43,15 @@ export class AccueilComponent implements OnInit {
   ngOnInit(): void {
     this.user = new User();
     this.filtre = new Filtre();
-    let result :string [];
     this.categories = this.offreService.getCategories();
-    let email = sessionStorage.getItem("currentUser");
-    this.userService.getUserByEmail(email)
+    this.email = sessionStorage.getItem("currentUser");
+    this.userService.getUserByEmail(this.email)
     .subscribe(data => {
       console.log("user data")
       console.log(data)
       this.user= data;
     });
-    this.userService.getMedaillesUserByEmail(email).subscribe(
+    this.userService.getMedaillesUserByEmail(this.email).subscribe(
       data=>{
        console.log(this.medailles = data);
         
@@ -168,33 +168,33 @@ export class AccueilComponent implements OnInit {
     if( diff >= 0 ) {
       demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user);
       console.log("Demande",demande)
-      this.demandeService.saveRequestService(demande,offre.id).subscribe(data => {
+      this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
         console.log(data)
        
       },);
       this.router.navigate(['mesDemandes'])
         .then(() => {
-          window.location.reload();
+         // window.location.reload();
       });
       console.log("Possible de faire la demande !");
     }else {
       this.router.navigate(['accueil'])
         .then(() => {
-         window.location.reload();
+        // window.location.reload();
       });
       console.log("Pas possible de faire la demande !");
     }
   }
 
   formatDate(date :Date) : string {
-      let month = '' + (date.getMonth() + 1);
-      let day = '' + date.getDate();
+      let month = ''+(date.getMonth() + 1);
+      let day = ''+date.getDate();
       let  year = date.getFullYear();
     if (month.length < 2) 
         month = '0' + month;
     if (day.length < 2) 
         day = '0' + day;
-    return [day,month,year].join('/');
+    return [year,month,day].join('-');
   }
 }
 

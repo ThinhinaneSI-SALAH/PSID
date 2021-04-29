@@ -4,6 +4,7 @@ import com.project.givemehand.models.entity.*;
 import com.project.givemehand.repository.RequestRepository;
 import com.project.givemehand.services.OffreService;
 import com.project.givemehand.services.RequestService;
+import com.project.givemehand.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,8 @@ public class DemandeServiceController {
     private RequestService service;
     @Autowired
     private OffreService serviceOffre;
+    @Autowired
+    private UserService serviceUser;
     private RequestRepository demandesRep;
 
 
@@ -35,11 +38,13 @@ public class DemandeServiceController {
         return service.getServiceRequest(id);
     }
 
-    @RequestMapping(path ="/addRequestService/{idoffre}", method = RequestMethod.POST)
-    public Demande addDemande(@RequestBody Demande demande,@PathVariable Long idoffre)
+    @RequestMapping(path ="/addRequestService/{mail}/{idoffre}", method = RequestMethod.POST)
+    public Demande addDemande(@RequestBody Demande demande,@PathVariable Long idoffre, @PathVariable String mail)
     {
 
         Offre offre = serviceOffre.getOfferById(idoffre);
+        User user =  serviceUser.findByEmail(mail);
+        demande.setUser(user);
         demande.setOffre(offre);
         return service.addRequestService(demande);
     }
