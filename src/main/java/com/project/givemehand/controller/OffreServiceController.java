@@ -137,4 +137,16 @@ public class OffreServiceController
     {
         return service.getOffreByEmail(email);
     }
+
+    @RequestMapping(path ="/moyennenote/{id_offre}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public double GetMoyenneNote(@PathVariable("id_offre")Long id_offre)
+    {
+        return service.GetMoyenneNote(id_offre);
+    }
+    @PutMapping("/Updatemoyenne/{id_offre}/{moyenne}")
+    public void UpdateMoyenne(@PathVariable("id_offre")Long id_offre, @PathVariable("moyenne") double moyenne  )
+    {
+        this.service.UpdateMoyenne(id_offre, moyenne);
+    }
+
 }

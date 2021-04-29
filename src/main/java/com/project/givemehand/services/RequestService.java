@@ -49,7 +49,8 @@ public class RequestService implements IDemande {
         }
     }
 
-    public Demande getServiceRequest(Long id) {
+    public Demande getServiceRequest(Long id)
+    {
         Demande demande = this.requestRepository.findById(id).get();
         return demande;
     }

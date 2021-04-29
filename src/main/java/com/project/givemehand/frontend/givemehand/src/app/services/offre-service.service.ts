@@ -62,6 +62,15 @@ getofferid(id:number):Observable<any>
 {
   return this.http.get(this.url+"/findById/"+ id)
 }
+getmoyenne(id:number):Observable<any>
+{
+  return this.http.get(this.url+"/moyennenote/"+ id,{ responseType: 'text'})
+
+}
+updatemoyenne(id_offre:number,moyenne:number)
+{
+  return this.http.put(this.url+"/Updatemoyenne/"+id_offre+"/"+moyenne,{ responseType: 'text'})
+}
 
 filtrer(filtre: Filtre):Observable<any>
 {
