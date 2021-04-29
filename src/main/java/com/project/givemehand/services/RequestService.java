@@ -43,7 +43,8 @@ public class RequestService {
         }
     }
 
-    public Demande getServiceRequest(Long id) {
+    public Demande getServiceRequest(Long id)
+    {
         Demande demande = this.requestRepository.findById(id).get();
         return demande;
     }

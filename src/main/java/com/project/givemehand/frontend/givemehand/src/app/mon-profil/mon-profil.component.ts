@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './mon-profil.component.html',
   styleUrls: ['./mon-profil.component.scss']
 })
-export class MonProfilComponent implements OnInit {
+export class MonProfilComponent implements OnInit
+{
   isLoggedIn : Boolean;
   isLoginFailed : Boolean;
   constructor() { }

@@ -22,6 +22,8 @@ import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
 import { ModerateComponent } from './moderate/moderate.component';
+import { GiveNoteComponent } from './give-note/give-note.component';
+import { NoteComponent } from './classes/note/note.component';
 
 
 
@@ -44,7 +46,9 @@ import { ModerateComponent } from './moderate/moderate.component';
     OffreListComponent,
     OffreDetailComponent,
     UpdateOffreComponent,
-    ModerateComponent
+    ModerateComponent,
+    GiveNoteComponent,
+    NoteComponent
 
   ],
   imports: [

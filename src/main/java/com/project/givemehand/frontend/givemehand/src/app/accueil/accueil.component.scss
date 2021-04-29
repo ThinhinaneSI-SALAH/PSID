@@ -1,7 +1,4 @@
 .accueil {
-    width: 1300px;
-    margin-right: 50px;
-    margin-left: 15px;
     position:absolute;
     top:0;
     left:20px;
@@ -16,34 +13,24 @@
 }
 .filter{
     grid-column: 1;
-    background-color: antiquewhite;
-    width: 208px;
-    padding-top: 30px;
-    text-align: center;
-    padding-left: 17px;
-}
-form {
-    width: 176px;
 }
 .container-fluid {
-    margin-left: 33px;
-    padding-top: 160px;
     grid-column: 2 ;
     display: grid;
-    grid-template-columns: repeat(2, 320px);
+    grid-template-columns: repeat(2, 1fr);
     position:absolute;
     top:0;
     left:20px;
     height:100%;
     width:100%;
     padding: 15px;
-    grid-gap: 8px;
+    grid-gap: 10px;
 }
 
 .offre{
     display: grid;
     grid-template-columns: repeat(3, auto);
-    height: 270px;
+    height: 250px;
     padding: 5px;
     border-style: solid;
     border-color: crimson;
@@ -63,7 +50,6 @@ form {
 .divMedailles{
     grid-column: 3;
     grid-row: 2;
-    text-align: right;
 }
 .description{
     grid-column: 1/ span 2;
@@ -78,19 +64,16 @@ form {
 .note{
     grid-column: 3;
     grid-row: 4;
-    text-align: right;
 }
 
 .ref{
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 5;
-    width: max-content;
-}
     
+}
 
 .map{
     grid-column: 3 ;
-    margin-left: -10%;
 }
 
 agm-map {
@@ -101,4 +84,4 @@ agm-map {
 i {
     color: crimson;
     display: inline;
-}
+    }

@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { NumberLiteralType } from 'typescript';
 import {Demande} from '../classes/demande';
 import { User } from '../classes/user';
 import {DemandeService} from '../services/demande-service'
 import { UserService } from '../services/user.service';
+import {NoteserviceService} from '../services/noteservice.service';
+
+import{OffreServiceService} from '../services/offre-service.service'
+
+//import { Console } from 'node:console';
+
 
 @Component({
   selector: 'app-mes-demandes',
@@ -14,13 +20,15 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./mes-demandes.component.scss']
 })
 export class MesDemandesComponent implements OnInit {
-
+  currentRate =0;
   empty =false;
   demandes: Observable<Demande[]>;
   statut : Observable< String[]>
   medaille:string;
+  moyennenote:Observable<any>;
 
-  constructor(private demandeService: DemandeService,private userService: UserService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
+  constructor(private demandeService: DemandeService,private noteService: NoteserviceService,
+    private userService: UserService,private offreService:OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     if(this.route.snapshot.paramMap.get('demande')!=null)
@@ -74,9 +82,40 @@ export class MesDemandesComponent implements OnInit {
       console.log('Fini !');
     });  
   }
+  save(currentRate,demande){
+    console.log("Note",currentRate);
+    console.log("Offre ID:",demande);
+    
+    //console.log(this.noteService.saveNote(currentRate,demande));
+    this.noteService.saveNote(currentRate,demande).subscribe(value =>{
+      this.offreService.getmoyenne(demande).subscribe(dataVM => {
+        console.log(this.moyennenote=dataVM)
+        console.log("Data" + dataVM);
+        // this.listDemande(this.id);
+      this.offreService.updatemoyenne(demande,dataVM).subscribe(data => {
+        console.log(data)
+        }, error => console.log(error));
+        }, error => console.log(error)); 
+        // this.offres = new Createoffer();
+        //this.list();
+      console.log("la moyenne est :",this.moyennenote)
+      console.log(value);
+      if(value.length == 0) {
+        this.empty = true;
+      }
+    }, (error) => {
+      console.log(error);
+    });
+    
+
+    //currentRate=0;
+  }///
+
   /** 
   afficheRange() {
     let R=document.getElementById("Range");
-    this.medaille =document.getElementById("nbMedailles").innerHTML="Valeur="+R;
+    this.medaille = document.getElementById("nbMedailles").innerHTML="Valeur="+R;
   }**/
+
+
 }
