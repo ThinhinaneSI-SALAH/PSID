@@ -39,5 +39,5 @@ jobs:
       - name: ps
         run: docker-compose ps
       - name: Push the latest Docker image back-givemehand
-        run: docker-compose push ${{ secrets.DOCKER_HUB_USERNAME }}/givemehand:latest
+        run: docker-compose push -a
      
