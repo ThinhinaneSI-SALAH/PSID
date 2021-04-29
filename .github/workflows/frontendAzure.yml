@@ -12,7 +12,7 @@ on:
 # 2. Change these variables for your configuration:
 env:
   AZURE_WEBAPP_NAME: givemehandFront    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: './src/main/java/com/project/givemehand/frontend/givemehand/'      # set this to the path to your web app project
+  AZURE_WEBAPP_PACKAGE_PATH: './frontend/givemehand/'      # set this to the path to your web app project
   NODE_VERSION: '10.x'                # set this to the node version to use
 
 jobs:
@@ -25,6 +25,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
+    - name: cd vers angular 
+      run: cd /src/main/java/com/project/givemehand/frontend/givemehand/
     - name: npm install and build
       run: |
         npm install
