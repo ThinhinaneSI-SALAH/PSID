@@ -36,11 +36,6 @@ public class RequestService implements IDemande {
         return  requestRepository.findById(id).get();
     }
 
-    public ResponseEntity<Demande> addRequestService(Demande demande)
-    {
-        Demande createdDemande = this.requestRepository.save(demande);
-        return new ResponseEntity<Demande>(this.requestRepository.saveAndFlush(createdDemande), HttpStatus.OK);
-    }
 
     public void deleteServiceRequest(Long requestId) {
         Demande deletedRequest=this.requestRepository.findById(requestId).get();
