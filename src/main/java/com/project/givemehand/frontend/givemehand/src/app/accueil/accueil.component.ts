@@ -73,7 +73,6 @@ export class AccueilComponent implements OnInit {
   
   reloadData() {
     this.offres = this.offreService.getOffreList();
-
     this.offres.subscribe((value) => {
       console.log(value);
       if(value.length == 0) {

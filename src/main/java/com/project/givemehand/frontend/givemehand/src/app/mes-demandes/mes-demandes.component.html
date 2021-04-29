@@ -50,7 +50,7 @@
             <td>{{demande.offre.titre}}</td>
             <td>{{demande.statut}}</td>
             <td>{{demande.dateDemande.substring(0,10)}}</td>
-            <td><ngb-rating [max]="5" [(rate)]="currentRate" (rateChange)=save(currentRate,demande.offre.id) ></ngb-rating></td>
+            <td><ngb-rating className={{demande.id}} [max]="5" [(rate)]="currentRate" (rateChange)=save(currentRate,demande.offre.id) ></ngb-rating></td>
           </tr>
           </tbody>
         </table>

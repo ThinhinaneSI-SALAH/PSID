@@ -40,15 +40,14 @@ public class Offre {
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL, orphanRemoval = true)
     private Note note;
-    private double moyenneNotes = 0.0;
-    private int nbMedailles ;
+    private double moyenneNotes;
+    private int nbMedailles;
     private String categorie;
     @ManyToOne
     private User user;
 
-
-
-    public Offre(){
+    public Offre()
+    {
 
     }
 
