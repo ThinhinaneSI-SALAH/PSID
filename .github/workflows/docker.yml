@@ -38,4 +38,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Push the latest Docker image
         #run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/givemehand:latest
-        run: docker-compose push
+        run: docker-compose push ${{ secrets.DOCKER_HUB_USERNAME }}/givemehand:latest
