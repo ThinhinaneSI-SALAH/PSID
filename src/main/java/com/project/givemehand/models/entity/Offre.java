@@ -15,9 +15,9 @@ import java.util.Set;
 @Entity
 @Table ( name ="Offre")
 public class Offre {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy= GenerationType.IDENTITY)
+        private Long id;
 
     public Long getId() {
         return id;

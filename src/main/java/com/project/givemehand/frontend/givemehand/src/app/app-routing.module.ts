@@ -31,6 +31,8 @@ const routes: Routes = [
   { path: 'note', component: GiveNoteComponent},
   { path: 'moderate', component: ModerateComponent },
 
+  
+
 
 ];
 

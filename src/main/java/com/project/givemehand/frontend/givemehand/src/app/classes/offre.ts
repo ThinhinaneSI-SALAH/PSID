@@ -21,4 +21,5 @@ export class Offre {
     this.nbMedailles = nbMedailles;
     this.moyennenote = this.moyennenote;
   }
+  
 }

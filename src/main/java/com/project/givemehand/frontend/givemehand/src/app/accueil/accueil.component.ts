@@ -3,10 +3,17 @@ import { MapsAPILoader, MouseEvent } from '@agm/core';
 import {Offre} from '../classes/offre';
 import {OffreServiceService} from '../services/offre-service.service';
 import {Router,ActivatedRoute} from '@angular/router';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { Filtre } from '../classes/filtre';
+import { DemandeService } from '../services/demande-service';
+import { Demande } from '../classes/demande';
+import { UserService } from '../services/user.service';
+import { User } from '../classes/user';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Component({
   selector: 'app-accueil',
@@ -23,17 +30,33 @@ export class AccueilComponent implements OnInit {
   address: string = "";
   private geoCoder;
   filtre: Filtre;
+  medailles: number;
+  user : any;
+  email: string;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
- 
   
-  constructor(private offreService: OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
-
+  constructor(private offreService: OffreServiceService,private demandeService: DemandeService,private userService: UserService,private router: Router,private http: HttpClient,private route:ActivatedRoute, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { 
+    }
   ngOnInit(): void {
+    this.user = new User();
     this.filtre = new Filtre();
     this.categories = this.offreService.getCategories();
+    this.email = sessionStorage.getItem("currentUser");
+    this.userService.getUserByEmail(this.email)
+    .subscribe(data => {
+      console.log("user data")
+      console.log(data)
+      this.user= data;
+    });
+    this.userService.getMedaillesUserByEmail(this.email).subscribe(
+      data=>{
+       console.log(this.medailles = data);
+        
+      }
+    ); 
     /*if(this.route.snapshot.paramMap.get('offre')!=null)
     {
         console.log("on est ds la page filtre");
@@ -42,10 +65,11 @@ export class AccueilComponent implements OnInit {
     else
     {    */
       this.reloadData();
-   // }      
 
+   // }      
+    // get
     //*Google Maps
-    
+
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -61,7 +85,7 @@ export class AccueilComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          
+
           //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
@@ -70,7 +94,7 @@ export class AccueilComponent implements OnInit {
       });
     });
   }
-  
+
   reloadData() {
     this.offres = this.offreService.getOffreList();
     this.offres.subscribe((value) => {
@@ -86,8 +110,8 @@ export class AccueilComponent implements OnInit {
   }
 
 
-  /* 
-  ** Récupérer la position actuelle 
+  /*
+  ** Récupérer la position actuelle
   */
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -106,7 +130,7 @@ export class AccueilComponent implements OnInit {
     this.getAddress(this.lat, this.lng);
   }
 
-  
+
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       console.log(results);
@@ -130,11 +154,49 @@ export class AccueilComponent implements OnInit {
       this.filtre.ville = this.address;
     }
     this.offres = this.offreService.filtrer(this.filtre);
+    this.address ="";
   }
 
+  createDemande(offre: Offre) {
+    let ladate=new Date();
+    let demande:Demande; 
+    //this.user = this.userService.getUserByEmail(email); 
+    //verifier si la date de la demande est inferieur à la date de l'offre 
+    let diff :number = this.medailles - offre.nbMedailles;
+    console.log("diff",diff)
+    if( diff >= 0 ) {
+      demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user);
+      console.log("Demande",demande)
+      this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
+        console.log(data)
+       
+      },);
+      this.router.navigate(['mesDemandes'])
+        .then(() => {
+            window.location.reload();
+      });
+      console.log("Possible de faire la demande !");
+    }else {
+      this.router.navigate(['accueil'])
+        .then(() => {
+            window.location.reload();
+      });
+      console.log("Pas possible de faire la demande !");
+    }
+  }
 
+  formatDate(date :Date) : string {
+      let month = ''+(date.getMonth() + 1);
+      let day = ''+date.getDate();
+      let  year = date.getFullYear();
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+    return [year,month,day].join('-');
+  }
 }
-  
+
 
 
 

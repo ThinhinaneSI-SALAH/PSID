@@ -23,5 +23,8 @@
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
-  }
+  },
+  "types": [
+    "googlemaps"
+]
 }

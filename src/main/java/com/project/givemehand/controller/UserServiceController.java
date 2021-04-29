@@ -60,22 +60,16 @@ public class UserServiceController {
         }
         else {
             User userDB = service.findByEmail(loginRequest.getEmail());
+            String passWordDB =userDB.getPassword();
+            byte[] decodedBytes = Base64.getDecoder().decode(passWordDB);
+            String decodedPasswordDB = new String(decodedBytes);
 
-                if ( userDB.getPassword().equals(loginRequest.getPassword())){
+                if (decodedPasswordDB.equals(loginRequest.getPassword())){
                     return ResponseEntity.ok(new MessageResponse("Connected"));
-
-
+                }else {
+                    return ResponseEntity.badRequest().body(new MessageResponse("Incorrect Password !"));
                 }
-                else {
-                    return ResponseEntity
-                            .badRequest()
-                            .body(new MessageResponse("Incorrect Password !"));
-
-
-                }
-
         }
-
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -91,12 +85,16 @@ public class UserServiceController {
         int medailles = 0;
         Adresse add = new Adresse(userRequest.getStreet(),userRequest.getZip(), userRequest.getCity(), userRequest.getCountry());
 
+        String password = userRequest.getPassword();
+        String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+        System.out.println("Password" + encodedPassword);
         User user = new User(userRequest.getFirstName(),userRequest.getLastName(),
-                userRequest.getPassword(),userRequest.getEmail(),userRequest.getPhoneNumber(),medailles);
+                encodedPassword,userRequest.getEmail(),userRequest.getPhoneNumber(),medailles);
 
         System.out.println("********** User ************ " + "Firstname" + userRequest.getFirstName()
 
-        + "Lastname" + userRequest.getLastName()
+        + "Lastname" + userRequest.getLastName() + userRequest.getStreet() + userRequest.getCity() + userRequest.getZip()
+                + userRequest.getCountry()
         );
         System.out.println("********** User ************ " + "Zip" + add.toString()
 
@@ -131,18 +129,26 @@ public class UserServiceController {
 
         return service.findUserByEmail(email);
     }
+    @RequestMapping(value = "/getMedaillesByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public int getMedaillesByemail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.getMedaillesByemail(email);
+    }
+    @RequestMapping(value = "/getIdUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long getIdUserByemail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+
+        return service.getIdUserByemail(email);
+    }
 
     @RequestMapping(value = "/finduserById/{user_id}", method = RequestMethod.GET)
-     public User findById(@PathVariable Long user_id)
+    public User findById(@PathVariable Long user_id)
     {
         return service.findById(user_id);
     }
 
-
     @RequestMapping(path ="/getAllUser", method = RequestMethod.GET)
     public List<User> getAllUser()
     {
-
         return service.getAllUser();
     }
 
@@ -150,17 +156,13 @@ public class UserServiceController {
     public void deleteBUser(@PathVariable("userid") long id)
     {
         service.deleteuser(id);
-
-   
     }
-   @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
-
         return service.findIdUserByMail(email);
-      
     }
 
-  
 }
 
 

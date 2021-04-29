@@ -27,6 +27,7 @@ export class MesDemandesComponent implements OnInit {
   medaille:string;
   moyennenote:Observable<any>;
 
+
   constructor(private demandeService: DemandeService,private noteService: NoteserviceService,
     private userService: UserService,private offreService:OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
@@ -35,16 +36,15 @@ export class MesDemandesComponent implements OnInit {
     {
       this.filterDemande();
     }
-    else{ 
+    else{
       this.reloadData();
-    }  
+    }
   }
 
   reloadData() {
 
-    let email = sessionStorage.getItem("currentUser")
+    let email = sessionStorage.getItem("currentUser"); 
     this.demandes = this.demandeService.getMyRequestService(email);
-
     this.demandes.subscribe((value) => {
       console.log(value);
       if(value.length == 0) {
@@ -60,7 +60,7 @@ export class MesDemandesComponent implements OnInit {
     var date:String;
     var nbmedailles:number;
     var statut:String;
-    
+
     date = document.getElementsByName("dateDemande")[0]["value"];
     let dates  = date.split('-');
     date= dates[2]+ dates[1]+dates[0];
@@ -70,7 +70,7 @@ export class MesDemandesComponent implements OnInit {
     console.log(nbmedailles);
     console.log(date);
     this.demandes = this.demandeService.getRequestService(statut,nbmedailles,date);
-     
+
     this.demandes.subscribe((value) => {
       console.log(value);
       if(value.length == 0) {
@@ -80,8 +80,9 @@ export class MesDemandesComponent implements OnInit {
       console.log(error);
     }, () => {
       console.log('Fini !');
-    });  
+    });
   }
+
   save(currentRate,demande){
     console.log("Note",currentRate);
     console.log("Offre ID:",demande);
@@ -112,6 +113,19 @@ export class MesDemandesComponent implements OnInit {
   }///
 
   /** 
+
+
+  deleteServiceRequest (id:number) {
+    this.demandeService.deleteServiceRequest(id).subscribe(
+      data => {
+        console.log(data);
+        this.reloadData();
+      },
+      error => console.log(error));
+      this.reloadData();
+  } 
+  /**
+
   afficheRange() {
     let R=document.getElementById("Range");
     this.medaille = document.getElementById("nbMedailles").innerHTML="Valeur="+R;

@@ -1,3 +1,6 @@
+import { DatePipe } from "@angular/common";
+import { Adresse } from "./adresse";
+
 export class User {
 
         id:number;
@@ -10,6 +13,7 @@ export class User {
         city : string;
         zip : string;
         country: string;
+        medailles: number;
     
         /*constructor(username: string , email : String, motDePassse : String,
             github: String)
@@ -19,6 +23,4 @@ export class User {
             this.motDePasse=motDePassse;
             this.github=github;
         }  */
-    
-    
 }

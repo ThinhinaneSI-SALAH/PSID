@@ -1,6 +1,7 @@
 <p>register works!</p>
 
 
+
 <div class="container">
   <form  #registerForm="ngForm" *ngIf="!isSuccessful"
   name="form"
@@ -28,18 +29,18 @@
     </div>
 
     <div class="form-group">
-        <label for="nom">Nom </label>
-        <input type="text" class="form-control" id="nom" required
-        [(ngModel)]="user.nom" name="nom" #nom="ngModel">
-        <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger"> Nom is required
+        <label for="firstName">Nom </label>
+        <input type="text" class="form-control" id="firstName" required
+        [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel">
+        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger"> Nom is required
         </div>
     </div>
 
     <div class="form-group">
-        <label for="prenom">Prenom </label>
-        <input type="text" class="form-control" id="prenom" required
-        [(ngModel)]="user.prenom" name="prenom" #prenom="ngModel">
-        <div [hidden]="prenom.valid || prenom.pristine"
+        <label for="lastName">Prenom </label>
+        <input type="text" class="form-control" id="lastName" required
+        [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel">
+        <div [hidden]="lastName.valid || lastName.pristine"
      class="alert alert-danger">
 Prenom is required
       </div>
@@ -48,38 +49,44 @@ Prenom is required
 
 
     <div class="form-group">
-        <label for="tel">Numero de telephone </label>
-        <input type="text" class="form-control" id="tel" required
-        [(ngModel)]="user.tel" name="tel" #tel="ngModel">
+        <label for="phoneNumber">Numero de telephone </label>
+        <input type="number" class="form-control" id="phoneNumber" required
+        [(ngModel)]="user.phoneNumber" name="phoneNumber" #phoneNumber="ngModel">
 
     </div>
 
+    <div class="form-group">
+      <label for="ville"> Addresse </label>
+      <input type="text"  class="form-control" id="ville" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" [(ngModel)]="address" #search name="ville">
+    </div>
+    
+
         <div class="form-group">
-            <label for="rue">Rue  </label>
-            <input type="text" class="form-control" id="rue" required
-            [(ngModel)]="user.rue" name="rue" #rue="ngModel">
+            <label for="street">Rue  </label>
+            <input type="text" class="form-control" id="street" required
+             name="street" placeholder="{{street}}"  disabled="true" >
        
         </div>
     
             <div class="form-group">
-                <label for="cp">Code Postale </label>
-                <input type="number" class="form-control" id="cp" required
-                [(ngModel)]="user.cp" name="cp" #cp="ngModel">
+                <label for="zip">Code Postale </label>
+                <input type="number" class="form-control" id="zip" required
+                 name="zip"  placeholder="{{postCode}}" disabled="true">
           
             </div>
                 
                 <div class="form-group">
-                    <label for="ville"> Ville</label>
-                    <input type="text" class="form-control" id="ville" required
-                    [(ngModel)]="user.ville" name="ville" #ville="ngModel">
+                    <label for="city"> Ville</label>
+                    <input type="text" class="form-control" id="city" required
+                    name="city" placeholder="{{city}}" disabled="true" >
             
                 </div>
             
 
                     <div class="form-group">
-                        <label for="pays">Pays</label>
-                        <input type="text" class="form-control" id="pays" required
-                        [(ngModel)]="user.pays" name="pays" #pays="ngModel">
+                        <label for="country">Pays</label>
+                        <input type="text" class="form-control" id="country" required
+                        name="country" placeholder="{{country}}"  disabled="true" >
                    
                     </div>
                 
@@ -96,5 +103,5 @@ Prenom is required
 <div style="margin-top : 100px" class="alert alert-success" *ngIf="isSuccessful">
   Your registration is successful!
 </div>
-  </div>
+  </div> 
 

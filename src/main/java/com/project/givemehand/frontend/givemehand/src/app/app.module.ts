@@ -13,7 +13,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-import { CreateDemandeComponent } from './create-demande/create-demande.component';
 import { DemandeDetailComponent } from './demande-detail/demande-detail.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProfilComponent } from './update-profil/update-profil.component';
@@ -34,7 +33,6 @@ import { NoteComponent } from './classes/note/note.component';
     MesDemandesComponent,
     MonProfilComponent,
     LoginComponent,
-    CreateDemandeComponent,
     DemandeDetailComponent,
     NavComponent,
     NavComponent,
@@ -47,8 +45,10 @@ import { NoteComponent } from './classes/note/note.component';
     OffreDetailComponent,
     UpdateOffreComponent,
     ModerateComponent,
+
     GiveNoteComponent,
     NoteComponent
+
 
   ],
   imports: [
@@ -61,7 +61,6 @@ import { NoteComponent } from './classes/note/note.component';
       apiKey: 'AIzaSyDmR2n_yrz5nIA_hPK8h6ctKuX4uVyDb68',
       libraries: ['places']
     })
-
   ],
   providers: [
     HttpClientModule
