@@ -23,7 +23,7 @@ services:
      depends_on:
       - db-postres
      environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-postres:5432/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/db-postres
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=PSID
   front-givemehand:
