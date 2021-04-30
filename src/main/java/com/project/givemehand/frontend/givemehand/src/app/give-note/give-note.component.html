@@ -5,11 +5,11 @@
 <div [hidden]="submitted" class="container">
 <form>
 <ngb-rating [max]="5" [(rate)]="currentRate" (rateChange)=save(currentRate) ></ngb-rating>
-<hr> 
+<hr>
 <pre>NOTES: <b>{{currentRate}}</b></pre>
 <!--button type="submit" class="btn btn-success">Send Rate</button-->
 </form>
 <!--div [hidden]="!submitted">
     <h4>Noter avec Succes!</h4>
 </div-->
-  
+</div>

@@ -102,6 +102,10 @@ public class DemandeServiceController {
         return service.virtualMoney(idDemande);
 
     }
+    @RequestMapping(path ="/isDemandCanUpdated/{idDemande}/{newStatut}", method = RequestMethod.GET)
+    public boolean isDemandCanUpdated(@PathVariable Long idDemande, @PathVariable String newStatut){
+            return service.isDemandCanUpdated(idDemande,newStatut);
+    }
 
 
     @PutMapping("/updateRequestService/{id}")

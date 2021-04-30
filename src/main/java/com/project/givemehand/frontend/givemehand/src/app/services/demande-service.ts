@@ -54,4 +54,8 @@ export class DemandeService {
       return this.http.put(this.url+"/virtualMoney/"+ idDemande,{ responseType: 'text'});
 
     }
+    isDemandCanUpdated(idDemande : number,newStatut : String ): Observable<any>{
+      return this.http.get(this.url+"/isDemandCanUpdated/"+ idDemande +"/" + newStatut);
+
+    }
 }

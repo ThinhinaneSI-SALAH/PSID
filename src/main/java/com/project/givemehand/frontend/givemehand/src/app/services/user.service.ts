@@ -24,7 +24,7 @@ export class UserService {
   public getUserByEmail(email: string){
     return this.http.get(`${this.baseUrl}/auth/findUserByemail/${email}`);
   }
-  public getUserById(id: number){
+  public getUserById(id: number) : Observable<any>{
     return this.http.get(`${this.baseUrl}/auth/finduserById/${id}`);
   }
 
@@ -37,6 +37,19 @@ export class UserService {
     }
   findIdUserByMail(email: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/findIdUserByMail/${email}`);
+  }
+
+  public getOffersByUser(idUser : number):Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/getOffersByUser/${idUser}`);
+  }
+  public getNbAcceptedDemande(idUser : number):Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/getNbAcceptedDemande/${idUser}`);
+  }
+  public getNbRefusedDemande(idUser : number):Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/getNbRefusedDemande/${idUser}`);
+  }
+  public getNbWaitingDemande(idUser : number):Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/getNbWaitingDemande/${idUser}`);
   }
   getMedaillesUserByEmail(email: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/getMedaillesByemail/${email}`);

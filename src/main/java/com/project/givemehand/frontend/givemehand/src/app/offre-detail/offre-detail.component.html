@@ -31,8 +31,11 @@
   <table class="table table-striped">
     <thead>
       <tr>
+ 
         <th scope="col">Date Demande</th>
         <th scope="col">Statut</th>
+        <th scope="col">Statut SELECTED</th>
+
        <th scope="col">FirstName</th>
         <th scope="col">LastName</th>
         <th scope="col"></th>
@@ -43,19 +46,21 @@
     <tbody>
       <tr *ngFor="let demande of demandes ">
         <td>{{demande.dateDemande}}</td>
+
         <td>
 
-          <select class="form-control"  id="cat"  [(ngModel)]="demande.statut" name="statut">
+          <select class="form-control"  id="cat"  [(ngModel)]="demande.statut" (change)="selectChangeHandler()" >
             <option *ngFor="let stat of status | async" [ngValue]="stat">{{stat}}</option>
         </select>
         </td>
+
         <td>{{demande.user.firstName}}</td>
         <td>{{demande.user.lastName}}</td> 
 
-          <td> <button (click)="updateDemande(demande,demande.id)"  class="btn btn-info" style="margin-left: 10px">Valider</button></td> 
+          <td> <button (click)="updateDemande(demande,demande.id)"  [disabled]="!demande.buttonDisabled" class="btn btn-info" style="margin-left: 10px">Valider</button></td> 
 
-    
-     <!--   </td>-->
+          <td> <button (click)="goProfilDetails(demande.user.id)"   class="btn btn-info" style="margin-left: 10px">Profil</button></td> 
+
       </tr> 
     </tbody>
   </table>

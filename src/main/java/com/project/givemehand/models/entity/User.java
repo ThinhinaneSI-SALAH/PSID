@@ -3,6 +3,7 @@ package com.project.givemehand.models.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +28,7 @@ public class User {
     private String email;
     private String phoneNumber;
     private int medailles;
+    private Date dateInscription;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -58,23 +60,27 @@ public class User {
         this.email = email;
     }
 
-    public User(String firstName, String lastName, String password, String email, String phoneNumber, int medailles) {
+    public User(String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Date dateInscription) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.medailles = medailles;
+        this.dateInscription=dateInscription;
     }
 
-    public User(Long id, String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Set<Demande> demandes, Adresse adresse ,Set<Offre> offres) {
-        this.id = id;
+
+
+    public User( String firstName, String lastName, String password, String email, String phoneNumber, int medailles, Date dateInscription, Adresse adresse, Set<Demande> demandes, Set<Offre> offres) {
+      //  this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.medailles = medailles;
+        this.dateInscription = dateInscription;
         this.adresse = adresse;
         this.demandes = demandes;
         this.offres = offres;
@@ -166,6 +172,14 @@ public class User {
         this.roles = roles;
     }
 
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -176,6 +190,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", medailles=" + medailles +
+                ", dateInscription=" + dateInscription +
                 ", roles=" + roles +
                 ", adresse=" + adresse +
                 ", demandes=" + demandes +

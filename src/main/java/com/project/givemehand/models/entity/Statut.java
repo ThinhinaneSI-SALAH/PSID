@@ -6,7 +6,7 @@ package com.project.givemehand.models.entity;
  */
 public enum Statut {
 
-        ATTENTE("ATTENTE"), ACCEPTE("ACCEPTE"), REFUSE("REFUSE");
+        ATTENTE("ATTENTE"), ACCEPTE("ACCEPTE"), REFUSE("REFUSE"),TERMINE("TERMINE");
 
         private String label;
 

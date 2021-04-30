@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccueilComponent } from './accueil/accueil.component';
 import { MesDemandesComponent } from './mes-demandes/mes-demandes.component';
-import { MonProfilComponent } from './mon-profil/mon-profil.component';
+//import { MonProfilComponent } from './mon-profil/mon-profil.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,6 +21,7 @@ import { OffreListComponent } from './offre-list/offre-list.component';
 import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
 import { ModerateComponent } from './moderate/moderate.component';
+import { ProfilComponent } from './profil/profil.component';
 import { GiveNoteComponent } from './give-note/give-note.component';
 import { NoteComponent } from './classes/note/note.component';
 
@@ -31,7 +32,7 @@ import { NoteComponent } from './classes/note/note.component';
     AppComponent,
     AccueilComponent,
     MesDemandesComponent,
-    MonProfilComponent,
+   // MonProfilComponent,
     LoginComponent,
     DemandeDetailComponent,
     NavComponent,
@@ -45,7 +46,7 @@ import { NoteComponent } from './classes/note/note.component';
     OffreDetailComponent,
     UpdateOffreComponent,
     ModerateComponent,
-
+    ProfilComponent,
     GiveNoteComponent,
     NoteComponent
 
