@@ -41,6 +41,11 @@
             <th scope="col">Titre Offre</th>
             <th scope="col">Statut</th>
             <th scope="col">Date</th>
+
+            <th>Noter</th>
+
+            <th scope="col">Supprimer</th>
+
           </tr>
           </thead>
           <tbody *ngFor="let demande of demandes | async">
@@ -49,6 +54,13 @@
             <td>{{demande.offre.titre}}</td>
             <td>{{demande.statut}}</td>
             <td>{{demande.dateDemande.substring(0,10)}}</td>
+
+            <td><ngb-rating className={{demande.id}} [max]="5" [(rate)]="currentRate" (rateChange)=save(currentRate,demande.offre.id) ></ngb-rating></td>
+
+            <td style ="display: flex;">
+              <button (click)="deleteServiceRequest(demande.id)" class="btn btn-danger">Delete</button>
+            </td>
+
           </tr>
           </tbody>
         </table>
@@ -56,7 +68,6 @@
       <div class="align-content-lg-around" *ngIf="empty">
         <p>Vous n'avez pas encore de demande</p>
       </div>
-    
     </div>
 </div>
     

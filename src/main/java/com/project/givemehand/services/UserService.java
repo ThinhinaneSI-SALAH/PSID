@@ -142,6 +142,13 @@ public class UserService {
     }
 
 
+    public int getMedaillesByemail(String email) {
+        User u = this.userRepository.findByEmail(email).get();
+        return u.getMedailles();
+    }
 
-
+    public Long getIdUserByemail(String email) {
+        User u = this.userRepository.findByEmail(email).get();
+        return u.getId();
+    }
 }

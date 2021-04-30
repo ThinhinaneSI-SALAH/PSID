@@ -13,7 +13,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-import { CreateDemandeComponent } from './create-demande/create-demande.component';
 import { DemandeDetailComponent } from './demande-detail/demande-detail.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProfilComponent } from './update-profil/update-profil.component';
@@ -23,6 +22,8 @@ import { OffreDetailComponent } from './offre-detail/offre-detail.component';
 import { UpdateOffreComponent } from './update-offre/update-offre.component';
 import { ModerateComponent } from './moderate/moderate.component';
 import { ProfilComponent } from './profil/profil.component';
+import { GiveNoteComponent } from './give-note/give-note.component';
+import { NoteComponent } from './classes/note/note.component';
 
 
 
@@ -33,7 +34,6 @@ import { ProfilComponent } from './profil/profil.component';
     MesDemandesComponent,
    // MonProfilComponent,
     LoginComponent,
-    CreateDemandeComponent,
     DemandeDetailComponent,
     NavComponent,
     NavComponent,
@@ -46,7 +46,10 @@ import { ProfilComponent } from './profil/profil.component';
     OffreDetailComponent,
     UpdateOffreComponent,
     ModerateComponent,
-    ProfilComponent
+    ProfilComponent,
+    GiveNoteComponent,
+    NoteComponent
+
 
   ],
   imports: [

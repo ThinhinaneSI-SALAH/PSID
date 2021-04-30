@@ -4,11 +4,15 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../classes/user";
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+ 
   private  baseUrl = environment.api_url;
 
   constructor(private http: HttpClient) { }
@@ -31,9 +35,10 @@ export class UserService {
     return this.http.delete(this.baseUrl+"/auth/deleteUser/"+id,{ responseType: 'text'});
 
     }
-  public findIdUserByMail(email: string){
+  findIdUserByMail(email: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/findIdUserByMail/${email}`);
   }
+
   public getOffersByUser(idUser : number):Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/getOffersByUser/${idUser}`);
   }
@@ -45,5 +50,11 @@ export class UserService {
   }
   public getNbWaitingDemande(idUser : number):Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/getNbWaitingDemande/${idUser}`);
+  }
+  getMedaillesUserByEmail(email: string) : Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/getMedaillesByemail/${email}`);
+  }
+  getIdUserByEmail(email: string) : Observable<any> {
+    return this.http.get(`${this.baseUrl}/auth/getIdUserByemail/${email}`);
   }
 }

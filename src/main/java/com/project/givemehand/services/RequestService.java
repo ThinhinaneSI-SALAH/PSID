@@ -35,18 +35,12 @@ public class RequestService implements IDemande {
         return  requestRepository.getOne(id);
     }
 
+    public Demande addRequestService(Demande demande) {
+        return this.requestRepository.save(demande);
+    }
     public Demande findDemandeById(long id) {
         return  requestRepository.findById(id).get();
     }
-
-
-    public ResponseEntity<Demande> addRequestService(Demande demande)
-    {
-        Demande createdDemande = this.requestRepository.save(demande);
-
-        return new ResponseEntity<Demande>(this.requestRepository.saveAndFlush(createdDemande), HttpStatus.OK);
-    }
-
     public void deleteServiceRequest(Long requestId) {
         Demande deletedRequest=this.requestRepository.findById(requestId).get();
         boolean isPresent = this.requestRepository.findById(requestId).isPresent();
@@ -55,7 +49,8 @@ public class RequestService implements IDemande {
         }
     }
 
-    public Demande getServiceRequest(Long id) {
+    public Demande getServiceRequest(Long id)
+    {
         Demande demande = this.requestRepository.findById(id).get();
         return demande;
     }
@@ -99,7 +94,9 @@ public class RequestService implements IDemande {
     }
 
 
-
+    public Demande getRequestServiceById(Long id_demande) {
+        return this.requestRepository.findById(id_demande).get();
+    }
 
     public List<Demande> getDemandesByOffre(Offre off) {
         List<Demande> allDemandes = requestRepository.findAll();

@@ -1,25 +1,25 @@
 import { Offre } from "./offre";
 import { User } from "./user";
+import { DatePipe, formatDate } from "@angular/common";
 
 export class Demande {
 
     id: number;
     statut: string;
-    dateDemande: String;
+    dateDemande: string;
     nbMedailles: number;
     offre :Offre;
     titreOffre: string; 
     user : User;
     buttonDisabled : boolean;
 
-
-    constructor(status : string, offre: Offre, date : string)
+    constructor(status : string,  date:string, offre: Offre, user:User)
     {
-        this.id=null;
         this.statut=status;
-        this.dateDemande =date;
+        this.dateDemande = date;
         this.offre =offre;
-        this.nbMedailles=offre.nbMedailles;
-        this.titreOffre = offre.titre;
-    } 
+        this.user = user;
+
+    }
+
 }

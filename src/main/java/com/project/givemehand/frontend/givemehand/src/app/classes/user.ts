@@ -15,7 +15,7 @@ export class User {
         country: string;
         dateInscription: String;
         medailles : number;
-        adresse : Adresse
+        adresse : Adresse;
 
        /* constructor(   id:number,
             email : string,
@@ -42,7 +42,14 @@ export class User {
 
             
           } */
-
-
     
+        /*constructor(username: string , email : String, motDePassse : String,
+            github: String)
+        {
+            this.username=username;
+            this.email=email;
+            this.motDePasse=motDePassse;
+            this.github=github;
+        }  */
+
 }

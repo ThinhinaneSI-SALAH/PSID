@@ -37,10 +37,10 @@
       <p>Description: {{offre.description}} </p>
     </div>
     <div class="date"><p > Valide jusqu'au {{offre.dateFinOffre.substring(0,10)}}  </p></div>  
-    <div class="note"><p > Note : {{offre.Note}} </p> </div>
+    <div class="note"><p > Note_moyenne : {{offre.moyenneNotes}} </p> </div>
 
     <div class = "ref">
-      <a href="#" > Demander ce service </a>
+      <button (click)="createDemande(offre)" type="button">Demander ce service</button> 
     </div>
   </div>
 </div>

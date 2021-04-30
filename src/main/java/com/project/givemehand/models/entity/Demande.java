@@ -1,5 +1,6 @@
 package com.project.givemehand.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -16,7 +17,6 @@ public class Demande {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
     private Date dateDemande;
     private String statut;
 
@@ -24,9 +24,7 @@ public class Demande {
             cascade = CascadeType.PERSIST)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "offre_id", nullable = false)
+    @ManyToOne
     private Offre offre;
 
     public Demande(){
@@ -83,5 +81,16 @@ public class Demande {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Demande{" +
+                "id=" + id +
+                ", dateDemande=" + dateDemande +
+                ", statut='" + statut + '\'' +
+                ", user=" + user +
+                ", offre=" + offre +
+                '}';
     }
 }

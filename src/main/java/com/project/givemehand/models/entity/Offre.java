@@ -33,17 +33,21 @@ public class Offre {
     @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateFinOffre;
     private String villeOffre;
-    @OneToOne
+
+
+
+
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private Note note;
-    private double moyenneNotes = 0.0;
-    private int nbMedailles ;
+    private double moyenneNotes;
+    private int nbMedailles;
     private String categorie;
     @ManyToOne
     private User user;
 
-
-
-    public Offre(){
+    public Offre()
+    {
 
     }
 
@@ -66,12 +70,16 @@ public class Offre {
         this.nbMedailles = nbMedailles;
         this.categorie = cat.toString();
         this.user = user;
-        this.note = new Note(this);
+        this.note = new Note();
         this.dateFinOffre = dateFin ;
     }
 
     public Date getDateFinOffre() {
         return dateFinOffre;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     public void setDateFinOffre(Date dateFinOffre) {
@@ -114,7 +122,7 @@ public class Offre {
         return moyenneNotes;
     }
 
-    public void setMoyenneNotes(int moyenneNotes) {
+    public void setMoyenneNotes(double moyenneNotes) {
         this.moyenneNotes = moyenneNotes;
     }
 
@@ -158,7 +166,7 @@ public class Offre {
         this.demandes.remove(demande);
     }*/
 
-    public void setNote(int note) {
+    public void setOneNote(int note) {
         switch (note) {
             case 1:
                 this.note.setNote1();
@@ -176,6 +184,9 @@ public class Offre {
                 this.note.setNote5();
         }
     }
+    public void setNote(Note note) {
+        this.note = note;
+    }
 
     /**
      * Permet de calculer la moyenne reliee a une offre
@@ -185,10 +196,10 @@ public class Offre {
      * On divise cette somme par le nombre de notes donnes
      * @return la moyenne
      */
-    public double calculMoyenne(){
-        int somme = this.note.getNote1() + this.note.getNote2()*2 + this.note.getNote3()*3 +this.note.getNote4()*4 + this.note.getNote5()*5;
+    public double calculMoyenne()
+    {
+        int somme =  this.note.getNote1() + this.note.getNote2()*2 + this.note.getNote3()*3 +this.note.getNote4()*4 + this.note.getNote5()*5;
         int nbNotes = this.note.getNote1()+this.note.getNote2()+this.note.getNote3()+this.note.getNote4()+this.note.getNote5();
-
         this.moyenneNotes = somme/nbNotes;
         return this.moyenneNotes;
     }
@@ -197,10 +208,11 @@ public class Offre {
      * Accepte une demande
      * @param d represente la demande
      */
-    public void acceptDemande(Demande d) {
-        if (d.getStatut().equals(Statut.ATTENTE)) {
+    public void acceptDemande(Demande d)
+    {
+        if (d.getStatut().equals(Statut.ATTENTE))
+        {
             d.setStatut(Statut.ACCEPTE);
-
         }
     }
 
@@ -209,9 +221,9 @@ public class Offre {
      * @param d represente la demande
      */
     public void refuserDemande(Demande d) {
-        if (d.getStatut().equals(Statut.ATTENTE)) {
-            d.setStatut(Statut.REFUSE);
-
+        if (d.getStatut().equals(Statut.ATTENTE))
+        {
+                 d.setStatut(Statut.REFUSE);
         }
     }
 }
