@@ -120,5 +120,9 @@ public class DemandeServiceController {
         return service.getRequestServiceById(id_demande);
     }
 
-
+    @PutMapping("/updateisnoted/{id_demande}")
+     public Demande UpdateDemandeIsNoted(@PathVariable Long id_demande)
+     {
+         return service.UpdateDemandeIsNoted(id_demande);
+     }
 }

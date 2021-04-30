@@ -225,7 +225,7 @@ public class OffreService implements IOffre {
         return moyenote;
     }
 
-    public void UpdateMoyenne(Long id, double moyenne)
+    public void UpdateMoyenne(Long id, float moyenne)
     {
         Offre offre = this.getOfferById(id);
         offre.setMoyenneNotes(moyenne);

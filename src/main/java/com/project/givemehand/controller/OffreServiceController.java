@@ -144,7 +144,7 @@ public class OffreServiceController
         return service.GetMoyenneNote(id_offre);
     }
     @PutMapping("/Updatemoyenne/{id_offre}/{moyenne}")
-    public void UpdateMoyenne(@PathVariable("id_offre")Long id_offre, @PathVariable("moyenne") double moyenne  )
+    public void UpdateMoyenne(@PathVariable("id_offre")Long id_offre, @PathVariable("moyenne") float moyenne  )
     {
         this.service.UpdateMoyenne(id_offre, moyenne);
     }

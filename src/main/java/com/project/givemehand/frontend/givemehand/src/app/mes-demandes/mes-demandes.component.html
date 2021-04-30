@@ -48,14 +48,13 @@
 
           </tr>
           </thead>
-          <tbody *ngFor="let demande of demandes | async">
+          <tbody *ngFor="let demande of demandes">
           <tr>
             <td>{{demande.id}}</td>
             <td>{{demande.offre.titre}}</td>
             <td>{{demande.statut}}</td>
             <td>{{demande.dateDemande.substring(0,10)}}</td>
-
-            <td><ngb-rating className={{demande.id}} [max]="5" [(rate)]="currentRate" (rateChange)=save(currentRate,demande.offre.id) ></ngb-rating></td>
+            <td><ngb-rating className={{demande.id}} [max]="5" [(rate)]="currentRate" (rateChange)=saveNote(currentRate,demande.offre.id,demande.id)></ngb-rating></td>
 
             <td style ="display: flex;">
               <button (click)="deleteServiceRequest(demande.id)" class="btn btn-danger">Delete</button>

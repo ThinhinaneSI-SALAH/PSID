@@ -34,6 +34,7 @@ export class AccueilComponent implements OnInit {
   user : any;
   email: string;
 
+
   @ViewChild('search')
   public searchElementRef: ElementRef;
   
@@ -160,12 +161,13 @@ export class AccueilComponent implements OnInit {
   createDemande(offre: Offre) {
     let ladate=new Date();
     let demande:Demande; 
+    let is_noted:boolean=false;
     //this.user = this.userService.getUserByEmail(email); 
     //verifier si la date de la demande est inferieur à la date de l'offre 
     let diff :number = this.medailles - offre.nbMedailles;
     console.log("diff",diff)
     if( diff >= 0 ) {
-      demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user);
+      demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user,is_noted);
       console.log("Demande",demande)
       this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
         console.log(data)
