@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../classes/user';
 import {environment} from "../../environments/environment";
 
-const AUTH_API = 'http://localhost:8085/api/auth/';
+//const AUTH_API = 'http://localhost:8085/api/auth/';
 
 
 const httpOptions = {
