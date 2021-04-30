@@ -12,7 +12,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../classes/user';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  //headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Component({

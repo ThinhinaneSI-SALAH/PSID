@@ -27,7 +27,7 @@ public class OffreServiceController
     @Autowired
     private UserService userService;
 
-    @RequestMapping(path ="/getAllOffer", method = RequestMethod.GET)
+    @RequestMapping(path ="/getAllOffer", method = RequestMethod.GET,produces="application/json")
     public List<Offre> getAlloffres()
     {
 
