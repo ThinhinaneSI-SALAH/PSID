@@ -48,6 +48,11 @@ public class UserServiceController {
 
     @Autowired
     RoleRepository roleRepository;
+    
+    @RequestMapping("/")
+	public String index() {
+		return "Welcome To GiveMeAHand";
+	}
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
