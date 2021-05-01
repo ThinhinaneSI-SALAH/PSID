@@ -24,7 +24,8 @@ public class Offre
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
     private String titre;
@@ -34,9 +35,6 @@ public class Offre
     //@JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateFinOffre;
     private String villeOffre;
-
-
-
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL, orphanRemoval = true)
