@@ -5,7 +5,7 @@ import { UserService } from '../services/user.service';
 import {Router,ActivatedRoute} from '@angular/router';
 import { HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Offre} from '../classes/Offre';
+import {Offre} from '../classes/offre';
 import { User } from '../classes/user';
 
 @Component({

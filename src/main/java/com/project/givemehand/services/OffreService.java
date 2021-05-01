@@ -171,12 +171,18 @@ public class OffreService implements IOffre {
     {
         User user =userRepository.findById(id).get();
         offres.setUser(user);
+        Note note =new Note();
+        System.out.println(note.toString());
+        offres.setNote(note);
         this.offreRepository.save(offres);
     }
 
     public void saveALL(Offre offres, User user)
     {   //offres.setUser(user)
         offres.setUser(user);
+        //Note note =new Note();
+       // System.out.println(note.toString());
+        //offres.setNote(note);
         this.offreRepository.save(offres);
     }
 
@@ -210,6 +216,20 @@ public class OffreService implements IOffre {
         User user =this.userRepository.findByEmail(email).get();
         Set<Offre> offre=user.getOffres();
         return offre;
+    }
+
+    public double GetMoyenneNote(Long id)
+    {
+        Offre offre = this.getOfferById(id);
+        double moyenote=offre.calculMoyenne();
+        return moyenote;
+    }
+
+    public void UpdateMoyenne(Long id, float moyenne)
+    {
+        Offre offre = this.getOfferById(id);
+        offre.setMoyenneNotes(moyenne);
+        this.offreRepository.save(offre);
     }
 }
 

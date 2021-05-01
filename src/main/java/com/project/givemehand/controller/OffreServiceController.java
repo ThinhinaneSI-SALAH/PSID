@@ -27,7 +27,7 @@ public class OffreServiceController
     @Autowired
     private UserService userService;
 
-    @RequestMapping(path ="/getAllOffer", method = RequestMethod.GET)
+    @RequestMapping(path ="/getAllOffer", method = RequestMethod.GET,produces="application/json")
     public List<Offre> getAlloffres()
     {
 
@@ -137,4 +137,16 @@ public class OffreServiceController
     {
         return service.getOffreByEmail(email);
     }
+
+    @RequestMapping(path ="/moyennenote/{id_offre}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public double GetMoyenneNote(@PathVariable("id_offre")Long id_offre)
+    {
+        return service.GetMoyenneNote(id_offre);
+    }
+    @PutMapping("/Updatemoyenne/{id_offre}/{moyenne}")
+    public void UpdateMoyenne(@PathVariable("id_offre")Long id_offre, @PathVariable("moyenne") float moyenne  )
+    {
+        this.service.UpdateMoyenne(id_offre, moyenne);
+    }
+
 }

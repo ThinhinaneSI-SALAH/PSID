@@ -1,12 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { NumberLiteralType } from 'typescript';
 import {Demande} from '../classes/demande';
 import { User } from '../classes/user';
 import {DemandeService} from '../services/demande-service'
 import { UserService } from '../services/user.service';
+import {NoteserviceService} from '../services/noteservice.service';
+
+import{OffreServiceService} from '../services/offre-service.service';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+
+//import { Console } from 'node:console';
+
 
 @Component({
   selector: 'app-mes-demandes',
@@ -14,30 +21,45 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./mes-demandes.component.scss']
 })
 export class MesDemandesComponent implements OnInit {
-
+  currentRate =0;
   empty =false;
-  demandes: Observable<Demande[]>;
+  demandes: Demande[]
   statut : Observable< String[]>
   medaille:string;
+  moyennenote:Observable<any>;
 
-  constructor(private demandeService: DemandeService,private userService: UserService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
+
+  constructor(private demandeService: DemandeService,private noteService: NoteserviceService,
+    private userService: UserService,  private config: NgbRatingConfig,private offreService:OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     if(this.route.snapshot.paramMap.get('demande')!=null)
     {
       this.filterDemande();
     }
-    else{ 
+    else{
       this.reloadData();
-    }  
+    }
+    //this.config.readonly = true;
+
   }
 
   reloadData() {
+    let email = sessionStorage.getItem("currentUser");
+     this.demandeService.getMyRequestService(email).subscribe((value) => {
+       this.demandes=value
+      this.demandes.forEach(element => {
+        console.log("le statut de la demande est:",element.statut)
+        if(element.statut==="TERMINE" && element.is_noted==false)
+        {
+          this.config.readonly = false;
 
-    let email = sessionStorage.getItem("currentUser")
-    this.demandes = this.demandeService.getMyRequestService(email);
-
-    this.demandes.subscribe((value) => {
+        }
+        else 
+        {
+          this.config.readonly=true;
+        }
+      });
       console.log(value);
       if(value.length == 0) {
         this.empty = true;
@@ -52,7 +74,7 @@ export class MesDemandesComponent implements OnInit {
     var date:String;
     var nbmedailles:number;
     var statut:String;
-    
+
     date = document.getElementsByName("dateDemande")[0]["value"];
     let dates  = date.split('-');
     date= dates[2]+ dates[1]+dates[0];
@@ -61,9 +83,8 @@ export class MesDemandesComponent implements OnInit {
     console.log('stat',statut)
     console.log(nbmedailles);
     console.log(date);
-    this.demandes = this.demandeService.getRequestService(statut,nbmedailles,date);
-     
-    this.demandes.subscribe((value) => {
+    this.demandeService.getRequestService(statut,nbmedailles,date).subscribe((value) => {
+      this.demandes=value
       console.log(value);
       if(value.length == 0) {
         this.empty = true;
@@ -72,11 +93,50 @@ export class MesDemandesComponent implements OnInit {
       console.log(error);
     }, () => {
       console.log('Fini !');
-    });  
+    });
   }
-  /** 
-  afficheRange() {
-    let R=document.getElementById("Range");
-    this.medaille =document.getElementById("nbMedailles").innerHTML="Valeur="+R;
-  }**/
+
+  saveNote(currentRate,demande,idDemande){
+    //CurrenteRate=Note
+    //demande = ID_offre
+    console.log("Note",currentRate);
+    console.log("Offre ID:",demande);
+    //console.log(this.noteService.saveNote(currentRate,demande));
+    this.noteService.saveNote(currentRate,demande).subscribe(value =>{
+      this.demandeService.UpdateIsNoted(idDemande).subscribe(isnoted=>
+      {
+          console.log("l'id de la demande est ",isnoted)
+      }, error => console.log(error));
+      this.offreService.getmoyenne(demande).subscribe(dataVM => {
+        console.log(this.moyennenote=dataVM)
+        console.log("Data" + dataVM);
+        // this.listDemande(this.id);
+      this.offreService.updatemoyenne(demande,dataVM).subscribe(data => {
+        console.log(data)
+        }, error => console.log(error));
+        }, error => console.log(error));
+        // this.offres = new Createoffer();
+        //this.list();
+      console.log("la moyenne est :",this.moyennenote)
+      console.log(value);
+      if(value.length == 0) {
+        this.empty = true;
+      }
+    }, (error) => {
+      console.log(error);
+    });
+
+  }
+
+
+  deleteServiceRequest (id:number) {
+    this.demandeService.deleteServiceRequest(id).subscribe(
+      data => {
+        console.log(data);
+        this.reloadData();
+      },
+      error => console.log(error));
+      this.reloadData();
+  }
+
 }

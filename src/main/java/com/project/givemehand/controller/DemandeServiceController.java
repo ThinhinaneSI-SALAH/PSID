@@ -4,6 +4,7 @@ import com.project.givemehand.models.entity.*;
 import com.project.givemehand.repository.RequestRepository;
 import com.project.givemehand.services.OffreService;
 import com.project.givemehand.services.RequestService;
+import com.project.givemehand.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,11 @@ public class DemandeServiceController {
     @Autowired
     private RequestService service;
     @Autowired
+    private OffreService serviceOffre;
+    @Autowired
+    private UserService serviceUser;
     private RequestRepository demandesRep;
+
 
     @Autowired
     private OffreService offreService;
@@ -33,9 +38,14 @@ public class DemandeServiceController {
         return service.getServiceRequest(id);
     }
 
-    @RequestMapping(path ="/addRequestService", method = RequestMethod.POST)
-    public ResponseEntity<Demande> addDemande(@RequestBody Demande demande)
+    @RequestMapping(path ="/addRequestService/{mail}/{idoffre}", method = RequestMethod.POST)
+    public Demande addDemande(@RequestBody Demande demande,@PathVariable Long idoffre, @PathVariable String mail)
     {
+
+        Offre offre = serviceOffre.getOfferById(idoffre);
+        User user =  serviceUser.findByEmail(mail);
+        demande.setUser(user);
+        demande.setOffre(offre);
         return service.addRequestService(demande);
     }
 
@@ -49,7 +59,6 @@ public class DemandeServiceController {
 
     public List<Demande> getRequestService(@PathVariable String sta, @PathVariable String nbMedailles, @PathVariable String date)
     {
-
         Statut statut = Statut.valueOf(sta.toUpperCase());
         String jour = date.substring(0,2);
         String mois = date.substring(2,4);
@@ -105,6 +114,15 @@ public class DemandeServiceController {
         return service.updateRequestService(id,demande);
     }
 
+    @RequestMapping(value = "/getRequestServiceById/{id_demande}", method = RequestMethod.GET)
+    public Demande getRequestServiceById(@PathVariable Long id_demande)
+    {
+        return service.getRequestServiceById(id_demande);
+    }
 
-
+    @PutMapping("/updateisnoted/{id_demande}")
+     public Demande UpdateDemandeIsNoted(@PathVariable Long id_demande)
+     {
+         return service.UpdateDemandeIsNoted(id_demande);
+     }
 }

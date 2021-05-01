@@ -16,12 +16,12 @@ public class Note {
     private int note3 = 0;
     private int note4 = 0;
     private int note5 = 0;
-    @OneToOne(mappedBy = "note")
-    private Offre offre;
+    //@OneToOne(mappedBy = "note")
+    //private Offre offre;
 
-    public Note(Offre offre) {
+    /*public Note(Offre offre) {
         this.offre = offre;
-    }
+    }*/
 
     /**
      *
@@ -30,16 +30,21 @@ public class Note {
      * @param note3 nombre de notes donnes a 3 etoiles
      * @param note4 nombre de notes donnes a 4 etoiles
      * @param note5 nombre de notes donnes a 5 etoiles
-     * @param offre l'offre attache a ces notes
      */
-    public Note(int note1, int note2, int note3, int note4, int note5, Offre offre) {
+    public Note(int note1, int note2, int note3, int note4, int note5 ){//Offre offre)
         this.note1 = note1;
         this.note2 = note2;
         this.note3 = note3;
         this.note4 = note4;
         this.note5 = note5;
-        this.offre = offre;
+        //this.offre = offre;
     }
+
+    public Note()
+    {
+
+    }
+
 
     public Long getId() {
         return id;
@@ -88,12 +93,12 @@ public class Note {
     public void setNote5() {
         this.note5++;
     }
-
+/*
     public Offre getOffre() {
         return offre;
     }
 
     public void setOffre(Offre offre) {
         this.offre = offre;
-    }
+    }*/
 }

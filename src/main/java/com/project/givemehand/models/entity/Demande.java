@@ -1,6 +1,8 @@
 package com.project.givemehand.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,17 +18,18 @@ public class Demande {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
     private Date dateDemande;
     private String statut;
+
+
+
+    private Boolean is_noted;
 
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "offre_id", nullable = false)
+    @ManyToOne
     private Offre offre;
 
     public Demande(){
@@ -39,11 +42,12 @@ public class Demande {
      * @param offre offre rattache a cette demande
      * @param user qui propose l'offre
      */
-    public Demande( Date dateDemande,Statut sta ,Offre offre,User user) {
+    public Demande( Date dateDemande,Statut sta ,Offre offre,User user,Boolean is_noted) {
         this.dateDemande = dateDemande;
         this.statut = sta.toString();
         this.offre = offre;
         this.user =user;
+        this.is_noted=is_noted;
     }
 
 
@@ -83,5 +87,24 @@ public class Demande {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Demande{" +
+                "id=" + id +
+                ", dateDemande=" + dateDemande +
+                ", statut='" + statut + '\'' +
+                ", user=" + user +
+                ", offre=" + offre +
+                '}';
+    }
+
+    public Boolean getIs_noted() {
+        return is_noted;
+    }
+
+    public void setIs_noted(Boolean is_noted) {
+        this.is_noted = is_noted;
     }
 }

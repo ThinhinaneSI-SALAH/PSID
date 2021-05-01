@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:8085/api',
+  api_url: 'https://givemehand.azurewebsites.net/api',
 };
 
 /*
