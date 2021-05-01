@@ -36,8 +36,8 @@
     <div class = "description">
       <p>Description: {{offre.description}} </p>
     </div>
-    <div class="date"><p > Valide jusqu'au {{offre.dateFinOffre.substring(0,10)}}  </p></div>  
-    <div class="note"><p > Note_moyenne : {{offre.moyenneNotes.toFixed(1)}} </p> </div>
+    <div class="date"><p> Valide jusqu'au {{offre.dateFinOffre.substring(0,10)}}  </p></div>  
+    <div class="note"><p *ngIf="offre.moyenneNotes!= 0.0"> Note moyenne : {{offre.moyenneNotes.toFixed(1)}} </p> </div>
 
     <div class = "ref">
       <button (click)="createDemande(offre)" type="button">Demander ce service</button> 

@@ -1,4 +1,5 @@
 import { DatePipe } from "@angular/common";
+import { User } from "./user";
 
 export class Offre {
   id: number;
@@ -9,10 +10,10 @@ export class Offre {
   dateFinOffre: String;
   nbMedailles: number;
   moyennenote: number;
-  user_id: number;
+  user: User;
 
 
-  constructor(description: string,id: number,titre: string, categorie: string,villeOffre: string, dateFinOffre: Date, nbMedailles: number, datePipe:DatePipe, user_id :number  ) {
+  constructor(description: string,id: number,titre: string, categorie: string,villeOffre: string, dateFinOffre: Date, nbMedailles: number, datePipe:DatePipe, user : User  ) {
     this.id = id;
     this.description= description;
     this.cat= categorie;
@@ -23,7 +24,7 @@ export class Offre {
     this.nbMedailles = nbMedailles;
    // this.note = 0;
     this.moyennenote = this.moyennenote;
-    this.user_id =user_id;
+    this.user =user;
   }
   
 }

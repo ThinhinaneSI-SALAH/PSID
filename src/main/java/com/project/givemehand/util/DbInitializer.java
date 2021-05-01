@@ -37,8 +37,6 @@ public class DbInitializer implements CommandLineRunner {
         System.out.println("DB initializes...");
         List<Role> roles = roleRepository.findAll();
         List<User> users = userRepository.findAll();
-        User u = new User( "tina@GMAH.com","tinaGMAH");
-        userRepository.save(u);
 
         if(roles.isEmpty()){
             roleRepository.save(new Role(ERole.ROLE_PARTICULIER));

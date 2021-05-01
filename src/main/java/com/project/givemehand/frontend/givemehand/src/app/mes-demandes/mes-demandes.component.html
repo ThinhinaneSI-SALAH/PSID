@@ -8,6 +8,7 @@
                   <option value="ACCEPTE">Acceptée</option>
                   <option value="ATTENTE">En attente</option>
                   <option value="REFUSE">Refusée</option>
+                  <option value="TERMINE">Terminée</option>
               </select>
             </div>
             <br/>
@@ -42,9 +43,7 @@
             <th scope="col">Statut</th>
             <th scope="col">Date</th>
             <th scope="col">N° téléphone</th>
-
-            <th>Noter</th>
-
+            <th scope="col">Noter</th>
             <th scope="col">Supprimer</th>
 
           </tr>
@@ -55,10 +54,10 @@
             <td>{{demande.offre.titre}}</td>
             <td>{{demande.statut}}</td>
             <td>{{demande.dateDemande.substring(0,10)}}</td>
-
-
+            <td *ngIf="demande.statut =='ACCEPTE' || demande.statut =='TERMINE';else demandeNonaccepte">{{demande.offre.user.phoneNumber}}</td>
+            <ng-template #demandeNonaccepte style="align-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg>
+             </ng-template>
             <td><ngb-rating className={{demande.id}} [max]="5" [(rate)]="currentRate" (rateChange)=saveNote(currentRate,demande.offre.id,demande.id)></ngb-rating></td>
-
             <td style ="display: flex;">
               <button (click)="deleteServiceRequest(demande.id)" class="btn btn-danger">Delete</button>
             </td>

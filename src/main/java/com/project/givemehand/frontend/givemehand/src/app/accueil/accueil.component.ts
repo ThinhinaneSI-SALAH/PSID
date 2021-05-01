@@ -12,7 +12,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../classes/user';
 
 const httpOptions = {
-  //headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Component({
@@ -34,12 +34,11 @@ export class AccueilComponent implements OnInit {
   user : any;
   email: string;
 
-
   @ViewChild('search')
   public searchElementRef: ElementRef;
-  
+
   constructor(private offreService: OffreServiceService,private demandeService: DemandeService,private userService: UserService,private router: Router,private http: HttpClient,private route:ActivatedRoute, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { 
+    private ngZone: NgZone) {
     }
   ngOnInit(): void {
     this.user = new User();
@@ -55,9 +54,9 @@ export class AccueilComponent implements OnInit {
     this.userService.getMedaillesUserByEmail(this.email).subscribe(
       data=>{
        console.log(this.medailles = data);
-        
+
       }
-    ); 
+    );
     /*if(this.route.snapshot.paramMap.get('offre')!=null)
     {
         console.log("on est ds la page filtre");
@@ -67,7 +66,7 @@ export class AccueilComponent implements OnInit {
     {    */
       this.reloadData();
 
-   // }      
+   // }
     // get
     //*Google Maps
 
@@ -159,14 +158,14 @@ export class AccueilComponent implements OnInit {
   }
 
   createDemande(offre: Offre) {
-    if ( offre.user_id != this.user.id) {
-      console.log('offre', offre.user_id);
+    if ( offre.user.id != this.user.id) {
+      console.log('offre', offre.user.id);
       console.log('id user', this.user.id);
 
       let ladate=new Date();
-      let demande:Demande; 
-      //this.user = this.userService.getUserByEmail(email); 
-      //verifier si la date de la demande est inferieur à la date de l'offre 
+      let demande:Demande;
+      //this.user = this.userService.getUserByEmail(email);
+      //verifier si la date de la demande est inferieur à la date de l'offre
       let diff :number = this.medailles - offre.nbMedailles;
       console.log("diff",diff)
       if( diff >= 0 ) {
@@ -174,7 +173,7 @@ export class AccueilComponent implements OnInit {
         console.log("Demande",demande)
         this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
           console.log(data)
-        
+
         },);
         this.router.navigate(['mesDemandes'])
           .then(() => {
@@ -195,9 +194,9 @@ export class AccueilComponent implements OnInit {
       let month = ''+(date.getMonth() + 1);
       let day = ''+date.getDate();
       let  year = date.getFullYear();
-    if (month.length < 2) 
+    if (month.length < 2)
         month = '0' + month;
-    if (day.length < 2) 
+    if (day.length < 2)
         day = '0' + day;
     return [year,month,day].join('-');
   }
