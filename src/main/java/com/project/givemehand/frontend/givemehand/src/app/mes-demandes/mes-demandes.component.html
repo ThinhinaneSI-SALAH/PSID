@@ -41,6 +41,7 @@
             <th scope="col">Titre Offre</th>
             <th scope="col">Statut</th>
             <th scope="col">Date</th>
+            <th scope="col">N° téléphone</th>
 
             <th>Noter</th>
 
@@ -55,7 +56,6 @@
             <td>{{demande.statut}}</td>
             <td>{{demande.dateDemande.substring(0,10)}}</td>
             <td><ngb-rating className={{demande.id}} [max]="5" [(rate)]="currentRate" (rateChange)=saveNote(currentRate,demande.offre.id,demande.id)></ngb-rating></td>
-
             <td style ="display: flex;">
               <button (click)="deleteServiceRequest(demande.id)" class="btn btn-danger">Delete</button>
             </td>

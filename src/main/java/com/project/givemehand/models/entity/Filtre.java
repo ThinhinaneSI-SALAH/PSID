@@ -15,6 +15,16 @@ public class Filtre  {
     String motCles;
     Statut statut;
 
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    Long idUser;
+
     /**
      *
      * @param categorie d'offre qu'on veut filtrer
@@ -31,10 +41,11 @@ public class Filtre  {
         this.motCles = motCles;
     }
 
-    public Filtre(Statut statut, int medaille, Date date) {
+    public Filtre(Statut statut, int medaille, Date date, Long idUser) {
         this.statut =statut;
         this.medailles =medaille;
         this.dateFiltre =date;
+        this.idUser = idUser;
 
     }
 

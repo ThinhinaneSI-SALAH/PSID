@@ -23,7 +23,7 @@ import { UpdateOffreComponent } from './update-offre/update-offre.component';
 import { ModerateComponent } from './moderate/moderate.component';
 import { ProfilComponent } from './profil/profil.component';
 import { GiveNoteComponent } from './give-note/give-note.component';
-import { NoteComponent } from './classes/note/note.component';
+import { NoteComponent } from './note/note.component';
 
 
 

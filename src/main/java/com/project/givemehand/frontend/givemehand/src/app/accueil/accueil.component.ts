@@ -159,31 +159,35 @@ export class AccueilComponent implements OnInit {
   }
 
   createDemande(offre: Offre) {
-    let ladate=new Date();
-    let demande:Demande; 
-    let is_noted:boolean=false;
-    //this.user = this.userService.getUserByEmail(email); 
-    //verifier si la date de la demande est inferieur à la date de l'offre 
-    let diff :number = this.medailles - offre.nbMedailles;
-    console.log("diff",diff)
-    if( diff >= 0 ) {
-      demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user,is_noted);
-      console.log("Demande",demande)
-      this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
-        console.log(data)
-       
-      },);
-      this.router.navigate(['mesDemandes'])
-        .then(() => {
-            window.location.reload();
-      });
-      console.log("Possible de faire la demande !");
-    }else {
-      this.router.navigate(['accueil'])
-        .then(() => {
-            window.location.reload();
-      });
-      console.log("Pas possible de faire la demande !");
+    if ( offre.user_id != this.user.id) {
+      console.log('offre', offre.user_id);
+      console.log('id user', this.user.id);
+
+      let ladate=new Date();
+      let demande:Demande; 
+      //this.user = this.userService.getUserByEmail(email); 
+      //verifier si la date de la demande est inferieur à la date de l'offre 
+      let diff :number = this.medailles - offre.nbMedailles;
+      console.log("diff",diff)
+      if( diff >= 0 ) {
+        demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user);
+        console.log("Demande",demande)
+        this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
+          console.log(data)
+        
+        },);
+        this.router.navigate(['mesDemandes'])
+          .then(() => {
+              window.location.reload();
+        });
+        console.log("Possible de faire la demande !");
+      }else {
+        this.router.navigate(['accueil'])
+          .then(() => {
+              window.location.reload();
+        });
+        console.log("Pas possible de faire la demande !");
+      }
     }
   }
 
