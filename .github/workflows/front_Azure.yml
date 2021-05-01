@@ -26,9 +26,10 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
     - name: cd vers angular 
-      run: cd ./src/main/java/com/project/givemehand/frontend/givemehand/
+      run: ls -la 
     - name: npm install and build
       run: |
+        cd ./src/main/java/com/project/givemehand/frontend/givemehand/
         npm install
         npm run build -- --prod
     - name: 'Deploy to Azure WebApp'
