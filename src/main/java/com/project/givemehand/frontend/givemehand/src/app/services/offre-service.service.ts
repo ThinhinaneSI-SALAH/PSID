@@ -7,7 +7,7 @@ import { Createoffer } from '../classes/createoffer';
 import { Filtre } from '../classes/filtre';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+ // headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 
@@ -24,12 +24,12 @@ export class OffreServiceService{
 
   //Obtenir toutes les offres
   getOffreList(): Observable<any> {
-    return this.http.get(this.url+'/getAllOffer');
+    return this.http.get(this.url+'/getAllOffer',{ responseType: 'json'});
   }
  
  //obtenir toutes les offres en fonction d'un utilisateur
   getOfferByUser(id_user: number):any{
-    return this.http.get(this.url+"/mesoffres/"+id_user);
+    return this.http.get(this.url+"/mesoffres/"+id_user, { responseType: 'text'});
 }
 
 //obtenir toutes les offres en fonction de l'email utilisateur
@@ -45,7 +45,7 @@ getIdByEmail(email: String): Observable<any> {
   }
   
   getCategories(): Observable<any> {
-    return this.http.get(this.url+'/getAllCat');
+    return this.http.get(this.url+'/getAllCat',{ responseType: 'json'});
   }
   deleteoffer(id:number):Observable<any> {
     return this.http.delete(this.url+"/DeleteOffer/"+id,{ responseType: 'text'});

@@ -35,7 +35,8 @@ public class RequestService implements IDemande {
         return  requestRepository.getOne(id);
     }
 
-    public Demande addRequestService(Demande demande) {
+    public Demande addRequestService(Demande demande)
+    {
         return this.requestRepository.save(demande);
     }
     public Demande findDemandeById(long id) {
@@ -168,7 +169,14 @@ public class RequestService implements IDemande {
         return d;
 
     }
+  public Demande UpdateDemandeIsNoted(Long id)
+  {
+      Demande demande= requestRepository.findById(id).get();
+      demande.setIs_noted(true);
+      this.requestRepository.save(demande);
 
+      return demande;
+  }
 
     public boolean existByIdOffer(Long idoffre, Long iduser) {
         List<Demande> demandes = requestRepository.findAll();

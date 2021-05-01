@@ -14,7 +14,8 @@ import java.util.Set;
  */
 @Entity
 @Table ( name ="Offre")
-public class Offre {
+public class Offre
+{
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
         private Long id;
@@ -28,9 +29,9 @@ public class Offre {
     }
     private String titre;
     private String description;
-    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
+    //@JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateOffre;
-    @JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
+    //@JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
     private Date dateFinOffre;
     private String villeOffre;
 
@@ -40,7 +41,7 @@ public class Offre {
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL, orphanRemoval = true)
     private Note note;
-    private double moyenneNotes;
+    private float moyenneNotes;
     private int nbMedailles;
     private String categorie;
     @ManyToOne
@@ -122,7 +123,7 @@ public class Offre {
         return moyenneNotes;
     }
 
-    public void setMoyenneNotes(double moyenneNotes) {
+    public void setMoyenneNotes(float moyenneNotes) {
         this.moyenneNotes = moyenneNotes;
     }
 
@@ -196,11 +197,12 @@ public class Offre {
      * On divise cette somme par le nombre de notes donnes
      * @return la moyenne
      */
-    public double calculMoyenne()
+    public float calculMoyenne()
     {
-        int somme =  this.note.getNote1() + this.note.getNote2()*2 + this.note.getNote3()*3 +this.note.getNote4()*4 + this.note.getNote5()*5;
-        int nbNotes = this.note.getNote1()+this.note.getNote2()+this.note.getNote3()+this.note.getNote4()+this.note.getNote5();
+        float somme =  this.note.getNote1() + this.note.getNote2()*2 + this.note.getNote3()*3 +this.note.getNote4()*4 + this.note.getNote5()*5;
+        float nbNotes = this.note.getNote1()+this.note.getNote2()+this.note.getNote3()+this.note.getNote4()+this.note.getNote5();
         this.moyenneNotes = somme/nbNotes;
+        System.out.println("test moyenne"+this.moyenneNotes);
         return this.moyenneNotes;
     }
 

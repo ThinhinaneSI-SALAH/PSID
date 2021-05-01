@@ -58,4 +58,10 @@ export class DemandeService {
       return this.http.get(this.url+"/isDemandCanUpdated/"+ idDemande +"/" + newStatut);
 
     }
+
+    UpdateIsNoted(id_demande:number):Observable<any>
+    {
+      return this.http.put(this.url+"/updateisnoted/"+ id_demande,{ responseType: 'text'});
+
+    }
 }
