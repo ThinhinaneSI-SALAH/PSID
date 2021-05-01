@@ -25,7 +25,7 @@
             <td>{{offre.description}}</td>
             <td>{{offre.cat}}</td>
             <td>{{offre.villeOffre}}</td>
-            <td>{{offre.dateFinOffre}}</td>
+            <td>{{offre.dateFinOffre.substring(0,10)}}</td>
             <td>{{offre.nbMedailles}}</td>
             <td>
               <button (click)="deleteoffer(offre.id)" class="btn btn-danger">Supprimer</button>

@@ -23,7 +23,11 @@ export class MesDemandesComponent implements OnInit {
   statut : Observable< String[]>
   medaille:string;
   moyennenote:Observable<any>;
+
+  id:number;
+
   idUser:number;
+
 
 
   constructor(private demandeService: DemandeService,private noteService: NoteserviceService,
