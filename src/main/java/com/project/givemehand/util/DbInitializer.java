@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,8 @@ public class DbInitializer implements CommandLineRunner {
         System.out.println("DB initializes...");
         List<Role> roles = roleRepository.findAll();
         List<User> users = userRepository.findAll();
+        User u = new User( "tina@GMAH.com","tinaGMAH");
+        userRepository.save(u);
 
         if(roles.isEmpty()){
             roleRepository.save(new Role(ERole.ROLE_PARTICULIER));
@@ -45,7 +48,10 @@ public class DbInitializer implements CommandLineRunner {
         }
 
         if(users.isEmpty()){
-            User admin = new User( "admin@GMAH.com","adminGMAH");
+            String password = "adminGMAH";
+            String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+            System.out.println("Password" + encodedPassword);
+            User admin = new User( "admin@GMAH.com",encodedPassword);
               //      encoder.encode("adminGMAH"));
             Set<Role> newRole = new HashSet<>();
             Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)

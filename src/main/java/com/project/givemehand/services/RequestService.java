@@ -69,7 +69,7 @@ public class RequestService implements IDemande {
             int medaillesFilter = f.getMedailles();
 
             if( statRequest.toUpperCase().equals(statutFilter.toString().toUpperCase()) && ( medaillesReq == medaillesFilter)
-                    && ( date.before(dateFilter)|| date.equals(dateFilter)))
+                    && ( date.before(dateFilter)|| date.equals(dateFilter)) && (req.getUser().getId() == f.getIdUser()))
             {
                demandesRetenues.add(req);
 
@@ -178,4 +178,13 @@ public class RequestService implements IDemande {
       return demande;
   }
 
+    public boolean existByIdOffer(Long idoffre, Long iduser) {
+        List<Demande> demandes = requestRepository.findAll();
+        for (Demande d : demandes) {
+            if((d.getOffre().getId() == idoffre) && (d.getUser().getId() == iduser)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

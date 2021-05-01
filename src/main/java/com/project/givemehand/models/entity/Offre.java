@@ -20,14 +20,13 @@ public class Offre
         @GeneratedValue(strategy= GenerationType.IDENTITY)
         private Long id;
 
-    public Long getId() {
-        return id;
-    }
+
 
     public void setId(Long id)
     {
         this.id = id;
     }
+
     private String titre;
     private String description;
     //@JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")
@@ -148,7 +147,23 @@ public class Offre
     public void setUser(User user) {
         this.user = user;
     }
-/*
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+    /*
     public Set<Demande> getDemandes() {
         return demandes;
     }
