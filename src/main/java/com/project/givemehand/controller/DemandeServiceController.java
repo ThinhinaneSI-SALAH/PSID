@@ -41,12 +41,14 @@ public class DemandeServiceController {
     @RequestMapping(path ="/addRequestService/{mail}/{idoffre}", method = RequestMethod.POST)
     public Demande addDemande(@RequestBody Demande demande,@PathVariable Long idoffre, @PathVariable String mail)
     {
-
-        Offre offre = serviceOffre.getOfferById(idoffre);
-        User user =  serviceUser.findByEmail(mail);
-        demande.setUser(user);
-        demande.setOffre(offre);
-        return service.addRequestService(demande);
+        User user = serviceUser.findByEmail(mail);
+        if (!service.existByIdOffer(idoffre, user.getId())) {
+            Offre offre = serviceOffre.getOfferById(idoffre);
+            demande.setUser(user);
+            demande.setOffre(offre);
+            return service.addRequestService(demande);
+        }
+        return  null;
     }
 
     @DeleteMapping(value = "/deleteServiceRequest/{requestId}")
@@ -55,16 +57,16 @@ public class DemandeServiceController {
         service.deleteServiceRequest(requestId);
     }
 
-    @RequestMapping(path ="/getRequestfilter/{sta}/{nbMedailles}/{date}", method = RequestMethod.GET)
+    @RequestMapping(path ="/getRequestfilter/{sta}/{nbMedailles}/{date}/{iduser}", method = RequestMethod.GET)
 
-    public List<Demande> getRequestService(@PathVariable String sta, @PathVariable String nbMedailles, @PathVariable String date)
+    public List<Demande> getRequestService(@PathVariable String sta, @PathVariable String nbMedailles, @PathVariable String date, @PathVariable Long iduser)
     {
         Statut statut = Statut.valueOf(sta.toUpperCase());
         String jour = date.substring(0,2);
         String mois = date.substring(2,4);
         String annee = date.substring(4,8);
         String d = jour.concat("/"+mois+"/"+annee);
-        Filtre f = new Filtre(statut,Integer.parseInt(nbMedailles), new Date(d));
+        Filtre f = new Filtre(statut,Integer.parseInt(nbMedailles), new Date(d), iduser);
         return service.filterRequest(f);
     }
     @RequestMapping(path ="/getDemandesByOffer/{idOffre}", method = RequestMethod.GET)

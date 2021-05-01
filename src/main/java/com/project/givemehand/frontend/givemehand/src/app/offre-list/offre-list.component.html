@@ -4,7 +4,7 @@
         <br>
         <br>
         <br>
-      <h2>Offres List</h2>
+      <h2>Mes offres</h2>
     </div>
     <div class="panel-body">
       <table class="table table-striped">
@@ -16,6 +16,7 @@
             <th scope="col">Ville</th>
             <th scope="col">Date de fin</th>
             <th scope="col">Médailles(coût)</th>
+            <th scope="col">M-A-J</th>
           </tr>
         </thead>
         <tbody>
@@ -26,15 +27,14 @@
             <td>{{offre.villeOffre}}</td>
             <td>{{offre.dateFinOffre}}</td>
             <td>{{offre.nbMedailles}}</td>
-            <td><button (click)="deleteoffer(offre.id)" class="btn btn-danger">Delete</button>
-                <button routerLink="/update/{{offre.id}}" routerLinkActive="active" class="btn btn-info" style="margin-left: 10px">Update</button>
-
-                <button (click)="offreDetails(offre.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
-        
+            <td>
+              <button (click)="deleteoffer(offre.id)" class="btn btn-danger">Supprimer</button>
+              <button routerLink="/update/{{offre.id}}" routerLinkActive="active" class="btn btn-info" style="margin-left: 10px">Modifier</button>
+              <button (click)="offreDetails(offre.id)" class="btn btn-info" style="margin-left: 10px">Détails</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <button routerLink="/add" routerLinkActive="active" class="btn btn-info" style="margin-left: 10px">Create_Offer</button>
+    <button routerLink="/add" routerLinkActive="active" class="creer" style="margin-left: 10px">Créer !</button>
   </div>

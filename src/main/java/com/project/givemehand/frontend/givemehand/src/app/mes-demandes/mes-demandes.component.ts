@@ -2,16 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
-import { NumberLiteralType } from 'typescript';
 import {Demande} from '../classes/demande';
-import { User } from '../classes/user';
 import {DemandeService} from '../services/demande-service'
 import { UserService } from '../services/user.service';
 import {NoteserviceService} from '../services/noteservice.service';
 
 import{OffreServiceService} from '../services/offre-service.service'
-
-//import { Console } from 'node:console';
 
 
 @Component({
@@ -26,6 +22,7 @@ export class MesDemandesComponent implements OnInit {
   statut : Observable< String[]>
   medaille:string;
   moyennenote:Observable<any>;
+  idUser:number;
 
 
   constructor(private demandeService: DemandeService,private noteService: NoteserviceService,
@@ -60,16 +57,21 @@ export class MesDemandesComponent implements OnInit {
     var date:String;
     var nbmedailles:number;
     var statut:String;
-
+    let email = sessionStorage.getItem("currentUser");
+    this.userService.findIdUserByMail(email).subscribe((value) =>{
+      this.idUser =value;
+      console.log(value);
+    })
     date = document.getElementsByName("dateDemande")[0]["value"];
     let dates  = date.split('-');
     date= dates[2]+ dates[1]+dates[0];
+    console.log(date);
     nbmedailles=document.getElementsByName("nbMedailles")[0]["value"];
     statut=document.getElementsByName("statut")[0]["value"];
     console.log('stat',statut)
     console.log(nbmedailles);
     console.log(date);
-    this.demandes = this.demandeService.getRequestService(statut,nbmedailles,date);
+    this.demandes = this.demandeService.getRequestService(statut,nbmedailles,date,this.idUser);
 
     this.demandes.subscribe((value) => {
       console.log(value);

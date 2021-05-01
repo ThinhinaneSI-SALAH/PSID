@@ -1,60 +1,52 @@
+<body>
+  <div class="main-w3layouts wrapper">
+    <h1>Log In !</h1>
+    <div class="main-agileinfo">
+      <div class="agileits-top">
+        <form   *ngIf="!isLoggedIn"
+         name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidates>
 
-<div class="container">
-  <form   *ngIf="!isLoggedIn"
-  name="form"
-  (ngSubmit)="f.form.valid && onSubmit()"
-  #f="ngForm"
-  novalidates>
-
-    <div class="form-group">
-            <label for="email">E-mail</label>
-          <input type="email" class="form-control" id="email"  required
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" class="text" id="email"  required
           [(ngModel)]="user.email" name="email" #email="ngModel">
-
           <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="f.submitted && email.invalid"
-        >
-          Email is required!
-        </div>
-
-    </div>
-
-
-
-
-    <div class="form-group">
-        <label for="pwd">motDePasse</label>
-        <input type="password" class="form-control" id="password" name="password"
-        [(ngModel)]="user.password"
-        required
-
-        #password="ngModel" />
-        <div
             class="alert alert-danger"
             role="alert"
-            *ngIf="f.submitted && password.invalid">
-           Password is required
+            *ngIf="f.submitted && email.invalid"
+          >
+            Email is required!
+          </div>
+        </div>
 
-         </div>
-    </div>
-    <div class="form-group">
-      <button  type="submit" class="btn btn-success">Login</button>
+        <div class="form-group">
+            <label for="pwd">Mot de passe</label>
+            <input type="password" class="text" id="password" name="password" [(ngModel)]="user.password" required  #password="ngModel" />
+            <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.submitted && password.invalid">
+              Password is required
 
-    </div>
-    <div class="form-group">
-      <div
-        class="alert alert-danger"
-        role="alert"
-        *ngIf="f.submitted && isLoginFailed"
-      >
-        Login failed {{ errorMessage }}
-      </div>
-    </div>
-<span class="login-link">New User?</span>
-<a  routerLink="../inscription">Signup</a>
+            </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="LOGIN">
+        </div>
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && isLoginFailed"
+          >
+            Login failed {{ errorMessage }}
+          </div>
+        </div>
+        <p>New User? <a routerLink="../inscription">Signup Now!</a></p>
   </form>
-
   </div>
-
+    </div>
+  </div>
