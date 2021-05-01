@@ -52,22 +52,22 @@
           </div>
           <div class="form-group">
               <label for="street">Rue  </label>
-              <input type="text" class="text" id="street" required name="street"   disabled="true" placeholder="street">
+              <input type="text" class="text" id="street" required name="street"   disabled="true" placeholder="{{street}}">
           </div>
 
           <div class="form-group">
               <label for="zip">Code Postale </label>
               <br/>
-              <input type="number" class="text" id="zip" required name="zip"  disabled="true">
+              <input type="number" class="text" id="zip" required name="zip" placeholder="{{postCode}}" disabled="true">
           </div>
 
           <div class="form-group">
                 <label for="city"> Ville</label>
-                <input type="text" class="text" id="city" required name="city"  disabled="true" placeholder="ville">
+                <input type="text" class="text" id="city" required name="city"  disabled="true" placeholder="{{city}}">
           </div>
           <div class="form-group">
                 <label for="country">Pays</label>
-                <input type="text" class="text" id="country" required name="country"   disabled="true" placeholder="country">
+                <input type="text" class="text" id="country" required name="country"   disabled="true" placeholder="{{country}}">
           </div>
           <input type="submit" value="SIGNUP">
           <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

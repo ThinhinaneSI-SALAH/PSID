@@ -170,7 +170,7 @@ export class AccueilComponent implements OnInit {
       let diff :number = this.medailles - offre.nbMedailles;
       console.log("diff",diff)
       if( diff >= 0 ) {
-        demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user);
+        demande = new Demande ('ATTENTE',  this.formatDate(ladate), offre, this.user,false);
         console.log("Demande",demande)
         this.demandeService.saveRequestService(demande,this.email,offre.id).subscribe(data => {
           console.log(data)
