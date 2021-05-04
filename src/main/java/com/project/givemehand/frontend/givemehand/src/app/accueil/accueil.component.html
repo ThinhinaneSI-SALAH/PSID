@@ -41,7 +41,9 @@
       <p><label>Description</label>  {{offre.description}} </p>
     </div>
     <div class="date"><p > <label> Date de fin</label> {{offre.dateFinOffre.substring(0,10)}}  </p></div>  
-    <div class="note"><p > <label>Moyenne </label>  {{offre.moyenneNotes.toFixed(1)}} </p> </div>
+      <div class="note"><p *ngIf="offre.moyenneNotes!= 0.0"> <label>Moyenne </label>  {{offre.moyenneNotes.toFixed(1)}} </p> </div>
+
+
 
     <div class = "ref">
       <button (click)="createDemande(offre)" class="demander" type="button"><span>Demander </span></button> 

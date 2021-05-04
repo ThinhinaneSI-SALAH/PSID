@@ -9,7 +9,8 @@
         #f="ngForm"
         novalidates>
 
-        <div class="form-group">
+
+    <div class="form-group">
           <label for="email">E-mail</label>
           <input type="email" class="text" id="email"  required
           [(ngModel)]="user.email" name="email" #email="ngModel">
@@ -49,5 +50,22 @@
         <p>Nouveau ? <a routerLink="../inscription">Inscrivez-vous !</a></p>
   </form>
   </div>
+
     </div>
-  </div>
+  
+    <div class="form-group">
+      <input type="submit" value="LOGIN">
+    </div>
+    <div class="form-group">
+      <div class="alert alert-danger"
+        role="alert"
+        *ngIf="f.submitted && isLoginFailed"
+      >
+      Login failed {{ errorMessage }} 
+      </div>
+    </div>
+    <p>New User? <a routerLink="../inscription">Signup Now!</a></p>
+  </form>
+</div>
+</div>
+</div>
