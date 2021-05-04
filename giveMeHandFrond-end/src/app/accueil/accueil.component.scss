@@ -1,0 +1,97 @@
+.accueil {
+    position:absolute;
+    display: flex;
+    top:0;
+    left:20px;
+    height:100%;
+    width:100%;
+    grid-template-columns: 150px auto 320px;
+    margin-top: 100px;
+    padding-bottom:40px;
+    overflow:hidden;
+    gap: 20px;
+}
+.filter{
+    grid-column: 1;
+    padding-top: 50px;
+    text-align: center;
+    padding-right: 50px;
+    padding-left: 50px;
+    width: 243px;
+    background-color: #FECCC2;
+}
+
+.container-fluid {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: absolute;
+    left: 257px;
+    height: 100%;
+    width: 720px;
+    grid-gap: 10px;
+}
+
+.offre{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    height: 250px;
+    padding: 5px;
+    border-style: solid;
+    border-color: crimson;
+    width: 340px;
+
+}
+.titre{
+    grid-column:1/ span 3 ;
+    grid-row: 1;
+    background-color: crimson; 
+    text-align: center;
+}
+.divCat{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.divMedailles{
+    grid-column: 3;
+    grid-row: 2;
+}
+.description{
+    grid-column: 1/ span 2;
+    grid-row: 3;
+}
+
+.date{
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.note{
+    grid-column: 3;
+    grid-row: 4;
+}
+
+.ref{
+    grid-column: 3;
+    grid-row: 5;
+    
+}
+
+#map{
+    grid-column: 3 ;
+    position: absolute;
+    right: 48px;
+    width: 320px; 
+    height: 480px;
+}
+
+agm-map {
+    height: 300px;
+    width: 300px;
+}
+
+i {
+    color: crimson;
+    display: inline;
+    }
