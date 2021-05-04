@@ -14,15 +14,6 @@ public class Filtre  {
     int medailles;
     String motCles;
     Statut statut;
-
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
-
     Long idUser;
 
     /**
@@ -47,6 +38,30 @@ public class Filtre  {
         this.dateFiltre =date;
         this.idUser = idUser;
 
+    }
+    public Filtre(Statut statut, Long iduser) {
+        this.statut =statut;
+        this.idUser =iduser;
+    }
+
+    public Filtre(Statut statut, int medaille, Long iduser) {
+        this.statut =statut;
+        this.idUser =iduser;
+        this.medailles =medaille;
+    }
+
+    public Filtre(Statut statut, Date d, Long iduser) {
+        this.statut = statut;
+        this.dateFiltre = d;
+        this.idUser=iduser;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public Categorie getCategorie() {

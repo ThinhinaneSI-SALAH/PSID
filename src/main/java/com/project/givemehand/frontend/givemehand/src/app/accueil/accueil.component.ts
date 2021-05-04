@@ -31,6 +31,7 @@ export class AccueilComponent implements OnInit {
   private geoCoder;
   filtre: Filtre;
   medailles: number;
+  isPossible: boolean;
   user : any;
   email: string;
 
@@ -108,8 +109,6 @@ export class AccueilComponent implements OnInit {
       console.log('Fini !');
     });
   }
-
-
   /*
   ** Récupérer la position actuelle
   */
@@ -158,10 +157,6 @@ export class AccueilComponent implements OnInit {
   }
 
   createDemande(offre: Offre) {
-    if ( offre.user.id != this.user.id) {
-      console.log('offre', offre.user.id);
-      console.log('id user', this.user.id);
-
       let ladate=new Date();
       let demande:Demande;
       //this.user = this.userService.getUserByEmail(email);
@@ -181,13 +176,8 @@ export class AccueilComponent implements OnInit {
         });
         console.log("Possible de faire la demande !");
       }else {
-        this.router.navigate(['accueil'])
-          .then(() => {
-              window.location.reload();
-        });
-        console.log("Pas possible de faire la demande !");
+        this.isPossible =false;
       }
-    }
   }
 
   formatDate(date :Date) : string {

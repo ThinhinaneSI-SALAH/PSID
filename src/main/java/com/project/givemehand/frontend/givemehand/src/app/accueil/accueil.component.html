@@ -28,29 +28,27 @@
           <button type="submit">Filtrer</button>
     </form>
   </div>
-<div class="container-fluid">
-  <div class = "offre" *ngFor="let offre of offres | async">
-    <h3 class = "titre" > {{offre.titre}} </h3>
-    <div class="divCat"><p class = "card-title" > Catégorie : {{offre.cat}} </p></div>
-    <div class="divMedailles"> <i class="fas fa-medal"></i><p style="display: inline;" > {{offre.nbMedailles}} </p></div>
-    <div class = "description">
-      <p>Description: {{offre.description}} </p>
-    </div>
-    <div class="date"><p> Valide jusqu'au {{offre.dateFinOffre.substring(0,10)}}  </p></div>  
-    <div class="note"><p *ngIf="offre.moyenneNotes!= 0.0"> Note moyenne : {{offre.moyenneNotes.toFixed(1)}} </p> </div>
+  <div class="container-fluid">
+    <div class = "offre" *ngFor="let offre of offres | async">
+      <h3 class = "titre" > {{offre.titre}} </h3>
+      <div class="divCat"><p class = "card-title" > Catégorie : {{offre.cat}} </p></div>
+      <div class="divMedailles"> <i class="fas fa-medal"></i><p style="display: inline;" > {{offre.nbMedailles}} </p></div>
+      <div class = "description">
+        <p>Description: {{offre.description}} </p>
+      </div>
+      <div class="date"><p> Valide jusqu'au {{offre.dateFinOffre.substring(0,10)}}  </p></div>  
+      <div class="note"><p *ngIf="offre.moyenneNotes!= 0.0"> Note moyenne : {{offre.moyenneNotes.toFixed(1)}} </p> </div>
 
-    <div class = "ref">
-      <button (click)="createDemande(offre)" type="button">Demander ce service</button> 
+      <div class = "ref">
+        <button (click)="createDemande(offre)" type="button" *ngIf="offre.user.id != user.id,notpossible">Demander ce service</button> 
+        <ng-template #notpossible></ng-template>
+      </div>
     </div>
   </div>
-</div>
-
-
-<div class="map" id="map">
-    <agm-map  [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng" label="home"></agm-marker>
-  </agm-map>
-  
-</div>
+  <div class="map" id="map">
+      <agm-map  [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng" label="home"></agm-marker>
+      </agm-map>
+  </div>
 </div>
 
