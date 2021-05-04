@@ -15,10 +15,10 @@
     <label><b>Ville: </b></label> {{offres.villeOffre}}
   </div>  
   <div>
-    <label><b>date Offre </b></label> {{offres.dateOffre}}
+    <label><b>date Offre </b></label> {{offres.dateOffre.substring(0,10)}}
   </div>  
   <div>
-    <label><b>dateFinOffre </b></label> {{offres.dateFinOffre}}
+    <label><b>dateFinOffre </b></label> {{offres.dateFinOffre.substring(0,10)}}
   </div> 
   <div>
     <label><b>nbMedailles </b></label> {{offres.nbMedailles}}
@@ -35,10 +35,9 @@
  
         <th scope="col">Date Demande</th>
         <th scope="col">Statut</th>
-        <th scope="col">Statut SELECTED</th>
-
-       <th scope="col">FirstName</th>
+        <th scope="col">FirstName</th>
         <th scope="col">LastName</th>
+        <th scope="col"></th>
         <th scope="col"></th>
 
       <!-- <--> 
@@ -61,6 +60,7 @@
           <td> <button (click)="updateDemande(demande,demande.id)"  [disabled]="!demande.buttonDisabled" class="btn" style="margin-left: 10px"><span>Valider</span></button></td> 
 
           <td> <button (click)="goProfilDetails(demande.user.id)"   style="margin-left: 10px"><span>Profil</span></button></td> 
+
 
       </tr> 
     </tbody>
