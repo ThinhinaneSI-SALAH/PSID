@@ -21,12 +21,12 @@ export class GiveNoteComponent implements OnInit {
 
 save(currentRate){
   //rate = this.currentRate;
-  console.log("yoro",currentRate);
+  console.log("votre note est ",currentRate);
 }
 
 onSubmit() {
- // this.submitted = true;
-  //this.save();    
+ this.submitted = true;
+  this.save(this.currentRate);    
 }
 
 
