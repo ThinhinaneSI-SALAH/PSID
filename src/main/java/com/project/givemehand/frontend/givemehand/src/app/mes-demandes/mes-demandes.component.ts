@@ -23,26 +23,25 @@ export class MesDemandesComponent implements OnInit {
   statut : Observable< String[]>
   medaille:string;
   moyennenote:Observable<any>;
-
   id:number;
-
   idUser:number;
-
-
 
   constructor(private demandeService: DemandeService,private noteService: NoteserviceService,
     private userService: UserService,  private config: NgbRatingConfig,private offreService:OffreServiceService,private router: Router,private http: HttpClient,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    if(this.route.snapshot.paramMap.get('demande')!=null)
-    {
+    let email = sessionStorage.getItem("currentUser");
+    this.userService.findIdUserByMail(email).subscribe((value) =>{
+      this.idUser =value;
+      console.log(value);
+    });
+    if(this.route.snapshot.paramMap.get('demande')!=null){
       this.filterDemande();
     }
     else{
       this.reloadData();
     }
     //this.config.readonly = true;
-
   }
 
   reloadData() {
@@ -75,33 +74,64 @@ export class MesDemandesComponent implements OnInit {
     var date:String;
     var nbmedailles:number;
     var statut:String;
-    let email = sessionStorage.getItem("currentUser");
-    this.userService.findIdUserByMail(email).subscribe((value) =>{
-      this.idUser =value;
-      console.log(value);
-    })
     date = document.getElementsByName("dateDemande")[0]["value"];
     let dates  = date.split('-');
     date= dates[2]+ dates[1]+dates[0];
-    console.log(date);
     nbmedailles=document.getElementsByName("nbMedailles")[0]["value"];
     statut=document.getElementsByName("statut")[0]["value"];
-    console.log('stat',statut)
-    console.log(nbmedailles);
-    console.log(date);
-
-    this.demandeService.getRequestService(statut,nbmedailles,date,this.idUser).subscribe((value) => {
-      this.demandes=value
-      console.log(value);
-      if(value.length == 0) {
-        this.empty = true;
-      }
-    }, (error) => {
-      console.log(error);
-    }, () => {
-      console.log('Fini !');
-    });
+    if (statut != "" && nbmedailles.toString() == "" && date == 'NaN'){
+      this.demandeService.filterByStatut(statut,this.idUser).subscribe((value) => {
+        this.demandes=value
+        console.log(value);
+        if(value.length == 0) {
+          this.empty = true;
+        }
+      }, (error) => {
+        console.log(error);
+      }, () => {
+        console.log('Fini !');
+      });
+    }
+    else if (statut != "" && nbmedailles.toString() != "" && date == 'NaN'){
+      this.demandeService.filterByStatutAndnbMedailles(statut, nbmedailles,this.idUser).subscribe((value) => {
+        this.demandes=value
+        console.log(value);
+        if(value.length == 0) {
+          this.empty = true;
+        }
+      }, (error) => {
+        console.log(error);
+      }, () => {
+        console.log('Fini !');
+      });
+    }
+    else if (statut != "" && nbmedailles.toString() == "" && date != 'NaN'){
+      this.demandeService.filterByStatutAndDate(statut,date,this.idUser).subscribe((value) => {
+        this.demandes=value
+        console.log(value);
+        if(value.length == 0) {
+          this.empty = true;
+        }
+      }, (error) => {
+        console.log(error);
+      }, () => {
+        console.log('Fini !');
+      });
+    }else {
+      this.demandeService.getRequestService(statut,nbmedailles,date,this.idUser).subscribe((value) => {
+        this.demandes=value
+        console.log(value);
+        if(value.length == 0) {
+          this.empty = true;
+        }
+      }, (error) => {
+        console.log(error);
+      }, () => {
+        console.log('Fini !');
+      });
+    }
   }
+
 
   saveNote(currentRate,demande,idDemande){
     //CurrenteRate=Note

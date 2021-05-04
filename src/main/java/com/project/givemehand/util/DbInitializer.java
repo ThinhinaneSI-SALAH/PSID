@@ -40,8 +40,10 @@ public class DbInitializer implements CommandLineRunner {
        // User u = new User( "tina@GMAH.com","tinaGMAH");
         //userRepository.save(u);
 
-        if(roles.isEmpty())
-        {
+
+
+        if(roles.isEmpty()){
+
             roleRepository.save(new Role(ERole.ROLE_PARTICULIER));
             roleRepository.save(new Role(ERole.ROLE_ADMIN));
             System.out.println("--- Roles initialized");

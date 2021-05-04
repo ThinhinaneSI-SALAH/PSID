@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,10 @@ public class RequestService implements IDemande {
 
     @Autowired
     private UserRepository userRepository;
+
+    DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
+            DateFormat.SHORT,
+            DateFormat.SHORT);
 
 
 
@@ -69,15 +74,13 @@ public class RequestService implements IDemande {
             int medaillesFilter = f.getMedailles();
 
             if( statRequest.toUpperCase().equals(statutFilter.toString().toUpperCase()) && ( medaillesReq == medaillesFilter)
-                    && ( date.before(dateFilter)|| date.equals(dateFilter)) && (req.getUser().getId() == f.getIdUser()))
+                    && ( dateFilter.before(date)|| date.equals(dateFilter)) && (req.getUser().getId() == f.getIdUser()))
             {
                demandesRetenues.add(req);
-
             }
         }
 
         return demandesRetenues;
-
     }
 
     public ResponseEntity<Demande> updateRequestService(Long id, Demande demande) {
@@ -93,7 +96,6 @@ public class RequestService implements IDemande {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
     public Demande getRequestServiceById(Long id_demande) {
         return this.requestRepository.findById(id_demande).get();
@@ -186,5 +188,60 @@ public class RequestService implements IDemande {
             }
         }
         return false;
+    }
+
+    public List<Demande> filterByStatut(Filtre f) {
+        List<Demande>  demandes = requestRepository.findAll();
+        List<Demande> demandesRetenues= new ArrayList<Demande>();
+        for (Demande req : demandes){
+            String statRequest = req.getStatut();
+            Statut  statutFilter = f.getStatut();
+            if( statRequest.toUpperCase().equals(statutFilter.toString().toUpperCase()) && (req.getUser().getId() == f.getIdUser()))
+            {
+                demandesRetenues.add(req);
+            }
+        }
+        return demandesRetenues;
+    }
+
+    public List<Demande> filterByStatutAndnbMedailles(Filtre f) {
+        List<Demande>  demandes = requestRepository.findAll();
+        List<Demande> demandesRetenues= new ArrayList<Demande>();
+
+        for (Demande req : demandes){
+            String statRequest = req.getStatut();
+            Statut  statutFilter = f.getStatut();
+            int medaillesReq = req.getOffre().getNbMedailles();
+            int medaillesFilter = f.getMedailles();
+
+            if( statRequest.toUpperCase().equals(statutFilter.toString().toUpperCase()) && ( medaillesReq == medaillesFilter) && (req.getUser().getId() == f.getIdUser()))
+            {
+                demandesRetenues.add(req);
+
+            }
+        }
+        return demandesRetenues;
+    }
+
+    public List<Demande> filterByStatutAndDate(Filtre f) {
+        List<Demande>  demandes = requestRepository.findAll();
+        List<Demande> demandesRetenues= new ArrayList<Demande>();
+
+        for (Demande req : demandes){
+            String statRequest = req.getStatut();
+            Statut  statutFilter = f.getStatut();
+            Date date = req.getDateDemande();
+            Date dateFilter = f.getDateFiltre();
+            System.out.println("La date :"+shortDateFormat.format(date).substring(0,11));
+            System.out.println("Le df :"+shortDateFormat.format(dateFilter).substring(0,11));
+
+            if( statRequest.toUpperCase().equals(statutFilter.toString().toUpperCase())  &&  (dateFilter.before(date) || shortDateFormat.format(date).substring(0,11).equals(shortDateFormat.format(dateFilter).substring(0,11))) && (req.getUser().getId() == f.getIdUser()))
+            {
+                demandesRetenues.add(req);
+
+            }
+        }
+
+        return demandesRetenues;
     }
 }

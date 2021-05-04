@@ -58,17 +58,46 @@ public class DemandeServiceController {
     }
 
     @RequestMapping(path ="/getRequestfilter/{sta}/{nbMedailles}/{date}/{iduser}", method = RequestMethod.GET)
-
     public List<Demande> getRequestService(@PathVariable String sta, @PathVariable String nbMedailles, @PathVariable String date, @PathVariable Long iduser)
     {
         Statut statut = Statut.valueOf(sta.toUpperCase());
-        String jour = date.substring(0,2);
-        String mois = date.substring(2,4);
+        String mois = date.substring(0,2);
+        String jour = date.substring(2,4);
         String annee = date.substring(4,8);
         String d = jour.concat("/"+mois+"/"+annee);
         Filtre f = new Filtre(statut,Integer.parseInt(nbMedailles), new Date(d), iduser);
         return service.filterRequest(f);
     }
+    @RequestMapping(path ="/filterByStatut/{sta}/{iduser}", method = RequestMethod.GET)
+    public List<Demande> filterByStatut(@PathVariable String sta, @PathVariable Long iduser)
+    {
+        Statut statut = Statut.valueOf(sta.toUpperCase());
+        Filtre f = new Filtre(statut, iduser);
+        return service.filterByStatut(f);
+    }
+
+    @RequestMapping(path ="/filterByStatutAndnbMedailles/{sta}/{nbMedailles}/{iduser}", method = RequestMethod.GET)
+    public List<Demande> filterByStatutAndnbMedailles(@PathVariable String sta, @PathVariable String nbMedailles,@PathVariable Long iduser)
+    {
+        Statut statut = Statut.valueOf(sta.toUpperCase());
+        Filtre f = new Filtre(statut,Integer.parseInt(nbMedailles), iduser);
+        return service.filterByStatutAndnbMedailles(f);
+    }
+
+    @RequestMapping(path ="/filterByStatutAndDate/{sta}/{date}/{iduser}", method = RequestMethod.GET)
+    public List<Demande> filterByStatutAndDate(@PathVariable String sta, @PathVariable String date,@PathVariable Long iduser)
+    {
+        Statut statut = Statut.valueOf(sta.toUpperCase());
+        String mois = date.substring(0,2);
+        String jour = date.substring(2,4);
+        String annee = date.substring(4,8);
+        String d = jour.concat("/"+mois+"/"+annee);
+        System.out.println("d" + d);
+        Filtre f = new Filtre(statut, new Date(d), iduser);
+        System.out.println("new d" + new Date(d));
+        return service.filterByStatutAndDate(f);
+    }
+
     @RequestMapping(path ="/getDemandesByOffer/{idOffre}", method = RequestMethod.GET)
     public List<Demande> getDemandesByOffer(@PathVariable("idOffre") Long idOffre){
         System.out.println("Id Offre" + idOffre);
