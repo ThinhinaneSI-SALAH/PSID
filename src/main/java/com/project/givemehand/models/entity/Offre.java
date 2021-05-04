@@ -19,14 +19,6 @@ public class Offre
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
         private Long id;
-
-
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
     private String titre;
     private String description;
     //@JsonFormat(pattern="dd/MM/yyyy",timezone="Europe/France")

@@ -155,10 +155,12 @@ export class MesDemandesComponent implements OnInit {
         // this.offres = new Createoffer();
         //this.list();
       console.log("la moyenne est :",this.moyennenote)
+      this.reloadData()
       console.log(value);
       if(value.length == 0) {
         this.empty = true;
       }
+     
     }, (error) => {
       console.log(error);
     });
@@ -168,7 +170,8 @@ export class MesDemandesComponent implements OnInit {
 
   deleteServiceRequest (id:number) {
     this.demandeService.deleteServiceRequest(id).subscribe(
-      data => {
+      data => 
+      {
         console.log(data);
         this.reloadData();
       },

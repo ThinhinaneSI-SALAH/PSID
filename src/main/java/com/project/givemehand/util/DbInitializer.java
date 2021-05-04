@@ -37,13 +37,16 @@ public class DbInitializer implements CommandLineRunner {
         System.out.println("DB initializes...");
         List<Role> roles = roleRepository.findAll();
         List<User> users = userRepository.findAll();
+       // User u = new User( "tina@GMAH.com","tinaGMAH");
+        //userRepository.save(u);
+
 
 
         if(roles.isEmpty()){
+
             roleRepository.save(new Role(ERole.ROLE_PARTICULIER));
             roleRepository.save(new Role(ERole.ROLE_ADMIN));
             System.out.println("--- Roles initialized");
-
         }
 
         if(users.isEmpty()){
@@ -51,7 +54,7 @@ public class DbInitializer implements CommandLineRunner {
             String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
             System.out.println("Password" + encodedPassword);
             User admin = new User( "admin@GMAH.com",encodedPassword);
-              //      encoder.encode("adminGMAH"));
+             /* //      encoder.encode("adminGMAH"));*/
             Set<Role> newRole = new HashSet<>();
             Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

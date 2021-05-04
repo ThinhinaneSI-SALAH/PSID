@@ -18,7 +18,8 @@ export class NoteserviceService {
 
   }
   //Give rate
-  saveNote(note:number, id:number):Observable<any> {
+  saveNote(note:number, id:number):Observable<any> 
+  {
     console.log(this.url+"/SaveNote/"+note+"/"+id);
     return this.http.put(this.url+"/SaveNote/"+note+"/"+id,{ responseType: 'text'});
   }

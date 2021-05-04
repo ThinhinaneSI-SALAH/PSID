@@ -9,6 +9,7 @@ export class Createoffer {
     dateFinOffre: Date;
     dateOffre:Date;
     nbMedailles: number;
+    moyennenote: number;
     
     motcle:string;
     active: boolean;
