@@ -64,4 +64,13 @@ export class DemandeService {
       return this.http.put(this.url+"/updateisnoted/"+ id_demande,{ responseType: 'text'});
 
     }
+    filterByStatut(statut: String ,idUser: number):Observable<any> {
+      return this.http.get(this.url+"/filterByStatut/"+statut+"/"+idUser);
+    }
+    filterByStatutAndnbMedailles(statut: String, nbmedailles: number,idUser: number) :Observable<any> {
+      return this.http.get(this.url+"/filterByStatutAndnbMedailles/"+statut+"/"+nbmedailles+"/"+idUser);
+    }
+    filterByStatutAndDate(statut: String, date: String, idUser: number) :Observable<any> {
+      return this.http.get(this.url+"/filterByStatutAndDate/"+statut+"/"+date+"/"+idUser);
+    }
 }
