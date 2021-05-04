@@ -43,7 +43,7 @@
   </div>
   <nav>
 <ul>
-  <li class="circle">
+  <li *ngIf="isLoggedIn"  class="circle">
    <strong> {{user.medailles}} M </strong>
   </li>
 
