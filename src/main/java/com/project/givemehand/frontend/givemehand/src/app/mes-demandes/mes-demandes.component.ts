@@ -149,9 +149,4 @@ export class MesDemandesComponent implements OnInit {
       this.reloadData();
   }
 
-  gotoList() 
-  {
-    this.router.navigate(['/mesDemandes']);
-  }
-
 }
