@@ -3,23 +3,20 @@
 
 }
 .mesdemandes {
-    display: flex;
+  display: flex;
 }
-/*
-.filter{
-    padding-top: 50px; 
-    padding-right: 70px;
-    padding-left: 90px;
 
-}*/
+.filter{
+  margin-left: 25px;
+}
 .form-style-5{
+  margin-left: 20px;
 	max-width: 500px;
 	padding: 10px 20px;
 	background: #EACAAC;
 	margin: 10px auto;
 	padding: 20px;
 	border-radius: 8px;
-//	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 
@@ -34,7 +31,6 @@
 .form-style-5 input[type="search"],
 .form-style-5 textarea,
 .form-style-5 select {
-//	font-family: Georgia, "Times New Roman", Times, serif;
 	background: rgba(255,255,255,.1);
 	border: none;
 	border-radius: 4px;
@@ -47,7 +43,6 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box; 
 	background-color: #FFFCFC;
-	//color:#8a97a0;
     color:#000000;
 
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
