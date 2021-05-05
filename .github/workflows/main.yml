@@ -4,7 +4,6 @@ on:
     paths-ignore:
       - '**.md'
       - '.github/workflows/*yml'
-    
 env:
   AZURE_WEBAPP_NAME: giveMeHand    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
@@ -21,7 +20,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Compile code
-        run: mvn compile 
+        run: |
+            cd ./givemehandBack-end
+            mvn compile 
   
   build:
     runs-on: ubuntu-latest
