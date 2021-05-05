@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "givemeahand-0ac2"
+    labels:
+        app: "givemeahand-0ac2"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: givemeahandb67a-givemeahand-0ac2.09c67f1f15324933b8e0.westeurope.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "givemeahand-0ac2"
+                servicePort: 8080
