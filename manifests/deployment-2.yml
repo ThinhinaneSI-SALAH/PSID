@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "givemeahand-0ac2"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "givemeahand-0ac2"
+  template:
+    metadata:
+      labels:
+        app: "givemeahand-0ac2"
+    spec:
+      containers:
+        - name: "givemeahand-0ac2"
+          image: "givemeahandback.azurecr.io/givemeahand"
+          ports:
+          - containerPort: 8080
