@@ -41,7 +41,7 @@ Pour le déploiement, nous avons opter pour **Azure**.
 - Pour les données, nous utilisons **PostgreSQL** comme serveur getionnaire de notre base de donnée.
 Télécharger PosgreSQL ici : https://www.postgresql.org/download/                                                                                                            
 - Afin de tester notre API, nous utilisons **Insommnia**.
-Télecharger  Insommnia ici : https://insomnia.rest/download
+Télecharger  Insomnia ici : https://insomnia.rest/download
 
 ## Documentation
 ## Site web 
