@@ -38,9 +38,10 @@ Nous avons conteneuriser notre application à l'aide de **Docker**, ceci facilit
 Pour le déploiement, nous avons opter pour **Azure**. 
 
 ## Enregistrement des données
-Pour les données, nous utilisons **PostgreSQL** comme serveur getionnaire de notre base de donnée.
-- Télécharger PosgreSQL ici : https://www.postgresql.org/download/                                                                                                            Afin de tester notre API, nous utilisons **Insommnia**.
-- Télecharger  Insommnia ici : https://insomnia.rest/download
+- Pour les données, nous utilisons **PostgreSQL** comme serveur getionnaire de notre base de donnée.
+Télécharger PosgreSQL ici : https://www.postgresql.org/download/                                                                                                            
+- Afin de tester notre API, nous utilisons **Insommnia**.
+Télecharger  Insommnia ici : https://insomnia.rest/download
 
 ## Documentation
 ## Site web 
