@@ -8,4 +8,4 @@ RUN npm run build --prod
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
-COPY --from=builder /usr/src/app/dist/givemehandfrond-end/ /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/givemehand/ /usr/share/nginx/html
