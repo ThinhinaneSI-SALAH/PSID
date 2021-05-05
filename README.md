@@ -27,7 +27,7 @@ Pour l'installation :
 - télécharger IntelliJ sur https://www.jetbrains.com/fr-fr/idea/download/download-thanks.html?platform=windows&code=IIC (ATTENTION: il faut bien choisir le Community qui est gratuit)
 - télécharger VScode sur https://code.visualstudio.com/download
 ### Stack technique : 
-Nous utilisons Spring Boot pour le backend, et AngularJs pour le frontend.
+Nous utilisons **Spring Boot** pour le backend, et **AngularJs** pour le frontend.
 Toutes les étapes d'installation seront détaillés dans notre fichier de configuration.  
 Pour lancer le projet en local :
 - Coté backend: si vous utilisez IntelliJ il suffit de Run le projet, sinon executer la classe GivemehandApplication. 
