@@ -5,8 +5,8 @@ Lorsque l’on fournit un service, on obtient une ou plusieurs médailles, en pa
 Une médaille ( ou des médailles ) représente un crédit de service pour un particulier sur son compte.
 Par exemple :
 - X propose un service de couture qui coûte 3 médailles
-- y voudrait avoir une couturière, il est nécessaire pour elle d’avoir un crédit de service dans son compte. Si elle en a 3, elle peut donc demander le service de x.
-- x dispose à ce moment de 6 médailles et y de 0 médailles.
+- Y voudrait avoir une couturière, il est nécessaire pour elle d’avoir un crédit de service dans son compte. Si elle en a 3, elle peut donc demander le service de x.
+- X dispose à ce moment de 6 médailles et Y de 0 médailles.
 
 A l’inscription l’utilisateur disposera d’un crédit de 10 médailles, ainsi lorsque ces 10 médailles seront épuisées, l’utilisateur devra fournir des services afin d’avoir plus de médailles dans son compte et pouvoir bénéficier d’autre service.
 Notre plateforme va intégrer également un système d’intelligence de données. Nous allons détailler les différentes possibilités en dessous
@@ -30,7 +30,7 @@ Pour l'installation :
 Nous utilisons Spring Boot pour le backend, et AngularJs pour le frontend.
 Toutes les étapes d'installation seront détaillés dans notre fichier de configuration.  
 Pour lancer le projet en local :
-- Coté backend: si vous utilisez IntelliJ il suffit de Run le projet, sinon executer la classe GivemehandApplication 
+- Coté backend: si vous utilisez IntelliJ il suffit de Run le projet, sinon executer la classe GivemehandApplication. 
 - Coté frontend: il suffit de taper la ligne de commande suivante : **ng serve**
 
 ## Intégration continue
