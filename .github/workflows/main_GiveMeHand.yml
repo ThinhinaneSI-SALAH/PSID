@@ -23,7 +23,8 @@ jobs:
 
     - name: Build with Maven
       run: |
-        cd givemehandBack-end
+        ls
+        cd /givemehandBack-end
         mvn clean install
 
     - name: Upload artifact for deployment job
