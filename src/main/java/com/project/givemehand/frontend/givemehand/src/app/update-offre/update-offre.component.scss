@@ -2,12 +2,12 @@ h1 {
     font-size: 3em;
     color: #EACAAC;
     text-align: center;
-
+  
     font-weight: 100;
     text-transform: capitalize;
     letter-spacing: 4px;
     font-family: 'Montserrat', sans-serif;
-
+  
    // font-family: 'Roboto', sans-serif;
   }
 
@@ -44,9 +44,9 @@ h1 {
 	outline: 0;
 	padding: 10px;
 	width: 100%;
-	box-sizing: border-box;
+	box-sizing: border-box; 
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
 	background-color: #FFFCFC;
 	//color:#8a97a0;
     color:#000000;
@@ -102,6 +102,57 @@ h1 {
 }
 
 .btn span {
-  position: relative;
+  position: relative; 
   z-index: 1;
 }
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+/*
+
+label{
+    float: left;
+}
+form {
+    width: 500px;
+  //  float: left;
+    margin-top: 100px;
+    margin-left: 300px;
+}
+h1{
+    float: left;
+    margin-bottom: 20px;
+}
+
+#submitFormMessage{
+    margin-top: 50px;;
+}
+
+.basic-container {
+    padding: 30px;
+  }
+  .version-info {
+    font-size: 8pt;
+    float: right;
+    margin: 8px;
+  }
+.success{
+margin-left: 1150px;
+margin-right : 150px;
+} */

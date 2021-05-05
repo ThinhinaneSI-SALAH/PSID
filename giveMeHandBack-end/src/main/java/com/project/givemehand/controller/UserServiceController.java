@@ -115,6 +115,7 @@ public class UserServiceController {
         roles.add(userRole);
         user.setRoles(roles);
         user.setAdresse(add);
+        user.setMedailles(10);
         service.saveUser(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
@@ -132,17 +133,17 @@ public class UserServiceController {
     }
 
     @RequestMapping(value = "/findUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> findByEmail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+    public ResponseEntity<User> findByEmail(@PathVariable ("email") String email ) {
 
         return service.findUserByEmail(email);
     }
     @RequestMapping(value = "/getMedaillesByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public int getMedaillesByemail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+    public int getMedaillesByemail(@PathVariable ("email") String email )  {
 
         return service.getMedaillesByemail(email);
     }
     @RequestMapping(value = "/getIdUserByemail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public Long getIdUserByemail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+    public Long getIdUserByemail(@PathVariable ("email") String email )  {
 
         return service.getIdUserByemail(email);
     }
@@ -186,7 +187,7 @@ public class UserServiceController {
     }
 
     @RequestMapping(value = "/findIdUserByMail/{email}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public Long findIdUserByMail(@PathVariable ("email") String email ) throws com.projet.korector.Exceptions.ResourceNotFoundException {
+    public Long findIdUserByMail(@PathVariable ("email") String email )  {
         return service.findIdUserByMail(email);
     }
 

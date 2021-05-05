@@ -34,6 +34,7 @@ export class AccueilComponent implements OnInit {
   private geoCoder;
   filtre: Filtre;
   medailles: number;
+  isPossible: boolean;
   user : any;
   email: string;
   addresses: Adresse[] = new Array();
@@ -57,7 +58,6 @@ export class AccueilComponent implements OnInit {
     this.categories = this.offreService.getCategories();
 
     // récupération des information du user s'il est connecté :
-    if(this.route.snapshot.paramMap.get('isLoggedIn')){
       this.email = sessionStorage.getItem("currentUser");
       this.userService.getUserByEmail(this.email)
       .subscribe(data => {
@@ -65,11 +65,9 @@ export class AccueilComponent implements OnInit {
       });
         this.userService.getMedaillesUserByEmail(this.email).subscribe(
           data=>{
-          //console.log(this.medailles = data);
+          console.log(this.medailles = data);
           }
         );
-    }
-
 
      // Utilisation de l'api google maps
      this.mapsAPILoader.load().then(() => {
