@@ -10,12 +10,19 @@ jobs:
         login-server: givemeahand.azurecr.io
         username: ${{ secrets.acr_givemeahand_username }}
         password: ${{ secrets.acr_givemeahand_password }}
+        
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN_PSID }}
     
     - name: Build and push image to ACR
       id: build-image
       run: |
         docker build "$GITHUB_WORKSPACE/giveMeHandBack-end" -f  "giveMeHandBack-end/Dockerfile" -t givemeahand.azurecr.io/givemehand:${{ github.sha }} --label dockerfile-path=giveMeHandBack-end/Dockerfile
         docker push givemeahand.azurecr.io/givemehand:${{ github.sha }}
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/givemehand:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
       with:
