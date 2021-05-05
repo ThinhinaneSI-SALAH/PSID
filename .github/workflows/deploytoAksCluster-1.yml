@@ -5,12 +5,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
     
-    - uses: azure/docker-login@v1
-      with:
-        login-server: givemeahand.azurecr.io
-        username: ${{ secrets.acr_givemeahand_username }}
-        password: ${{ secrets.acr_givemeahand_password }}
-    
     - name: Build and push image to ACR
       id: build-image
       run: |
