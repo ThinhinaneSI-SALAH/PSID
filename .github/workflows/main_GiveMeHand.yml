@@ -24,7 +24,7 @@ jobs:
     - name: Build with Maven
       run: |
         ls
-        cd /giveMeHandBack-end
+        cd D:\a\PSID\PSID\giveMeHandBack-end
         mvn clean install
 
     - name: Upload artifact for deployment job
