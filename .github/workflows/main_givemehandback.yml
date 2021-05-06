@@ -26,7 +26,7 @@ jobs:
     - name: Build with Maven
       run: |
         ls
-        cd D:\a\PSID\PSID\giveMeHandBack-end
+        cd D:/a/PSID/PSID/giveMeHandBack-end
         mvn clean install
 
     - name: Run Azure webapp deploy action using publish profile credentials
@@ -35,5 +35,5 @@ jobs:
         app-name: GiveMeHandBack
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A58A175140D14777A05B7598762C9BEB }}
-        package: 'D:\a\PSID\PSID\giveMeHandBack-end/target/givemehand-0.0.1-SNAPSHOT.jar'
+        package: 'D:/a/PSID/PSID/giveMeHandBack-end/target/givemehand-0.0.1-SNAPSHOT.jar'
 
