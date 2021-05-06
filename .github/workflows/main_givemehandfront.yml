@@ -25,7 +25,8 @@ jobs:
 
     - name: npm install, build, and test
       run: |
-        cd givemehandFrond-end/
+        ls
+        cd giveMeHandFrond-end/
         npm install
         npm run build --if-present
         npm run test --if-present
