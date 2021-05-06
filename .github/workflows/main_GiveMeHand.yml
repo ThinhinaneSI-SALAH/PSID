@@ -31,7 +31,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: java-app
-        path: 'D:\a\PSID\PSID\giveMeHandBack-end/target/givemehand.jar'
+        path: 'D:\a\PSID\PSID\giveMeHandBack-end/target/givemehand-0.0.1-SNAPSHOT.jar'
 
   deploy:
     runs-on: windows-latest
