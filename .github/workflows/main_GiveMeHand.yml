@@ -50,7 +50,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'GiveMeHand'
+        app-name: 'GiveMeHandBack'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_3a86a851a45844b2ad19ec5e01823a1c }}
         package: '*.jar'
