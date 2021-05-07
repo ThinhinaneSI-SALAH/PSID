@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: thinhinanesisalahpsid 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thinhinanesisalahpsid
+  template:
+    metadata:
+      labels:
+        app: thinhinanesisalahpsid 
+    spec:
+      containers:
+        - name: thinhinanesisalahpsid 
+          image: givemehand.azurecr.io/thinhinanesisalahpsid
+          ports:
+          - containerPort: 8080
