@@ -22,13 +22,15 @@ jobs:
         java-version: '11'
 
     - name: Build with Maven
-      run: mvn clean install
+      run: |
+        cd giveMeHandBack-end
+        mvn clean install
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
         name: java-app
-        path: '${{ github.workspace }}/target/*.jar'
+        path: 'giveMeHandBack-end/target/givemehand-0.0.1-SNAPSHOT.jar'
 
   deploy:
     runs-on: windows-latest
@@ -50,4 +52,4 @@ jobs:
         app-name: 'GMAHbackend'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_40363421b6e14df38206a3334a60fe20 }}
-        package: '*.jar'
+        package: 'givemehand-0.0.1-SNAPSHOT.jar'
