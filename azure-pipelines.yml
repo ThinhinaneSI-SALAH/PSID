@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'e07d7bc2-3047-4839-8fac-5bdc45140a1c'
   imageRepository: 'thinhinanesisalahpsid'
   containerRegistry: 'givemehand.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'giveMeHandBack-end/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'givemehand745c-auth'
 
